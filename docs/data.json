@@ -2,31 +2,31 @@
   "meta": {
     "cliente": "Familias Estelares",
     "evento": "PLF La cara oculta de la adolescencia",
-    "atualizado_em": "29/07/2026 03:04"
+    "atualizado_em": "29/07/2026 10:11"
   },
   "kpis": {
     "leads_total": 1179,
-    "investimento_total": 1076.45,
-    "cpl_total": 0.91,
-    "ctr": 0.0212,
-    "connect_rate": 0.4593
+    "investimento_total": 5232.46,
+    "cpl_total": 4.44,
+    "ctr": 0.0211,
+    "connect_rate": 0.4634
   },
   "audiencias": {
     "hot": {
       "leads": 299,
-      "spend": 380.57,
-      "cpl": 1.27,
-      "impressions": 45806,
-      "clicks": 912,
-      "landing_page_view": 445
+      "spend": 1691.18,
+      "cpl": 5.66,
+      "impressions": 216954,
+      "clicks": 4404,
+      "landing_page_view": 2059
     },
     "cold": {
       "leads": 862,
-      "spend": 695.88,
-      "cpl": 0.81,
-      "impressions": 71261,
-      "clicks": 1568,
-      "landing_page_view": 694
+      "spend": 3541.28,
+      "cpl": 4.11,
+      "impressions": 357698,
+      "clicks": 7703,
+      "landing_page_view": 3551
     }
   },
   "leads_por_dia": [
@@ -94,7 +94,7 @@
     "respondentes": 113
   },
   "leitura": {
-    "pt": "O CPL frio ficou abaixo do CPL quente, com quase 40 centavos de diferença entre os dois. A connect rate segue saudável, perto de 46%. No lead scoring, a maioria das respostas fica como Ideal ou Bom, só 9 caem em Descarte. O investimento de ontem ficou dividido entre frio e quente em proporções parecidas.",
-    "es": "El CPL frío quedó por debajo del CPL caliente, con casi 40 céntimos de diferencia entre ambos. El connect rate se mantiene saludable, cerca del 46%. En el lead scoring, la mayoría de las respuestas califican como Ideal o Bueno, solo 9 caen en Descarte. La inversión de ayer se repartió entre frío y caliente en proporciones parecidas."
+    "pt": "O CPL considera o investimento total das campanhas ativas dividido pelos leads totais captados na planilha. O CPL frio segue mais baixo que o quente, com quase um euro e meio de diferença. A connect rate segue saudável, perto de 46%. No lead scoring, a maioria das respostas fica como Ideal ou Bom, só 9 caem em Descarte.",
+    "es": "El CPL considera la inversión total de las campañas activas dividida por los leads totales captados en la planilla. El CPL frío sigue más bajo que el caliente, con casi un euro y medio de diferencia. El connect rate se mantiene saludable, cerca del 46%. En el lead scoring, la mayoría de las respuestas califican como Ideal o Bueno, solo 9 caen en Descarte."
   }
 }
