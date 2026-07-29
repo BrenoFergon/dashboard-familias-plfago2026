@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dashboard — Familias Estelares</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!--
+  DASHBOARD — Familias Estelares (PLF La cara oculta de la adolescencia)
+  Aba única (sem multi-webinário). Lê data.json via fetch a cada carregamento.
+  Este arquivo é editado manualmente quando necessário — a Rotina diária só atualiza data.json.
+-->
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f1a;--s1:#111926;--s2:#162032;--bd:#1d2d45;--accent:#00d4aa;--hot:#f43f5e;--cold:#3b82f6;--text:#e2e8f0;--muted:#64748b;--ideal:#00d4aa;--bom:#facc15;--desc:#f87171;--r:8px}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5}
+header{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
+.logo-text{font-size:13px;font-weight:800;letter-spacing:.5px}
+.logo-text span{color:var(--accent)}
+.lang-toggle{display:flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.lang-btn{background:none;border:none;color:var(--muted);font-size:11px;font-weight:700;padding:4px 10px;cursor:pointer}
+.lang-btn.active{background:var(--accent);color:#0b0f1a}
+main{max-width:1200px;margin:0 auto;padding:24px 20px}
+.updated{font-size:11px;color:var(--muted);margin-bottom:16px}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+.kpi-card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:18px 22px}
+.kpi-card .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.kpi-card .val{font-size:30px;font-weight:800}
+.kpi-cpl .val{color:var(--accent)}
+.aud-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.aud-card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 20px;border-top:3px solid var(--hot)}
+.aud-card.cold{border-top-color:var(--cold)}
+.aud-card .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.aud-card.hot .lbl{color:var(--hot)}
+.aud-card.cold .lbl{color:var(--cold)}
+.aud-card .row{display:flex;justify-content:space-between;font-size:13px;margin-top:4px;color:var(--muted)}
+.aud-card .row b{color:var(--text)}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 20px;margin-bottom:14px}
+.sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;padding:0 8px 8px;border-bottom:1px solid var(--bd)}
+td{padding:7px 8px;border-bottom:1px solid rgba(29,45,69,.5)}
+.scoring-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.scoring-card{background:var(--s2);border-radius:var(--r);padding:14px;text-align:center}
+.scoring-card .n{font-size:26px;font-weight:800}
+.scoring-card.ideal .n{color:var(--ideal)}
+.scoring-card.bom .n{color:var(--bom)}
+.scoring-card.desc .n{color:var(--desc)}
+.scoring-card .lbl{font-size:10px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+canvas{max-height:220px}
+.leitura-card{background:var(--s1);border:1px solid var(--bd);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 20px;margin-top:24px;font-size:13px;line-height:1.7}
+.empty{color:var(--muted);font-size:12px;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <span class="logo-text">FAMILIAS <span>ESTELARES</span></span>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</header>
+<main><div id="content">Carregando...</div></main>
+<script>
+let DATA=null,LANG='pt',CHART_DIA=null;
+const EUR=v=>`€ ${parseFloat(v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+const NUM=v=>parseInt(v||0).toLocaleString('pt-BR');
+
+const L={
+  pt:{investimento:'Investimento total',cpl:'CPL',leads:'Leads',quente:'QUENTE',frio:'FRIO',canal:'Canal',leadsCol:'Leads',leadsDia:'Leads por dia',porCanal:'Leads por canal',scoring:'Lead scoring',ideal:'Ideal',bom:'Bom',descarte:'Descarte',leitura:'Leitura dos dados',semdados:'Sem dados suficientes ainda',atualizado:'Atualizado em'},
+  es:{investimento:'Inversión total',cpl:'CPL',leads:'Leads',quente:'CALIENTE',frio:'FRÍO',canal:'Canal',leadsCol:'Leads',leadsDia:'Leads por día',porCanal:'Leads por canal',scoring:'Lead scoring',ideal:'Ideal',bom:'Bueno',descarte:'Descarte',leitura:'Lectura de los datos',semdados:'Sin datos suficientes todavía',atualizado:'Actualizado el'}
+};
+
+function setLang(l){LANG=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));render();}
+
+function canalNome(c){
+  const nomes={ig:'Instagram',fb:'Facebook',an:'Audience Network',th:'Threads',sem_rastreio:'Sem rastreio'};
+  return nomes[c]||c;
+}
+
+function render(){
+  if(!DATA)return;
+  const t=L[LANG];
+  const k=DATA.kpis||{};
+  const aud=DATA.audiencias||{};
+  const scoring=(DATA.lead_scoring&&DATA.lead_scoring.totais)||null;
+  const canais=(DATA.canais||[]).slice().sort((a,b)=>b.leads-a.leads);
+  const porDia=(DATA.leads_por_dia||[]);
+
+  let html=`<div class="updated">${t.atualizado} ${DATA.meta?.atualizado_em||''}</div>`;
+
+  html+=`<div class="kpi-row">
+    <div class="kpi-card"><div class="lbl">${t.investimento}</div><div class="val">${EUR(k.investimento_total)}</div></div>
+    <div class="kpi-card kpi-cpl"><div class="lbl">${t.cpl}</div><div class="val">${EUR(k.cpl_total)}</div></div>
+    <div class="kpi-card"><div class="lbl">${t.leads}</div><div class="val">${NUM(k.leads_total)}</div></div>
+  </div>`;
+
+  html+=`<div class="aud-row">
+    <div class="aud-card hot"><div class="lbl">${t.quente}</div>
+      <div class="row"><span>${t.leads}</span><b>${NUM(aud.hot?.leads)}</b></div>
+      <div class="row"><span>${t.cpl}</span><b>${EUR(aud.hot?.cpl)}</b></div>
+    </div>
+    <div class="aud-card cold"><div class="lbl">${t.frio}</div>
+      <div class="row"><span>${t.leads}</span><b>${NUM(aud.cold?.leads)}</b></div>
+      <div class="row"><span>${t.cpl}</span><b>${EUR(aud.cold?.cpl)}</b></div>
+    </div>
+  </div>`;
+
+  html+=`<div class="card"><div class="sec-title">${t.leadsDia}</div>`;
+  html+= porDia.length ? `<canvas id="chart-dia"></canvas>` : `<div class="empty">${t.semdados}</div>`;
+  html+=`</div>`;
+
+  html+=`<div class="card"><div class="sec-title">${t.porCanal}</div>`;
+  if(canais.length){
+    html+=`<table><thead><tr><th>${t.canal}</th><th>${t.leadsCol}</th></tr></thead><tbody>`;
+    canais.forEach(c=>{html+=`<tr><td>${canalNome(c.canal)}</td><td>${NUM(c.leads)}</td></tr>`;});
+    html+=`</tbody></table>`;
+  } else {
+    html+=`<div class="empty">${t.semdados}</div>`;
+  }
+  html+=`</div>`;
+
+  if(scoring){
+    const ideal=scoring.Ideal??scoring.ideal??0;
+    const bom=scoring.Bom??scoring.bom??0;
+    const desc=scoring.Descarte??scoring.descarte??0;
+    html+=`<div class="card"><div class="sec-title">${t.scoring}</div>
+      <div class="scoring-row">
+        <div class="scoring-card ideal"><div class="n">${NUM(ideal)}</div><div class="lbl">${t.ideal}</div></div>
+        <div class="scoring-card bom"><div class="n">${NUM(bom)}</div><div class="lbl">${t.bom}</div></div>
+        <div class="scoring-card desc"><div class="n">${NUM(desc)}</div><div class="lbl">${t.descarte}</div></div>
+      </div>
+    </div>`;
+  }
+
+  const txt=DATA.leitura?.[LANG]||'';
+  if(txt)html+=`<div class="leitura-card"><div class="sec-title">${t.leitura}</div>${txt}</div>`;
+
+  document.getElementById('content').innerHTML=html;
+
+  if(porDia.length){
+    if(CHART_DIA)CHART_DIA.destroy();
+    const ctx=document.getElementById('chart-dia').getContext('2d');
+    CHART_DIA=new Chart(ctx,{
+      type:'bar',
+      data:{labels:porDia.map(p=>p.data),datasets:[{label:t.leadsCol,data:porDia.map(p=>p.leads),backgroundColor:'#00d4aa'}]},
+      options:{plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1d2d45'},ticks:{color:'#64748b'}},y:{grid:{color:'#1d2d45'},ticks:{color:'#64748b'}}}}
+    });
+  }
+}
+
+fetch('./data.json?t='+Date.now())
+  .then(r=>r.json())
+  .then(d=>{DATA=d;render();})
+  .catch(e=>{document.getElementById('content').innerHTML='Erro ao carregar data.json: '+e.message;});
+</script>
+</body>
+</html>
