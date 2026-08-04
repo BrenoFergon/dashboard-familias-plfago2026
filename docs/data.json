@@ -2,90 +2,90 @@
   "meta": {
     "cliente": "Familias Estelares",
     "evento": "PLF La cara oculta de la adolescencia",
-    "atualizado_em": "03/08/2026 11:22",
-    "datas_evento": "22/07 – 03/08",
+    "atualizado_em": "04/08/2026 11:23",
+    "datas_evento": "22/07 – 04/08",
     "periodo": "acumulado",
-    "dias_ativos": 13
+    "dias_ativos": 14
   },
   "kpis": {
-    "leads_total": 3182,
-    "investimento_total": 15525.66,
-    "cpl_total": 4.88,
-    "ctr": 0.02,
-    "connect_rate": 0.45
+    "leads_total": 3578,
+    "investimento_total": 17869.52,
+    "cpl_total": 4.99,
+    "ctr": 0.021950829083705138,
+    "connect_rate": 0.45205066344993966
   },
   "audiencias": {
     "hot": {
-      "leads": 800,
-      "spend": 5215.62,
-      "cpl": 6.52,
-      "impressions": 539749,
-      "clicks": 12125,
-      "landing_page_view": 5403
+      "leads": 901,
+      "spend": 5993.82,
+      "cpl": 6.65,
+      "impressions": 600432,
+      "clicks": 13613,
+      "landing_page_view": 6061
     },
     "cold": {
-      "leads": 1985,
-      "spend": 10310.04,
-      "cpl": 5.19,
-      "impressions": 940949,
-      "clicks": 20296,
-      "landing_page_view": 9261
+      "leads": 2203,
+      "spend": 11875.7,
+      "cpl": 5.39,
+      "impressions": 1061282,
+      "clicks": 22863,
+      "landing_page_view": 10428
     }
   },
   "funil": {
-    "impressoes": 1480698,
-    "cliques": 32421,
-    "page_views": 14664,
-    "leads": 2617,
-    "ctr": 2.19,
-    "connect_rate": 45.23,
-    "taxa_conversao": 17.85
+    "impressoes": 1661714,
+    "cliques": 36476,
+    "page_views": 16489,
+    "leads": 2917,
+    "ctr": 2.2,
+    "connect_rate": 45.21,
+    "taxa_conversao": 17.69
   },
   "segmentacao": {
     "genero": [
       {
         "grupo": "Feminino",
-        "spend": 14409.75,
-        "leads": 2434,
-        "cpl": 5.92
+        "spend": 16550.42,
+        "leads": 2714,
+        "cpl": 6.1
       },
       {
         "grupo": "Masculino",
-        "spend": 963.09,
-        "leads": 159,
-        "cpl": 6.06
+        "spend": 1137.86,
+        "leads": 177,
+        "cpl": 6.43
       },
       {
         "grupo": "Unknown",
-        "spend": 152.82,
+        "spend": 177.77,
         "leads": 26,
-        "cpl": 5.88
+        "cpl": 6.84
       }
     ],
     "faixa_etaria": [
       {
         "grupo": "25-34",
-        "spend": 42.99,
-        "leads": 16,
-        "cpl": 2.69
+        "spend": 50.35,
+        "leads": 18,
+        "cpl": 2.8
       },
       {
         "grupo": "35-44",
-        "spend": 3839.72,
-        "leads": 560,
-        "cpl": 6.86
+        "spend": 4382.69,
+        "leads": 626,
+        "cpl": 7.0
       },
       {
         "grupo": "45-54",
-        "spend": 10992.35,
-        "leads": 1930,
-        "cpl": 5.7
+        "spend": 12670.14,
+        "leads": 2148,
+        "cpl": 5.9
       },
       {
         "grupo": "55-64",
-        "spend": 650.12,
-        "leads": 108,
-        "cpl": 6.02
+        "spend": 762.39,
+        "leads": 120,
+        "cpl": 6.35
       }
     ]
   },
@@ -140,13 +140,17 @@
     },
     {
       "data": "03/08",
-      "leads": 216
+      "leads": 399
+    },
+    {
+      "data": "04/08",
+      "leads": 213
     }
   ],
   "cpl_por_dia": [
     {
       "data": "22/07",
-      "cpl": 0
+      "cpl": 0.0
     },
     {
       "data": "23/07",
@@ -194,72 +198,76 @@
     },
     {
       "data": "03/08",
-      "cpl": 5.91
+      "cpl": 5.54
+    },
+    {
+      "data": "04/08",
+      "cpl": 6.61
     }
   ],
   "canais": [
     {
       "canal": "ig",
-      "leads": 1767,
-      "pct": 55.53
+      "leads": 1948,
+      "pct": 54.44
     },
     {
       "canal": "fb",
-      "leads": 993,
-      "pct": 31.21
+      "leads": 1128,
+      "pct": 31.53
     },
     {
       "canal": "sem_rastreio",
-      "leads": 395,
-      "pct": 12.41
+      "leads": 472,
+      "pct": 13.19
     },
     {
       "canal": "an",
-      "leads": 24,
+      "leads": 27,
       "pct": 0.75
     },
     {
       "canal": "th",
       "leads": 3,
-      "pct": 0.09
+      "pct": 0.08
     }
   ],
   "criativos": [
     {
-      "nome": "ADXX-MISTO",
-      "leads": 524
+      "nome": "PLF_07",
+      "leads": 574
     },
     {
-      "nome": "PLF_07",
-      "leads": 520
+      "nome": "ADXX-MISTO",
+      "leads": 566
     },
     {
       "nome": "PLF_04",
-      "leads": 486
+      "leads": 535
     },
     {
       "nome": "PLF_01",
-      "leads": 399
+      "leads": 422
     },
     {
       "nome": "AD03-BLOQUE-06",
-      "leads": 260
+      "leads": 318
     },
     {
       "nome": "AD06-BLOQUE-10",
-      "leads": 112
+      "leads": 116
     },
     {
       "nome": "PLF_03",
-      "leads": 90
-    },
-    {
-      "nome": "AD01-BLOQUE-01",
-      "leads": 51
+      "leads": 93
     },
     {
       "nome": "PLF_10",
-      "leads": 47
+      "leads": 85
+    },
+    {
+      "nome": "AD01-BLOQUE-01",
+      "leads": 59
     },
     {
       "nome": "AD05-BLOQUE-08",
@@ -268,11 +276,11 @@
   ],
   "lead_scoring": {
     "totais": {
-      "Ideal": 248,
-      "Bom": 117,
-      "Descarte": 25
+      "Ideal": 276,
+      "Bom": 130,
+      "Descarte": 27
     },
-    "respondentes": 412,
+    "respondentes": 454,
     "grupos": [
       {
         "tipo": "COLD",
@@ -302,10 +310,10 @@
         "conjunto": "00-Pais-de-jovens",
         "criativo": "ADXX-MISTO",
         "canal": "ig",
-        "ideal": 25,
+        "ideal": 26,
         "bom": 10,
         "descarte": 4,
-        "total": 39
+        "total": 40
       },
       {
         "tipo": "COLD",
@@ -313,10 +321,21 @@
         "conjunto": "00-Pais-de-jovens",
         "criativo": "ADXX-MISTO",
         "canal": "fb",
-        "ideal": 11,
+        "ideal": 12,
         "bom": 5,
         "descarte": 0,
-        "total": 16
+        "total": 17
+      },
+      {
+        "tipo": "OUTRO",
+        "campanha": "sin_utm",
+        "conjunto": "sin_utm",
+        "criativo": "sin_utm",
+        "canal": "sem_rastreio",
+        "ideal": 2,
+        "bom": 2,
+        "descarte": 1,
+        "total": 5
       },
       {
         "tipo": "HOT",
@@ -336,9 +355,9 @@
         "criativo": "ADXX-MISTO",
         "canal": "fb",
         "ideal": 9,
-        "bom": 1,
+        "bom": 4,
         "descarte": 0,
-        "total": 10
+        "total": 13
       },
       {
         "tipo": "COLD",
@@ -380,9 +399,9 @@
         "criativo": "PLF_07",
         "canal": "fb",
         "ideal": 3,
-        "bom": 3,
+        "bom": 4,
         "descarte": 1,
-        "total": 7
+        "total": 8
       },
       {
         "tipo": "COLD",
@@ -401,10 +420,10 @@
         "conjunto": "00-COLD-LAL-Seguidores",
         "criativo": "PLF_01",
         "canal": "ig",
-        "ideal": 1,
-        "bom": 2,
+        "ideal": 2,
+        "bom": 3,
         "descarte": 0,
-        "total": 3
+        "total": 5
       },
       {
         "tipo": "COLD",
@@ -473,17 +492,6 @@
         "total": 8
       },
       {
-        "tipo": "OUTRO",
-        "campanha": "sin_utm",
-        "conjunto": "sin_utm",
-        "criativo": "sin_utm",
-        "canal": "sem_rastreio",
-        "ideal": 1,
-        "bom": 1,
-        "descarte": 0,
-        "total": 2
-      },
-      {
         "tipo": "HOT",
         "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
         "conjunto": "00-ENG30D-IG-FB",
@@ -522,10 +530,10 @@
         "conjunto": "00-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_01",
         "canal": "ig",
-        "ideal": 11,
+        "ideal": 12,
         "bom": 3,
         "descarte": 1,
-        "total": 15
+        "total": 16
       },
       {
         "tipo": "HOT",
@@ -556,9 +564,9 @@
         "criativo": "PLF_01",
         "canal": "fb",
         "ideal": 1,
-        "bom": 3,
+        "bom": 4,
         "descarte": 0,
-        "total": 4
+        "total": 5
       },
       {
         "tipo": "COLD",
@@ -578,9 +586,9 @@
         "criativo": "PLF_07",
         "canal": "ig",
         "ideal": 13,
-        "bom": 9,
+        "bom": 10,
         "descarte": 0,
-        "total": 22
+        "total": 23
       },
       {
         "tipo": "COLD",
@@ -588,10 +596,10 @@
         "conjunto": "00-Pais-de-jovens",
         "criativo": "AD05-BLOQUE-08",
         "canal": "fb",
-        "ideal": 3,
+        "ideal": 4,
         "bom": 0,
         "descarte": 0,
-        "total": 3
+        "total": 4
       },
       {
         "tipo": "COLD",
@@ -610,10 +618,10 @@
         "conjunto": "00-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_04",
         "canal": "ig",
-        "ideal": 3,
+        "ideal": 4,
         "bom": 1,
         "descarte": 1,
-        "total": 5
+        "total": 6
       },
       {
         "tipo": "COLD",
@@ -654,10 +662,10 @@
         "conjunto": "whatsapp",
         "criativo": "sin_utm",
         "canal": "sem_rastreio",
-        "ideal": 29,
-        "bom": 14,
-        "descarte": 2,
-        "total": 45
+        "ideal": 32,
+        "bom": 16,
+        "descarte": 3,
+        "total": 51
       },
       {
         "tipo": "COLD",
@@ -669,6 +677,17 @@
         "bom": 2,
         "descarte": 0,
         "total": 3
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
+        "conjunto": "00-Pais-de-jovens",
+        "criativo": "AD03-BLOQUE-06",
+        "canal": "th",
+        "ideal": 0,
+        "bom": 1,
+        "descarte": 0,
+        "total": 1
       },
       {
         "tipo": "COLD",
@@ -709,10 +728,10 @@
         "conjunto": "00-MIX-HOT",
         "criativo": "PLF_04",
         "canal": "fb",
-        "ideal": 4,
-        "bom": 1,
+        "ideal": 5,
+        "bom": 2,
         "descarte": 1,
-        "total": 6
+        "total": 8
       },
       {
         "tipo": "COLD",
@@ -874,10 +893,10 @@
         "conjunto": "04-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_03",
         "canal": "ig",
-        "ideal": 0,
+        "ideal": 1,
         "bom": 1,
         "descarte": 0,
-        "total": 1
+        "total": 2
       },
       {
         "tipo": "HOT",
@@ -885,10 +904,10 @@
         "conjunto": "00-ENG30D-IG-FB",
         "criativo": "AD03-BLOQUE-06",
         "canal": "ig",
-        "ideal": 2,
+        "ideal": 4,
         "bom": 0,
         "descarte": 0,
-        "total": 2
+        "total": 4
       },
       {
         "tipo": "HOT",
@@ -907,6 +926,17 @@
         "conjunto": "04-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_03",
         "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+        "conjunto": "05-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_06",
+        "canal": "ig",
         "ideal": 1,
         "bom": 0,
         "descarte": 0,
@@ -951,10 +981,10 @@
         "conjunto": "instagram",
         "criativo": "link_in_bio",
         "canal": "sem_rastreio",
-        "ideal": 2,
+        "ideal": 6,
         "bom": 0,
         "descarte": 0,
-        "total": 2
+        "total": 6
       },
       {
         "tipo": "COLD",
@@ -962,10 +992,10 @@
         "conjunto": "10-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_10",
         "canal": "ig",
-        "ideal": 1,
+        "ideal": 3,
         "bom": 0,
         "descarte": 0,
-        "total": 1
+        "total": 3
       },
       {
         "tipo": "COLD",
@@ -988,11 +1018,77 @@
         "bom": 0,
         "descarte": 0,
         "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+        "conjunto": "05-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_10",
+        "canal": "ig",
+        "ideal": 2,
+        "bom": 0,
+        "descarte": 0,
+        "total": 2
+      },
+      {
+        "tipo": "HOT",
+        "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
+        "conjunto": "00-ENG30D-IG-FB",
+        "criativo": "AD03-BLOQUE-06",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+        "conjunto": "00-COLD-LAL-Seguidores",
+        "criativo": "PLF_09",
+        "canal": "ig",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "HOT",
+        "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
+        "conjunto": "00-ENG30D-IG-FB",
+        "criativo": "AD01-BLOQUE-01",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+        "conjunto": "05-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_10",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+        "conjunto": "10-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_10",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 1,
+        "descarte": 0,
+        "total": 2
       }
     ]
   },
   "leitura": {
-    "pt": "O CPL do público FRIO segue abaixo do QUENTE, com mais volume e menor custo por lead. O Instagram continua como canal principal, com mais da metade dos leads totais. A conversão de visualização de página para lead está em 17,85%, com connect rate de 45,23% sobre os cliques. Dos 390 leads que responderam a pesquisa, 248 se classificam como Ideal e 117 como Bom, uma base sólida para o lançamento.",
-    "es": "El CPL del público FRÍO se mantiene por debajo del CALIENTE, con más volumen y menor costo por lead. Instagram sigue como el canal principal, con más de la mitad de los leads totales. La conversión de página vista a lead está en 17,85%, con un connect rate de 45,23% sobre los clics. De los 390 leads que completaron la encuesta, 248 califican como Ideal y 117 como Bueno, una base sólida para el lanzamiento."
+    "pt": "O investimento acumulado chegou a €17.869,52 com CPL total de €4,99, dentro do esperado para esta fase do lançamento. O público FRIO traz mais volume com CPL mais baixo, enquanto o QUENTE custa mais mas mantém um ritmo constante de conversão. O Instagram segue como canal principal, com mais da metade dos leads totais. Na pesquisa de qualificação, 61% de quem respondeu ficou no nível Ideal, sinal de que a base de leads tem boa qualidade para conversão.",
+    "es": "La inversión acumulada llegó a €17.869,52 con un CPL total de €4,99, dentro de lo esperado para esta fase del lanzamiento. El público FRÍO trae más volumen con un CPL más bajo, mientras que el CALIENTE cuesta más pero mantiene un ritmo constante de conversión. Instagram sigue siendo el canal principal, con más de la mitad de los leads totales. En la encuesta de calificación, el 61% de quienes respondieron quedó en el nivel Ideal, señal de que la base de leads tiene buena calidad para la conversión."
   }
 }
