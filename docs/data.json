@@ -9,8 +9,9 @@
   },
   "kpis": {
     "leads_total": 4905,
+    "leads_trafego": 4120,
     "investimento_total": 26052.58,
-    "cpl_total": 5.31,
+    "cpl_total": 6.32,
     "ctr": 0.022090861084538217,
     "connect_rate": 0.45891960280642563
   },
@@ -1356,7 +1357,7 @@
     ]
   },
   "leitura": {
-    "pt": "O investimento acumulado das campanhas PLF-INVITACION (ativas e pausadas) chegou a €26.052,58 com CPL total de €5,31, no período de 22/07 – 23/08 (33 dias). Neste momento nenhuma dessas campanhas segue ativa — a fase de captação/convite já foi concluída. O público FRIO trouxe mais volume (€17.322 investidos) enquanto o QUENTE manteve CPL um pouco mais alto. O Instagram segue como canal principal de leads. Na pesquisa de qualificação, 552 leads responderam, com 63% classificados como Ideal — sinal de boa qualidade na base para conversão.",
-    "es": "La inversión acumulada de las campañas PLF-INVITACION (activas y pausadas) llegó a €26.052,58 con un CPL total de €5,31, en el período de 22/07 – 23/08 (33 días). En este momento ninguna de esas campañas sigue activa — la fase de captación/invitación ya concluyó. El público FRÍO trajo más volumen (€17.322 invertidos) mientras que el CALIENTE mantuvo un CPL un poco más alto. Instagram sigue siendo el canal principal de leads. En la encuesta de calificación, 552 leads respondieron, con un 63% clasificado como Ideal — señal de buena calidad en la base para la conversión."
+    "pt": "O investimento acumulado das campanhas PLF-INVITACION (ativas e pausadas) chegou a €26.052,58 com CPL total de €6,32 (considerando os 4.120 leads vindos de tráfego pago — quentes, frios e demais tags rastreadas), no período de 22/07 – 23/08 (33 dias). Neste momento nenhuma dessas campanhas segue ativa — a fase de captação/convite já foi concluída. O público FRIO trouxe mais volume (€17.322 investidos) enquanto o QUENTE manteve CPL um pouco mais alto. O Instagram segue como canal principal de leads. Na pesquisa de qualificação, 552 leads responderam, com 63% classificados como Ideal — sinal de boa qualidade na base para conversão.",
+    "es": "La inversión acumulada de las campañas PLF-INVITACION (activas y pausadas) llegó a €26.052,58 con un CPL total de €6,32 (considerando los 4.120 leads provenientes de tráfico pagado — calientes, fríos y demás tags rastreadas), en el período de 22/07 – 23/08 (33 días). En este momento ninguna de esas campañas sigue activa — la fase de captación/invitación ya concluyó. El público FRÍO trajo más volumen (€17.322 invertidos) mientras que el CALIENTE mantuvo un CPL un poco más alto. Instagram sigue siendo el canal principal de leads. En la encuesta de calificación, 552 leads respondieron, con un 63% clasificado como Ideal — señal de buena calidad en la base para la conversión."
   }
 }
