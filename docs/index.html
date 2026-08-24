@@ -219,6 +219,7 @@ body.light .srch{background:#f0f2f7}
 <div class="tabs">
   <div class="tab active" onclick="showTab('overview')">📊 Overview</div>
   <div class="tab" onclick="showTab('scoring')">🎯 Lead Scoring</div>
+  <div class="tab" onclick="showTab('resultados')">🏆 Resultados</div>
 </div>
 
 <div id="loading" class="loading">
@@ -349,6 +350,40 @@ body.light .srch{background:#f0f2f7}
 </div>
 </div>
 
+<!-- TAB RESULTADOS -->
+<div id="tab-resultados" class="tab-content" style="display:none">
+<div class="main">
+  <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi ideal"><div class="kpi-label">✦ Ideal</div><div class="kpi-value" id="res-ki">—</div><div class="kpi-sub">total geral</div></div>
+    <div class="kpi bom"><div class="kpi-label">◈ Bom</div><div class="kpi-value" id="res-kb">—</div><div class="kpi-sub">total geral</div></div>
+    <div class="kpi desc"><div class="kpi-label">✕ Descarte</div><div class="kpi-value" id="res-kd">—</div><div class="kpi-sub">total geral</div></div>
+    <div class="kpi k2"><div class="kpi-label">Respondentes</div><div class="kpi-value" id="res-kr">—</div><div class="kpi-sub" id="res-kr-sub">de leads totais</div></div>
+  </div>
+  <div class="insight" id="res-insight" style="margin-bottom:16px"></div>
+  <div class="card">
+    <div class="card-title"><span class="cdot"></span>Lead scoring x campanhas — onde estão os leads mais qualificados</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th onclick="resSrt('tipo')">Público ↕</th>
+          <th onclick="resSrt('campanha')">Campanha ↕</th>
+          <th onclick="resSrt('conjunto')">Conjunto ↕</th>
+          <th onclick="resSrt('criativo')">Criativo ↕</th>
+          <th onclick="resSrt('canal')">Canal ↕</th>
+          <th onclick="resSrt('ideal')" style="text-align:center;color:var(--ideal)">Ideal ↕</th>
+          <th onclick="resSrt('bom')" style="text-align:center;color:var(--bom)">Bom ↕</th>
+          <th onclick="resSrt('descarte')" style="text-align:center;color:var(--descarte)">Desc. ↕</th>
+          <th onclick="resSrt('total')" style="text-align:center">Total ↕</th>
+          <th onclick="resSrt('pctIdeal')" style="text-align:center">% Ideal ↕</th>
+        </tr></thead>
+        <tbody id="res-tbody"></tbody>
+      </table>
+    </div>
+    <div class="pag"><span id="res-pi"></span><div class="pag-btns" id="res-pb"></div></div>
+  </div>
+</div>
+</div>
+
 <script>
 var D=null, lang='pt', isDark=true, chartInst=null;
 var scCf='all', scCs='ideal', scSa=false, scCp=1, scPS=12;
@@ -368,8 +403,10 @@ function showTab(t){
   document.querySelectorAll('.tab').forEach(function(el){el.classList.remove('active');});
   document.getElementById('tab-'+t).style.display='block';
   var tabs=document.querySelectorAll('.tab');
-  if(t==='overview') tabs[0].classList.add('active'); else tabs[1].classList.add('active');
+  var idx={overview:0,scoring:1,resultados:2}[t]||0;
+  tabs[idx].classList.add('active');
   if(t==='scoring') scRender();
+  if(t==='resultados') resRender();
 }
 
 function renderOverview(){
@@ -523,6 +560,58 @@ function scFilter(f){
   document.getElementById(map[f]).className='fbtn '+cls[f];
   scRender();
 }
+
+var resCs='ideal', resSa=false, resCp=1, resPS=12;
+
+function resRows(){
+  var sc=(D&&D.lead_scoring)?D.lead_scoring:{grupos:[]};
+  return (sc.grupos||[]).map(function(r){
+    return {tipo:r.tipo,campanha:r.campanha,conjunto:r.conjunto,criativo:r.criativo,canal:r.canal,ideal:r.ideal,bom:r.bom,descarte:r.descarte,total:r.total,pctIdeal:r.total?Math.round(r.ideal/r.total*100):0};
+  });
+}
+
+function resRender(){
+  if(!D) return;
+  var sc=D.lead_scoring||{totais:{},respondentes:0,grupos:[]};
+  set('res-ki',sc.totais.Ideal||0); set('res-kb',sc.totais.Bom||0); set('res-kd',sc.totais.Descarte||0);
+  set('res-kr',num(sc.respondentes||0));
+  var leadsTotal=(D.kpis&&D.kpis.leads_total)||0;
+  var pctResp=leadsTotal?((sc.respondentes||0)/leadsTotal*100).toFixed(1):'0.0';
+  set('res-kr-sub',pctResp+'% de '+num(leadsTotal)+' leads totais responderam à pesquisa');
+  var rows=resRows();
+  setH('res-insight','<strong>Leitura rápida:</strong> apenas uma parte dos leads respondeu à pesquisa de qualificação ('+num(sc.respondentes||0)+' de '+num(leadsTotal)+'). As linhas destacadas abaixo têm alta concentração de leads <strong>Ideal</strong> (≥50%, com pelo menos 3 respostas) — bons candidatos para reforçar investimento se as campanhas forem reativadas.');
+  if(!rows.length){
+    document.getElementById('res-tbody').innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">Nenhum lead com pesquisa respondida ainda</td></tr>';
+    document.getElementById('res-pi').textContent='0 combinações';
+    document.getElementById('res-pb').innerHTML='';
+    return;
+  }
+  rows.sort(function(a,b){var va=a[resCs],vb=b[resCs];if(typeof va==='string'){va=va.toLowerCase();vb=vb.toLowerCase();}var r=va<vb?-1:va>vb?1:0;return resSa?r:-r;});
+  var start=(resCp-1)*resPS,end=Math.min(start+resPS,rows.length),page=rows.slice(start,end);
+  document.getElementById('res-tbody').innerHTML=page.map(function(r){
+    var ci=r.canal==='ig'?'ig':r.canal==='fb'?'fb':r.canal==='an'?'an':'other';
+    var hi=r.total>=3&&r.pctIdeal>=50;
+    return '<tr'+(hi?' style="background:rgba(0,229,160,0.08)"':'')+'>'+
+      '<td><span class="camp-tag '+r.tipo+'">'+r.tipo+'</span></td>'+
+      '<td title="'+r.campanha+'"><span class="sc-tag" style="max-width:220px">'+r.campanha+'</span></td>'+
+      '<td title="'+r.conjunto+'"><span class="sc-tag" style="max-width:180px">'+r.conjunto+'</span></td>'+
+      '<td><span class="sc-tag">'+r.criativo+'</span></td>'+
+      '<td><span class="canal-tag '+ci+'">'+(r.canal||'—').toUpperCase()+'</span></td>'+
+      '<td class="cnt '+(r.ideal?'i':'z')+'">'+r.ideal+'</td>'+
+      '<td class="cnt '+(r.bom?'b':'z')+'">'+r.bom+'</td>'+
+      '<td class="cnt '+(r.descarte?'d':'z')+'">'+r.descarte+'</td>'+
+      '<td class="cnt" style="color:var(--muted)">'+r.total+'</td>'+
+      '<td class="cnt" style="color:'+(hi?'var(--ideal)':'var(--muted)')+';font-weight:700">'+(hi?'★ ':'')+r.pctIdeal+'%</td>'+
+    '</tr>';
+  }).join('');
+  document.getElementById('res-pi').textContent=(start+1)+' – '+end+' de '+rows.length+' combinações';
+  var tp=Math.ceil(rows.length/resPS),ph='';
+  for(var i=1;i<=tp;i++) ph+='<button class="pbtn'+(i===resCp?' on':'')+'" onclick="resGp('+i+')">'+i+'</button>';
+  document.getElementById('res-pb').innerHTML=ph;
+}
+
+function resGp(p){resCp=p;resRender();}
+function resSrt(c){if(resCs===c)resSa=!resSa;else{resCs=c;resSa=false;}resCp=1;resRender();}
 
 function setLang(l){
   lang=l;
