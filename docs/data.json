@@ -2,48 +2,98 @@
   "meta": {
     "cliente": "Familias Estelares",
     "evento": "PLF La cara oculta de la adolescencia",
-    "atualizado_em": "24/08/2026 15:00",
+    "atualizado_em": "24/08/2026 15:40",
     "datas_evento": "22/07 – 23/08",
     "periodo": "acumulado",
     "dias_ativos": 33
   },
   "kpis": {
     "leads_total": 4905,
-    "investimento_total": 0,
-    "cpl_total": 0,
-    "ctr": 0,
-    "connect_rate": 0
+    "investimento_total": 26052.58,
+    "cpl_total": 5.31,
+    "ctr": 0.022090861084538217,
+    "connect_rate": 0.45891960280642563
   },
   "audiencias": {
     "hot": {
       "leads": 1266,
-      "spend": 0,
-      "cpl": 0,
-      "impressions": 0,
-      "clicks": 0,
-      "landing_page_view": 0
+      "spend": 8730.09,
+      "cpl": 6.9,
+      "impressions": 817574,
+      "clicks": 19417,
+      "landing_page_view": 8781
     },
     "cold": {
       "leads": 2852,
-      "spend": 0,
-      "cpl": 0,
-      "impressions": 0,
-      "clicks": 0,
-      "landing_page_view": 0
+      "spend": 17322.49,
+      "cpl": 6.07,
+      "impressions": 1543855,
+      "clicks": 32749,
+      "landing_page_view": 15159
     }
   },
   "funil": {
-    "impressoes": 0,
-    "cliques": 0,
-    "page_views": 0,
-    "leads": 0,
-    "ctr": 0,
-    "connect_rate": 0,
-    "taxa_conversao": 0
+    "impressoes": 2361429,
+    "cliques": 52166,
+    "page_views": 23940,
+    "leads": 3912,
+    "ctr": 2.21,
+    "connect_rate": 45.89,
+    "taxa_conversao": 16.34
   },
   "segmentacao": {
-    "genero": [],
-    "faixa_etaria": []
+    "genero": [
+      {
+        "grupo": "Feminino",
+        "spend": 24026.03,
+        "leads": 3612,
+        "cpl": 6.65
+      },
+      {
+        "grupo": "Masculino",
+        "spend": 1761.4,
+        "leads": 260,
+        "cpl": 6.77
+      },
+      {
+        "grupo": "Unknown",
+        "spend": 265.15,
+        "leads": 40,
+        "cpl": 6.63
+      }
+    ],
+    "faixa_etaria": [
+      {
+        "grupo": "25-34",
+        "spend": 72.23,
+        "leads": 24,
+        "cpl": 3.01
+      },
+      {
+        "grupo": "35-44",
+        "spend": 6341.21,
+        "leads": 841,
+        "cpl": 7.54
+      },
+      {
+        "grupo": "45-54",
+        "spend": 18521.64,
+        "leads": 2882,
+        "cpl": 6.43
+      },
+      {
+        "grupo": "55-64",
+        "spend": 1116.47,
+        "leads": 160,
+        "cpl": 6.98
+      },
+      {
+        "grupo": "Unknown",
+        "spend": 1.03,
+        "leads": 5,
+        "cpl": 0.21
+      }
+    ]
   },
   "leads_por_dia": [
     {
@@ -186,75 +236,75 @@
     },
     {
       "data": "23/07",
-      "cpl": 0.0
+      "cpl": 2.46
     },
     {
       "data": "24/07",
-      "cpl": 0.0
+      "cpl": 3.12
     },
     {
       "data": "25/07",
-      "cpl": 0.0
+      "cpl": 3.65
     },
     {
       "data": "26/07",
-      "cpl": 0.0
+      "cpl": 4.59
     },
     {
       "data": "27/07",
-      "cpl": 0.0
+      "cpl": 4.47
     },
     {
       "data": "28/07",
-      "cpl": 0.0
+      "cpl": 4.75
     },
     {
       "data": "29/07",
-      "cpl": 0.0
+      "cpl": 2.95
     },
     {
       "data": "30/07",
-      "cpl": 0.0
+      "cpl": 4.17
     },
     {
       "data": "31/07",
-      "cpl": 0.0
+      "cpl": 6.51
     },
     {
       "data": "01/08",
-      "cpl": 0.0
+      "cpl": 6.64
     },
     {
       "data": "02/08",
-      "cpl": 0.0
+      "cpl": 5.63
     },
     {
       "data": "03/08",
-      "cpl": 0.0
+      "cpl": 5.54
     },
     {
       "data": "04/08",
-      "cpl": 0.0
+      "cpl": 5.96
     },
     {
       "data": "05/08",
-      "cpl": 0.0
+      "cpl": 6.62
     },
     {
       "data": "06/08",
-      "cpl": 0.0
+      "cpl": 7.2
     },
     {
       "data": "07/08",
-      "cpl": 0.0
+      "cpl": 6.81
     },
     {
       "data": "08/08",
-      "cpl": 0.0
+      "cpl": 4.33
     },
     {
       "data": "09/08",
-      "cpl": 0.0
+      "cpl": 1.77
     },
     {
       "data": "10/08",
@@ -1306,7 +1356,7 @@
     ]
   },
   "leitura": {
-    "pt": "Nenhuma campanha PLF-INVITACION segue ativa no momento no Meta Ads (todas pausadas). por isso os campos de investimento. CPL. funil e segmentação pagos estão zerados nesta atualização. Mesmo assim. a base de leads acumulada chegou a 4.905 registros entre 22/07 – 23/08 (33 dias). somando tráfego pago histórico e orgânico/grupos. O Instagram segue como principal canal de origem. Na pesquisa de qualificação. 552 leads responderam. com 63% classificados como Ideal — sinal de boa qualidade na base para uma eventual reativação de campanhas.",
-    "es": "Ninguna campaña PLF-INVITACION sigue activa en este momento en Meta Ads (todas pausadas). por lo que los campos de inversión. CPL. embudo y segmentación pagados están en cero en esta actualización. Aun así. la base de leads acumulada llegó a 4.905 registros entre 22/07 – 23/08 (33 días). sumando tráfico pago histórico y orgánico/grupos. Instagram sigue siendo el canal principal de origen. En la encuesta de calificación. 552 leads respondieron. con un 63% clasificado como Ideal — señal de buena calidad en la base para una eventual reactivación de campañas."
+    "pt": "O investimento acumulado das campanhas PLF-INVITACION (ativas e pausadas) chegou a €26.052,58 com CPL total de €5,31, no período de 22/07 – 23/08 (33 dias). Neste momento nenhuma dessas campanhas segue ativa — a fase de captação/convite já foi concluída. O público FRIO trouxe mais volume (€17.322 investidos) enquanto o QUENTE manteve CPL um pouco mais alto. O Instagram segue como canal principal de leads. Na pesquisa de qualificação, 552 leads responderam, com 63% classificados como Ideal — sinal de boa qualidade na base para conversão.",
+    "es": "La inversión acumulada de las campañas PLF-INVITACION (activas y pausadas) llegó a €26.052,58 con un CPL total de €5,31, en el período de 22/07 – 23/08 (33 días). En este momento ninguna de esas campañas sigue activa — la fase de captación/invitación ya concluyó. El público FRÍO trajo más volumen (€17.322 invertidos) mientras que el CALIENTE mantuvo un CPL un poco más alto. Instagram sigue siendo el canal principal de leads. En la encuesta de calificación, 552 leads respondieron, con un 63% clasificado como Ideal — señal de buena calidad en la base para la conversión."
   }
 }
