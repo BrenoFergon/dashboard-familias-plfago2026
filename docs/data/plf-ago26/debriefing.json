@@ -186,10 +186,20 @@
   ],
   "compradores": [
     {
+      "nombre": "Sara Orriols Roberts",
+      "email": "sorriolsroberts@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "María CRISTINA CEREZO MORALES",
+      "email": "cbdelamancha@gmail.com",
+      "encontrado": false
+    },
+    {
       "nombre": "Patricia Fernandez Rodriguez",
       "email": "patriaramil@gmail.com",
       "encontrado": true,
-      "match_por": "email",
+      "match_por": "email exato",
       "temperatura": "Organico",
       "canal": "sem_rastreio",
       "rastreado": false,
@@ -201,7 +211,7 @@
       "nombre": "Rocio Barriopedro",
       "email": "robarriopedro@yahoo.es",
       "encontrado": true,
-      "match_por": "email",
+      "match_por": "email exato",
       "temperatura": "Organico",
       "canal": "sem_rastreio",
       "rastreado": false,
@@ -213,155 +223,13 @@
       "nombre": "Yolanda González Gero",
       "email": "cuquin.guelin@gmail.com",
       "encontrado": true,
-      "match_por": "email",
+      "match_por": "email exato",
       "temperatura": "Organico",
       "canal": "sem_rastreio",
       "rastreado": false,
       "campanha": "sin_utm",
       "conjunto": "whatsapp",
       "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Ana Isabel Panadero Garcia",
-      "email": "70anapana@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Anna Mari Pérez Mata",
-      "email": "buixa2004@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "MARIA LUISA GANDARA PLAZA",
-      "email": "marisagnp@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Anuska Pinto",
-      "email": "puesto282828@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Paola Rojas Rubio",
-      "email": "paorojasr@hotmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Marta Porta López",
-      "email": "marta@nucl3ar.net",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Frio",
-      "canal": "ig",
-      "rastreado": true,
-      "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
-      "conjunto": "00-Pais-de-jovens",
-      "criativo": "ADXX-MISTO"
-    },
-    {
-      "nombre": "Paola Andrea González Brand",
-      "email": "andrea06brand@hotmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Ana Sanz Rivas",
-      "email": "4unrayodesol@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Carmen Ghinea",
-      "email": "carmenfloryy@yahoo.es",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Itziar Goikoetxea Otazua",
-      "email": "goitziur@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Ana Pop",
-      "email": "anapop8305@gmail.com",
-      "encontrado": true,
-      "match_por": "email",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Sara Orriols Roberts",
-      "email": "sorriolsroberts@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "María CRISTINA CEREZO MORALES",
-      "email": "cbdelamancha@gmail.com",
-      "encontrado": false
     },
     {
       "nombre": "Yolanda Martínez Martínez",
@@ -384,14 +252,50 @@
       "encontrado": false
     },
     {
+      "nombre": "Ana Isabel Panadero Garcia",
+      "email": "70anapana@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
       "nombre": "José Antonio López Martín",
       "email": "foto@traspies.com",
       "encontrado": false
     },
     {
+      "nombre": "Anna Mari Pérez Mata",
+      "email": "buixa2004@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
       "nombre": "María Alejandra Cisneros Zerpa",
       "email": "constelamensajescielo@gmail.com",
       "encontrado": false
+    },
+    {
+      "nombre": "MARIA LUISA GANDARA PLAZA",
+      "email": "marisagnp@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
     },
     {
       "nombre": "Andrés Jaramillo Merchán",
@@ -404,6 +308,18 @@
       "encontrado": false
     },
     {
+      "nombre": "Anuska Pinto",
+      "email": "puesto282828@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
       "nombre": "Maria Rosario Garcia Plazas",
       "email": "mariarosariogarciaplazas@gmail.com",
       "encontrado": false
@@ -412,6 +328,30 @@
       "nombre": "Valentina María Hidalgo Piris",
       "email": "valentinamariahidalgo@gmail.com",
       "encontrado": false
+    },
+    {
+      "nombre": "Paola Rojas Rubio",
+      "email": "paorojasr@hotmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Marta Porta López",
+      "email": "marta@nucl3ar.net",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
+      "conjunto": "00-Pais-de-jovens",
+      "criativo": "ADXX-MISTO"
     },
     {
       "nombre": "Nuria Marco Pancorbo",
@@ -424,10 +364,70 @@
       "encontrado": false
     },
     {
+      "nombre": "Paola Andrea González Brand",
+      "email": "andrea06brand@hotmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Ana Sanz Rivas",
+      "email": "4unrayodesol@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Carmen Ghinea",
+      "email": "carmenfloryy@yahoo.es",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Itziar Goikoetxea Otazua",
+      "email": "goitziur@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
       "nombre": "juan jose CORTES VELEZ",
       "email": "jjjjcortes@gmail.com",
       "encontrado": false
+    },
+    {
+      "nombre": "Ana Pop",
+      "email": "anapop8305@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
     }
   ],
-  "obs": "Faturamento calculado com ticket fixo de €2.600/venda. 15 de 29 vendas não foram encontradas na planilha de leads do AGO26 (origem não seguida — possível indicação/base antiga/contato direto)."
+  "obs": "Faturamento calculado com ticket fixo de €2.600/venda. Cruzamento comprador→lead feito por e-mail exato, e-mail canônico (pontos/+tag), nome completo e busca aproximada de nome/e-mail (tolerante a typos); quando um comprador aparece em várias linhas da planilha, a de tráfego prevalece sobre a orgânica. Verificado em 3 passadas (direta, inversa e por sobrenome): apenas 1 das 29 vendas tem origem em tráfego pago; 13 são orgânicas (WhatsApp/grupos) e 15 não têm lead correspondente na planilha AGO26."
 }
