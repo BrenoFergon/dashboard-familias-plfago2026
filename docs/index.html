@@ -28,6 +28,8 @@ body.light{--bg:#f2f3f8;--surface:#fff;--surface2:#f7f8fc;--border:#e0e2ef;--tex
 .date-pill{font-size:10px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;color:var(--muted);margin-left:12px;white-space:nowrap}
 .updated-pill{font-size:10px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;color:var(--accent);margin-left:8px;white-space:nowrap}
 .topbar-right{display:flex;align-items:center;gap:6px}
+.launch-sel{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;color:var(--text);cursor:pointer;font-family:var(--font);margin-right:4px}
+.tab.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
 .lang-btn{background:transparent;border:1px solid var(--border);border-radius:6px;padding:5px 11px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:var(--font);transition:all .15s}
 .lang-btn.active{background:var(--accent);border-color:var(--accent);color:#0e0e12}
 .theme-btn{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 13px;font-size:11px;color:var(--muted);cursor:pointer;font-family:var(--font)}
@@ -178,6 +180,30 @@ body.light .srch{background:#f0f2f7}
 .pbtn{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;color:var(--muted);cursor:pointer;font-family:var(--font)}
 .pbtn.on{background:var(--accent);border-color:var(--accent);color:#0e0e12;font-weight:700}
 
+/* DEBRIEFING */
+.db-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.db-stat{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.db-stat-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.db-stat-val{font-size:16px;font-weight:700;color:var(--text)}
+.db-stat-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.temp-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block}
+.temp-tag.Caliente{background:#1e1020;color:#e05a8a;border:1px solid #3d1a2e}
+.temp-tag.Frio{background:#0d1a2e;color:var(--bom);border:1px solid #1a2f50}
+.temp-tag.Organico,.temp-tag.Orgánico{background:#051a12;color:var(--ideal);border:1px solid #0d3324}
+.temp-tag.SinTrackeo,.temp-tag[data-t="Sin Trackeo"]{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.temp-tag.TOTAL{background:var(--surface2);color:var(--text);border:1px solid var(--border);font-weight:700}
+tr.row-nao-encontrado td{background:#2a1010}
+body.light tr.row-nao-encontrado td{background:#fff0f0}
+.found-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block}
+.found-badge.yes{background:#051a12;color:var(--ideal);border:1px solid #0d3324}
+.found-badge.no{background:#2a1010;color:var(--descarte);border:1px solid #4a1818}
+.phase-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.phase-name{font-size:11px;color:var(--text);min-width:150px}
+.phase-track{flex:1;background:var(--surface2);border-radius:3px;height:8px;overflow:hidden}
+.phase-fill{height:8px;border-radius:3px;background:var(--accent2)}
+.phase-val{font-size:12px;font-weight:700;color:var(--text);min-width:120px;text-align:right}
+.db-empty{text-align:center;padding:48px 24px;color:var(--muted);font-size:13px}
+
 .loading{display:flex;align-items:center;justify-content:center;height:60vh;flex-direction:column;gap:12px}
 .loading-dots{display:flex;gap:6px}
 .loading-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.2s ease-in-out infinite}
@@ -210,6 +236,7 @@ body.light .srch{background:#f0f2f7}
     <span class="updated-pill" id="hdr-updated"></span>
   </div>
   <div class="topbar-right">
+    <select class="launch-sel" id="launchSel" onchange="selectLaunch(this.value)"></select>
     <button class="lang-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
     <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀ Claro</button>
@@ -217,9 +244,10 @@ body.light .srch{background:#f0f2f7}
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="showTab('overview')">📊 Overview</div>
-  <div class="tab" onclick="showTab('scoring')">🎯 Lead Scoring</div>
-  <div class="tab" onclick="showTab('resultados')">🏆 Resultados</div>
+  <div class="tab active" id="tabbtn-overview" onclick="showTab('overview')">📊 Overview</div>
+  <div class="tab" id="tabbtn-scoring" onclick="showTab('scoring')">🎯 Lead Scoring</div>
+  <div class="tab" id="tabbtn-resultados" onclick="showTab('resultados')">🏆 Resultados</div>
+  <div class="tab" id="tabbtn-debriefing" onclick="showTab('debriefing')">📋 Debriefing</div>
 </div>
 
 <div id="loading" class="loading">
@@ -384,8 +412,14 @@ body.light .srch{background:#f0f2f7}
 </div>
 </div>
 
+<!-- TAB DEBRIEFING -->
+<div id="tab-debriefing" class="tab-content" style="display:none">
+<div class="main" id="db-main">
+</div>
+</div>
+
 <script>
-var D=null, lang='pt', isDark=true, chartInst=null;
+var D=null, DB=null, LAUNCHES=null, lang='pt', isDark=true, chartInst=null;
 var scCf='all', scCs='ideal', scSa=false, scCp=1, scPS=12;
 
 var LABELS={
@@ -399,18 +433,27 @@ function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 function setH(id,v){var e=document.getElementById(id);if(e)e.innerHTML=v;}
 
 function showTab(t){
+  var btn=document.getElementById('tabbtn-'+t);
+  if(btn && btn.classList.contains('disabled')) return;
   document.querySelectorAll('.tab-content').forEach(function(el){el.style.display='none';});
   document.querySelectorAll('.tab').forEach(function(el){el.classList.remove('active');});
   document.getElementById('tab-'+t).style.display='block';
-  var tabs=document.querySelectorAll('.tab');
-  var idx={overview:0,scoring:1,resultados:2}[t]||0;
-  tabs[idx].classList.add('active');
+  if(btn) btn.classList.add('active');
   if(t==='scoring') scRender();
   if(t==='resultados') resRender();
+  if(t==='debriefing') dbRender();
+}
+
+function setTabsEnabled(hasData){
+  ['overview','scoring','resultados'].forEach(function(t){
+    var btn=document.getElementById('tabbtn-'+t);
+    if(btn) btn.classList.toggle('disabled', !hasData);
+  });
 }
 
 function renderOverview(){
   if(!D) return;
+  document.getElementById('hdr-updated').style.display='';
   var L=LABELS[lang];
   document.getElementById('hdr-cliente').textContent=D.meta.cliente;
   document.getElementById('hdr-evento').textContent=D.meta.evento;
@@ -620,22 +663,179 @@ function setLang(l){
   renderOverview();
 }
 
+function pct(v){return v==null?'—':(v*100).toFixed(2)+'%';}
+function eurOrDash(v){return (v===null||v===undefined)?'—':eur(v);}
+function roasOrDash(v){return (v===null||v===undefined)?'—':v.toFixed(2)+'x';}
+
+function dbRender(){
+  var el=document.getElementById('db-main');
+  if(!DB){
+    el.innerHTML='<div class="db-empty">Nenhum debriefing disponível para este lançamento ainda.</div>';
+    return;
+  }
+  var mg=DB.metricas_gerais||{};
+  var html='';
+  html+='<div class="kpi-row" style="margin-bottom:16px">'+
+    '<div class="kpi k1"><div class="kpi-label">Investimento Total</div><div class="kpi-value">'+eur(mg.inversion_total||0)+'</div><div class="kpi-sub">todas as fases</div></div>'+
+    '<div class="kpi k2"><div class="kpi-label">CPL</div><div class="kpi-value">'+eur(mg.cpl||0)+'</div><div class="kpi-sub">'+num(mg.leads||0)+' leads</div></div>'+
+    '<div class="kpi k3"><div class="kpi-label">Total de Vendas</div><div class="kpi-value">'+num(mg.total_ventas||0)+'</div><div class="kpi-sub">reembolso: '+num(mg.reembolso||0)+'</div></div>'+
+    '<div class="kpi k2"><div class="kpi-label">CAC</div><div class="kpi-value">'+eurOrDash(mg.cac)+'</div><div class="kpi-sub">'+pct(mg.tasa_conversion)+' conversão</div></div>'+
+    '<div class="kpi k1"><div class="kpi-label">Faturamento</div><div class="kpi-value">'+eur(mg.facturacion||0)+'</div><div class="kpi-sub">ticket €'+num(DB.ticket_price||0)+'</div></div>'+
+    '<div class="kpi k3"><div class="kpi-label">ROAS</div><div class="kpi-value">'+roasOrDash(mg.roas)+'</div><div class="kpi-sub">faturamento / investimento</div></div>'+
+  '</div>';
+
+  var tk=DB.trackeamento||{leads:{},ventas:{}};
+  html+='<div class="db-stat-row">'+
+    '<div class="db-stat"><div class="db-stat-label">Leads trackeados</div><div class="db-stat-val">'+num(tk.leads.trackeado||0)+'</div><div class="db-stat-sub">'+pct(tk.leads.pct_trackeado)+' do total</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">Leads sem trackeio</div><div class="db-stat-val">'+num(tk.leads.sin_trackeo||0)+'</div><div class="db-stat-sub">'+pct(tk.leads.pct_sin_trackeo)+' do total</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">Vendas encontradas na planilha</div><div class="db-stat-val" style="color:var(--ideal)">'+num(tk.ventas.encontradas_na_planilha||0)+'</div><div class="db-stat-sub">'+pct(tk.ventas.pct_encontradas)+' das vendas</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">Vendas não encontradas</div><div class="db-stat-val" style="color:var(--descarte)">'+num(tk.ventas.nao_encontradas||0)+'</div><div class="db-stat-sub">origem não identificada</div></div>'+
+  '</div>';
+
+  function platRow(nome,r){
+    if(!r) return '';
+    return '<tr><td>'+nome+'</td><td>'+eur(r.inversion||0)+'</td><td>'+num(r.leads||0)+'</td><td>'+eurOrDash(r.cpl)+'</td><td>'+num(r.ventas||0)+'</td><td>'+eurOrDash(r.cac)+'</td><td>'+pct(r.tasa_conversion)+'</td><td>'+eur(r.facturacion||0)+'</td><td>'+roasOrDash(r.roas)+'</td></tr>';
+  }
+  var pl=DB.plataforma||{};
+  html+='<div class="card"><div class="card-title"><span class="cdot"></span>Métricas por plataforma de captação</div>'+
+    '<div style="overflow-x:auto"><table><thead><tr><th>Plataforma</th><th>Invest.</th><th>Leads</th><th>CPL</th><th>Vendas</th><th>CAC</th><th>Tx. Conv.</th><th>Faturamento</th><th>ROAS</th></tr></thead><tbody>'+
+    platRow('Meta Ads',pl.meta_ads)+platRow('Google Ads',pl.google_ads)+platRow('TOTAL',pl.total)+
+    '</tbody></table></div></div>';
+
+  function tempRow(r,cls){
+    if(!r) return '';
+    var t=(r.nome||'').replace(' ','');
+    return '<tr'+(cls?' class="'+cls+'"':'')+'><td><span class="temp-tag '+t+'" data-t="'+r.nome+'">'+r.nome+'</span></td><td>'+eurOrDash(r.inversion)+'</td><td>'+num(r.leads||0)+'</td><td>'+eurOrDash(r.cpl)+'</td><td>'+num(r.ventas||0)+'</td><td>'+eurOrDash(r.cac)+'</td><td>'+pct(r.tasa_conversion)+'</td><td>'+eur(r.facturacion||0)+'</td><td>'+roasOrDash(r.roas)+'</td></tr>';
+  }
+  var temps=DB.temperatura||[];
+  var rowsHtml=temps.map(function(r){return tempRow(r);}).join('')+tempRow(DB.temperatura_total,'').replace('<tr>','<tr style="border-top:2px solid var(--border);font-weight:700">');
+  if(DB.nao_encontrado){
+    var ne=DB.nao_encontrado;
+    rowsHtml+='<tr class="row-nao-encontrado"><td><span class="temp-tag" style="background:#4a1818;color:#fc8181;border:1px solid #6a2020">'+ne.nome+'</span></td><td>—</td><td>—</td><td>—</td><td>'+num(ne.ventas||0)+'</td><td>—</td><td>—</td><td>'+eur(ne.facturacion||0)+'</td><td>—</td></tr>';
+  }
+  html+='<div class="card"><div class="card-title"><span class="cdot"></span>Métricas por temperatura de captação</div>'+
+    '<div style="overflow-x:auto"><table><thead><tr><th>Temperatura</th><th>Invest.</th><th>Leads</th><th>CPL</th><th>Vendas</th><th>CAC</th><th>Tx. Conv.</th><th>Faturamento</th><th>ROAS</th></tr></thead><tbody>'+rowsHtml+'</tbody></table></div>'+
+    (DB.nao_encontrado?'<div style="font-size:11px;color:var(--muted);margin-top:8px">'+DB.nao_encontrado.nota+'</div>':'')+
+  '</div>';
+
+  var fases=DB.gasto_por_fase||[];
+  var maxFase=Math.max.apply(null,fases.map(function(f){return f.valor;}).concat([1]));
+  html+='<div class="card"><div class="card-title"><span class="cdot"></span>Gasto por fase</div>'+
+    fases.map(function(f){
+      return '<div class="phase-row"><span class="phase-name">'+f.fase+'</span><div class="phase-track"><div class="phase-fill" style="width:'+(maxFase?f.valor/maxFase*100:0)+'%"></div></div><span class="phase-val">'+eur(f.valor)+' · '+pct(f.pct)+'</span></div>';
+    }).join('')+
+  '</div>';
+
+  var ml=DB.metricas_lancamento||{};
+  html+='<div class="db-stat-row">'+
+    '<div class="db-stat"><div class="db-stat-label">CPM</div><div class="db-stat-val">'+eurOrDash(ml.cpm)+'</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">Connect Rate</div><div class="db-stat-val">'+pct(ml.connect_rate)+'</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">Conversão de LP</div><div class="db-stat-val">'+pct(ml.conversao_lp)+'</div></div>'+
+    '<div class="db-stat"><div class="db-stat-label">CTR</div><div class="db-stat-val">'+pct(ml.ctr)+'</div></div>'+
+  '</div>';
+
+  var pubs=DB.publicos_com_venda||[], pubsOrg=DB.publicos_organico||[];
+  html+='<div class="two-col">'+
+    '<div class="card"><div class="card-title"><span class="cdot"></span>Públicos com venda (Meta Ads)</div>'+
+      (pubs.length?'<div style="overflow-x:auto"><table><thead><tr><th>Público</th><th>Invest.</th><th>Vendas</th><th>Faturamento</th><th>ROAS</th></tr></thead><tbody>'+
+        pubs.map(function(p){return '<tr><td><span class="sc-tag" style="max-width:200px">'+p.publico+'</span></td><td>'+eur(p.inversion||0)+'</td><td>'+num(p.ventas||0)+'</td><td>'+eur(p.facturacion||0)+'</td><td>'+roasOrDash(p.roas)+'</td></tr>';}).join('')+
+      '</tbody></table></div>':'<div style="font-size:12px;color:var(--muted)">Sem vendas atribuídas a públicos pagos</div>')+
+    '</div>'+
+    '<div class="card"><div class="card-title"><span class="cdot"></span>Vendas orgânicas por origem</div>'+
+      (pubsOrg.length?'<table><thead><tr><th>Origem</th><th>Vendas</th></tr></thead><tbody>'+
+        pubsOrg.map(function(p){return '<tr><td>'+p.origem+'</td><td>'+num(p.ventas||0)+'</td></tr>';}).join('')+
+      '</tbody></table>':'<div style="font-size:12px;color:var(--muted)">Sem vendas orgânicas identificadas</div>')+
+    '</div>'+
+  '</div>';
+
+  var crs=DB.criativos_com_venda||[];
+  html+='<div class="card"><div class="card-title"><span class="cdot"></span>Criativos com venda</div>'+
+    (crs.length?'<div style="overflow-x:auto"><table><thead><tr><th>Ad</th><th>Vendas</th><th>Gasto</th><th>CPA</th><th>Faturamento</th><th>ROAS</th></tr></thead><tbody>'+
+      crs.map(function(c){return '<tr><td><span class="sc-tag">'+c.ad+'</span></td><td>'+num(c.ventas||0)+'</td><td>'+eur(c.gasto||0)+'</td><td>'+eur(c.cpa||0)+'</td><td>'+eur(c.facturacion||0)+'</td><td>'+roasOrDash(c.roas)+'</td></tr>';}).join('')+
+    '</tbody></table></div>':'<div style="font-size:12px;color:var(--muted)">Sem criativos com venda atribuída</div>')+
+  '</div>';
+
+  if(DB.compradores && DB.compradores.length){
+    html+='<div class="card"><div class="card-title"><span class="cdot"></span>Compradores ('+DB.compradores.length+') — cruzamento com a planilha de leads</div>'+
+      '<div style="overflow-x:auto"><table><thead><tr><th>Nome</th><th>Email</th><th>Na planilha?</th><th>Temperatura</th><th>Canal</th><th>Campanha</th><th>Conjunto</th><th>Criativo</th></tr></thead><tbody>'+
+      DB.compradores.map(function(c){
+        if(!c.encontrado){
+          return '<tr><td>'+c.nombre+'</td><td>'+c.email+'</td><td><span class="found-badge no">Não</span></td><td colspan="5" style="color:var(--muted)">—</td></tr>';
+        }
+        var t=(c.temperatura||'').replace(' ','');
+        return '<tr><td>'+c.nombre+'</td><td>'+c.email+'</td><td><span class="found-badge yes">Sim</span></td>'+
+          '<td><span class="temp-tag '+t+'">'+c.temperatura+'</span></td>'+
+          '<td><span class="canal-tag '+(c.canal==='ig'?'ig':c.canal==='fb'?'fb':'other')+'">'+(c.canal||'—').toUpperCase()+'</span></td>'+
+          '<td title="'+c.campanha+'"><span class="sc-tag" style="max-width:180px">'+c.campanha+'</span></td>'+
+          '<td title="'+c.conjunto+'"><span class="sc-tag" style="max-width:140px">'+c.conjunto+'</span></td>'+
+          '<td><span class="sc-tag">'+c.criativo+'</span></td></tr>';
+      }).join('')+
+      '</tbody></table></div>'+
+    '</div>';
+  }
+
+  if(DB.obs){
+    html+='<div class="insight">'+DB.obs+'</div>';
+  }
+
+  el.innerHTML=html;
+}
+
 function toggleTheme(){
   isDark=!isDark;
   document.getElementById('body').classList.toggle('light',!isDark);
   document.getElementById('themeBtn').textContent=isDark?'☀ Claro':'🌙 Escuro';
 }
 
-fetch('./data.json?t='+Date.now())
-  .then(function(r){return r.json();})
-  .then(function(data){
-    D=data;
+function populateLaunchSel(){
+  var sel=document.getElementById('launchSel');
+  sel.innerHTML=LAUNCHES.launches.map(function(l){return '<option value="'+l.slug+'">'+l.label+'</option>';}).join('');
+}
+
+function selectLaunch(slug){
+  var launch=LAUNCHES.launches.filter(function(l){return l.slug===slug;})[0];
+  if(!launch) return;
+  document.getElementById('launchSel').value=slug;
+  try{ localStorage.setItem('plf_dashboard_launch', slug); }catch(e){}
+  D=null; DB=null;
+  document.getElementById('hdr-cliente').textContent=launch.cliente||'';
+  document.getElementById('hdr-evento').textContent=launch.evento||launch.label||'';
+  document.getElementById('hdr-datas').textContent=launch.label||'';
+  document.getElementById('hdr-updated').textContent='';
+  document.getElementById('hdr-updated').style.display='none';
+
+  var dataPromise = launch.data_url
+    ? fetch(launch.data_url+'?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})
+    : Promise.resolve(null);
+  var dbPromise = launch.debriefing_url
+    ? fetch(launch.debriefing_url+'?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})
+    : Promise.resolve(null);
+
+  Promise.all([dataPromise, dbPromise]).then(function(res){
+    D=res[0]; DB=res[1];
     document.getElementById('loading').style.display='none';
-    showTab('overview');
-    renderOverview();
+    setTabsEnabled(!!D);
+    if(D){
+      showTab('overview');
+      renderOverview();
+    } else {
+      showTab('debriefing');
+    }
+  });
+}
+
+fetch('./launches.json?t='+Date.now())
+  .then(function(r){return r.json();})
+  .then(function(launches){
+    LAUNCHES=launches;
+    populateLaunchSel();
+    var saved=null;
+    try{ saved=localStorage.getItem('plf_dashboard_launch'); }catch(e){}
+    var slug=(saved && launches.launches.some(function(l){return l.slug===saved;})) ? saved : launches.default;
+    selectLaunch(slug);
   })
   .catch(function(e){
-    document.getElementById('loading').innerHTML='<span style="color:#fc8181;font-size:13px">Erro ao carregar data.json</span>';
+    document.getElementById('loading').innerHTML='<span style="color:#fc8181;font-size:13px">Erro ao carregar launches.json</span>';
     console.error(e);
   });
 </script>

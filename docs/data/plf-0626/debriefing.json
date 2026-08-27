@@ -1,0 +1,66 @@
+{
+  "launch": "plf-0626",
+  "label": "PLF - Jun 2026",
+  "status": "encerrado",
+  "atualizado_em": "importado da planilha de debriefings",
+  "ticket_price": 2600,
+  "metricas_gerais": {
+    "inversion_total": 19028.77,
+    "leads": 3350,
+    "cpl": 4.61,
+    "total_ventas": 30,
+    "reembolso": 0,
+    "ventas_trackeadas": 23,
+    "cac": 634.29,
+    "tasa_conversion": 0.008955223881,
+    "facturacion": 77925,
+    "roas": 4.0951
+  },
+  "plataforma": {
+    "meta_ads": {"inversion": 15468.44, "leads": 2582, "cpl": 5.9909, "ventas": 11, "cac": 1406.22, "tasa_conversion": 0.004260263362, "facturacion": 28600, "roas": 1.8489},
+    "google_ads": {"inversion": 0, "leads": 0, "cpl": null, "ventas": 0, "cac": null, "tasa_conversion": 0, "facturacion": 0, "roas": null},
+    "total": {"inversion": 15468.44, "leads": 2582, "cpl": 5.9909, "ventas": 11, "cac": 1406.22, "tasa_conversion": 0.004260263362, "facturacion": 28600, "roas": 1.8489}
+  },
+  "temperatura": [
+    {"nome": "Caliente", "inversion": 9051.17, "leads": 1413, "cpl": 6.4056, "ventas": 4, "cac": 2262.79, "tasa_conversion": 0.002830856334, "facturacion": 3988, "roas": 0.4406},
+    {"nome": "Frio", "inversion": 6417.27, "leads": 1173, "cpl": 5.4708, "ventas": 7, "cac": 916.75, "tasa_conversion": 0.005967604433, "facturacion": 6979, "roas": 1.0875},
+    {"nome": "Orgánico", "inversion": 0, "leads": 537, "cpl": null, "ventas": 12, "cac": 0, "tasa_conversion": 0.02234636872, "facturacion": 11964, "roas": null},
+    {"nome": "Sin Trackeo", "inversion": 0, "leads": 227, "cpl": null, "ventas": 6, "cac": 0, "tasa_conversion": 0.02643171806, "facturacion": 5982, "roas": null}
+  ],
+  "temperatura_total": {"nome": "TOTAL", "inversion": 15468.44, "leads": 3350, "cpl": 4.6174, "ventas": 29, "cac": 533.39, "tasa_conversion": 0.008656716418, "facturacion": 28913, "roas": 1.8692},
+  "nao_encontrado": null,
+  "trackeamento": {
+    "leads": {"total": 3350, "trackeado": 3289, "sin_trackeo": 61, "pct_trackeado": 0.9817910448, "pct_sin_trackeo": 0.01820895522},
+    "ventas": {"total": 30, "encontradas_na_planilha": 23, "nao_encontradas": 7, "pct_encontradas": 0.7666666667}
+  },
+  "gasto_por_fase": [
+    {"fase": "Captación", "valor": 15468.44, "pct": 0.8128975231},
+    {"fase": "Recordatório", "valor": 0, "pct": 0},
+    {"fase": "Assistência", "valor": 0, "pct": 0},
+    {"fase": "Replay", "valor": 1521.38, "pct": 0.07995156807},
+    {"fase": "Inscripciones Abiertas", "valor": 2038.95, "pct": 0.1071509089}
+  ],
+  "metricas_lancamento": {"cpm": 12.06, "connect_rate": 0.7185, "conversao_lp": 0.1697, "ctr": 0.0153},
+  "publicos_com_venda": [
+    {"publico": "00-LAL-Todos os Alunos", "inversion": 1740.2, "ventas": 2, "facturacion": 5200, "roas": 2.9882},
+    {"publico": "00-LAL-Seguidores", "inversion": 2513.05, "ventas": 1, "facturacion": 2600, "roas": 1.0346},
+    {"publico": "00-Interesses-Plantas", "inversion": 785.32, "ventas": 1, "facturacion": 2600, "roas": 3.3108},
+    {"publico": "00-MIX-HOT", "inversion": 4385.96, "ventas": 3, "facturacion": 7800, "roas": 1.7784},
+    {"publico": "00-ENGAJAMIENTO-30D", "inversion": 4665.21, "ventas": 4, "facturacion": 10400, "roas": 2.2293}
+  ],
+  "publicos_organico": [
+    {"origem": "whatsapp", "ventas": 8},
+    {"origem": "newsletter", "ventas": 4}
+  ],
+  "criativos_com_venda": [
+    {"ad": "BLOQUE-10_Group_1", "ventas": 1, "gasto": 2062.04, "cpa": 2062.04, "facturacion": 2600, "roas": 1.2609},
+    {"ad": "PLF_01", "ventas": 2, "gasto": 1182.71, "cpa": 591.355, "facturacion": 5200, "roas": 4.3967},
+    {"ad": "PLF_06", "ventas": 1, "gasto": 96.27, "cpa": 96.27, "facturacion": 2600, "roas": 27.0074},
+    {"ad": "ADXX-MISTO", "ventas": 4, "gasto": 5841.06, "cpa": 1460.265, "facturacion": 10400, "roas": 1.7805},
+    {"ad": "PLF_04", "ventas": 1, "gasto": 1616.92, "cpa": 1616.92, "facturacion": 2600, "roas": 1.608},
+    {"ad": "BLOQUE-08", "ventas": 1, "gasto": 730.24, "cpa": 730.24, "facturacion": 2600, "roas": 3.5605},
+    {"ad": "PLF_03", "ventas": 1, "gasto": 118.71, "cpa": 118.71, "facturacion": 2600, "roas": 21.9021}
+  ],
+  "compradores": null,
+  "obs": "Em verde as métricas que melhoraram e em vermelho as que pioraram em relação ao PLF anterior (marcação original da planilha, não reproduzida aqui)."
+}

@@ -1,0 +1,68 @@
+{
+  "launch": "plf-0226",
+  "label": "PLF - Fev 2026",
+  "status": "encerrado",
+  "atualizado_em": "importado da planilha de debriefings",
+  "ticket_price": 2600,
+  "metricas_gerais": {
+    "inversion_total": 18944.54,
+    "leads": 3494,
+    "cpl": 4.56,
+    "total_ventas": 62,
+    "reembolso": 0,
+    "ventas_trackeadas": 43,
+    "cac": 305.56,
+    "tasa_conversion": 0.01774470521,
+    "facturacion": 61814,
+    "roas": 3.2629
+  },
+  "plataforma": {
+    "meta_ads": {"inversion": 15945.06, "leads": 2711, "cpl": 5.8816, "ventas": 23, "cac": 693.26, "tasa_conversion": 0.00848395426, "facturacion": 22931, "roas": 1.4381},
+    "google_ads": {"inversion": 0, "leads": 0, "cpl": null, "ventas": 0, "cac": null, "tasa_conversion": 0, "facturacion": 0, "roas": null},
+    "total": {"inversion": 15945.06, "leads": 2711, "cpl": 5.8816, "ventas": 23, "cac": 693.26, "tasa_conversion": 0.00848395426, "facturacion": 22931, "roas": 1.4381}
+  },
+  "temperatura": [
+    {"nome": "Caliente", "inversion": 9063.93, "leads": 1413, "cpl": 6.4147, "ventas": 14, "cac": 647.42, "tasa_conversion": 0.009907997169, "facturacion": 13958, "roas": 1.54},
+    {"nome": "Frio", "inversion": 6881.13, "leads": 1173, "cpl": 5.8663, "ventas": 9, "cac": 764.57, "tasa_conversion": 0.007672634271, "facturacion": 8973, "roas": 1.304},
+    {"nome": "Orgánico", "inversion": 0, "leads": 537, "cpl": null, "ventas": 20, "cac": 0, "tasa_conversion": 0.03724394786, "facturacion": 19940, "roas": null},
+    {"nome": "Sin Trackeo", "inversion": 0, "leads": 371, "cpl": null, "ventas": 19, "cac": 0, "tasa_conversion": 0.05121293801, "facturacion": 18943, "roas": null}
+  ],
+  "temperatura_total": {"nome": "TOTAL", "inversion": 15945.06, "leads": 3494, "cpl": 4.5636, "ventas": 62, "cac": 257.18, "tasa_conversion": 0.01774470521, "facturacion": 61814, "roas": 3.8767},
+  "nao_encontrado": null,
+  "trackeamento": {
+    "leads": {"total": 3494, "trackeado": 2711, "sin_trackeo": 783, "pct_trackeado": 0.7759015455, "pct_sin_trackeo": 0.2240984545},
+    "ventas": {"total": 62, "encontradas_na_planilha": 43, "nao_encontradas": 19, "pct_encontradas": 0.6935483871}
+  },
+  "gasto_por_fase": [
+    {"fase": "Captación", "valor": 15945.06, "pct": 0.841670476},
+    {"fase": "Recordatório", "valor": 0, "pct": 0},
+    {"fase": "Assistência", "valor": 0, "pct": 0},
+    {"fase": "Replay", "valor": 1000, "pct": 0.0527856575},
+    {"fase": "Inscripciones Abiertas", "valor": 1999.48, "pct": 0.1055438665}
+  ],
+  "metricas_lancamento": {"cpm": 9.8, "connect_rate": 0.6833, "conversao_lp": 0.1987, "ctr": 0.0124},
+  "publicos_com_venda": [
+    {"publico": "00-LAL-Todos os Alunos", "inversion": 313.88, "ventas": 3, "facturacion": 2991, "roas": 9.5291},
+    {"publico": "00-LAL-Seguidores", "inversion": 549.21, "ventas": 2, "facturacion": 1994, "roas": 3.6307},
+    {"publico": "00-Pais-de-jovens", "inversion": 2500.36, "ventas": 4, "facturacion": 3988, "roas": 1.595},
+    {"publico": "00-MIX-HOT", "inversion": 6492.15, "ventas": 12, "facturacion": 11964, "roas": 1.8428},
+    {"publico": "00-ENGAJAMIENTO-30D", "inversion": 174.68, "ventas": 1, "facturacion": 997, "roas": 5.7076},
+    {"publico": "01-ENGAJAMIENTO-90D", "inversion": 344.55, "ventas": 1, "facturacion": 997, "roas": 2.8936}
+  ],
+  "publicos_organico": [
+    {"origem": "whatsapp", "ventas": 10},
+    {"origem": "newsletter", "ventas": 7},
+    {"origem": "instagram", "ventas": 3}
+  ],
+  "criativos_com_venda": [
+    {"ad": "BLOQUE-10", "ventas": 6, "gasto": 884.43, "cpa": 147.405, "facturacion": 5982, "roas": 6.7637},
+    {"ad": "BLOQUE-04", "ventas": 3, "gasto": 5449.03, "cpa": 1816.343333, "facturacion": 2991, "roas": 0.5489},
+    {"ad": "BLOQUE-08", "ventas": 1, "gasto": 78.4, "cpa": 78.4, "facturacion": 997, "roas": 12.7168},
+    {"ad": "PLF_08", "ventas": 1, "gasto": 291.22, "cpa": 291.22, "facturacion": 997, "roas": 3.4235},
+    {"ad": "PLF_04", "ventas": 5, "gasto": 1054.25, "cpa": 210.85, "facturacion": 4985, "roas": 4.7285},
+    {"ad": "BLOQUE-01", "ventas": 3, "gasto": 194.9, "cpa": 64.966667, "facturacion": 2991, "roas": 15.3463},
+    {"ad": "BLOQUE-06", "ventas": 4, "gasto": 5224.05, "cpa": 1306.0125, "facturacion": 3988, "roas": 0.7634}
+  ],
+  "compradores": null,
+  "obs": "El coste por cliente potencial disminuyó (distribución). La tasa de conversión aumentó: la concientización funcionó. Mejor ROAS. Proyección sin trackeo: 10 tráfico, 9 orgánicas."
+}

@@ -1,0 +1,29 @@
+{
+  "default": "plf-ago26",
+  "launches": [
+    {
+      "slug": "plf-ago26",
+      "label": "PLF - Ago 2026",
+      "cliente": "Familias Estelares",
+      "evento": "PLF La cara oculta de la adolescencia",
+      "data_url": "data.json",
+      "debriefing_url": "data/plf-ago26/debriefing.json"
+    },
+    {
+      "slug": "plf-0626",
+      "label": "PLF - Jun 2026",
+      "cliente": "Familias Estelares",
+      "evento": "PLF La cara oculta de la adolescencia",
+      "data_url": null,
+      "debriefing_url": "data/plf-0626/debriefing.json"
+    },
+    {
+      "slug": "plf-0226",
+      "label": "PLF - Fev 2026",
+      "cliente": "Familias Estelares",
+      "evento": "PLF La cara oculta de la adolescencia",
+      "data_url": null,
+      "debriefing_url": "data/plf-0226/debriefing.json"
+    }
+  ]
+}
