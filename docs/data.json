@@ -12,8 +12,8 @@
     "leads_trafego": 4120,
     "investimento_total": 26052.58,
     "cpl_total": 6.32,
-    "ctr": 0.022090861084538217,
-    "connect_rate": 0.45891960280642563
+    "ctr": 0.014028793582191123,
+    "connect_rate": 0.7226515334460275
   },
   "audiencias": {
     "hot": {
@@ -21,7 +21,7 @@
       "spend": 8730.09,
       "cpl": 6.9,
       "impressions": 817574,
-      "clicks": 19417,
+      "clicks": 12294,
       "landing_page_view": 8781
     },
     "cold": {
@@ -29,17 +29,17 @@
       "spend": 17322.49,
       "cpl": 6.07,
       "impressions": 1543855,
-      "clicks": 32749,
+      "clicks": 20834,
       "landing_page_view": 15159
     }
   },
   "funil": {
     "impressoes": 2361429,
-    "cliques": 52166,
+    "cliques": 33128,
     "page_views": 23940,
     "leads": 3912,
-    "ctr": 2.21,
-    "connect_rate": 45.89,
+    "ctr": 1.4,
+    "connect_rate": 72.27,
     "taxa_conversao": 16.34
   },
   "segmentacao": {
