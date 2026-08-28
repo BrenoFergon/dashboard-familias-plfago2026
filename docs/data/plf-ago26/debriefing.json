@@ -8,24 +8,24 @@
     "inversion_total": 26552.55,
     "leads": 4905,
     "cpl": 5.31,
-    "total_ventas": 29,
+    "total_ventas": 42,
     "reembolso": 0,
-    "ventas_trackeadas": 14,
-    "cac": 915.61,
-    "tasa_conversion": 0.005912334352701326,
-    "facturacion": 75400,
-    "roas": 2.8397
+    "ventas_trackeadas": 30,
+    "cac": 632.2,
+    "tasa_conversion": 0.00856269113149847,
+    "facturacion": 109200,
+    "roas": 4.1126
   },
   "plataforma": {
     "meta_ads": {
       "inversion": 26052.58,
       "leads": 4905,
       "cpl": 5.31,
-      "ventas": 1,
-      "cac": 26052.58,
-      "tasa_conversion": 0.00020387359836901122,
-      "facturacion": 2600,
-      "roas": 0.0998
+      "ventas": 22,
+      "cac": 1184.21,
+      "tasa_conversion": 0.004485219164118246,
+      "facturacion": 57200,
+      "roas": 2.1956
     },
     "google_ads": {
       "inversion": 0,
@@ -41,11 +41,11 @@
       "inversion": 26052.58,
       "leads": 4905,
       "cpl": 5.31,
-      "ventas": 1,
-      "cac": 26052.58,
-      "tasa_conversion": 0.00020387359836901122,
-      "facturacion": 2600,
-      "roas": 0.0998
+      "ventas": 22,
+      "cac": 1184.21,
+      "tasa_conversion": 0.004485219164118246,
+      "facturacion": 57200,
+      "roas": 2.1956
     }
   },
   "temperatura": [
@@ -54,32 +54,32 @@
       "inversion": 8730.09,
       "leads": 1266,
       "cpl": 6.9,
-      "ventas": 0,
-      "cac": null,
-      "tasa_conversion": 0.0,
-      "facturacion": 0,
-      "roas": 0.0
+      "ventas": 5,
+      "cac": 1746.02,
+      "tasa_conversion": 0.0039494470774091624,
+      "facturacion": 13000,
+      "roas": 1.4891
     },
     {
       "nome": "Frio",
       "inversion": 17322.49,
       "leads": 2854,
       "cpl": 6.07,
-      "ventas": 1,
-      "cac": 17322.49,
-      "tasa_conversion": 0.000350385423966363,
-      "facturacion": 2600,
-      "roas": 0.1501
+      "ventas": 17,
+      "cac": 1018.97,
+      "tasa_conversion": 0.005956552207428171,
+      "facturacion": 44200,
+      "roas": 2.5516
     },
     {
       "nome": "Orgánico",
       "inversion": 0,
       "leads": 719,
       "cpl": null,
-      "ventas": 13,
-      "cac": 0.0,
-      "tasa_conversion": 0.01808066759388039,
-      "facturacion": 33800,
+      "ventas": 8,
+      "cac": 0,
+      "tasa_conversion": 0.011126564673157162,
+      "facturacion": 20800,
       "roas": null
     },
     {
@@ -99,31 +99,31 @@
     "inversion": 26052.58,
     "leads": 4905,
     "cpl": 5.31,
-    "ventas": 14,
-    "cac": 1860.9,
-    "tasa_conversion": 0.002854230377166157,
-    "facturacion": 36400,
-    "roas": 1.3972
+    "ventas": 30,
+    "cac": 868.42,
+    "tasa_conversion": 0.0061162079510703364,
+    "facturacion": 78000,
+    "roas": 2.9939
   },
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
-    "ventas": 15,
-    "facturacion": 39000,
+    "ventas": 12,
+    "facturacion": 31200,
     "nota": "Vendas confirmadas mas sem lead correspondente na planilha AGO26 — origem não identificada (indicação, contato direto, base antiga etc.)"
   },
   "trackeamento": {
     "leads": {
       "total": 4905,
-      "trackeado": 4164,
-      "sin_trackeo": 741,
-      "pct_trackeado": 0.8489296636085627,
-      "pct_sin_trackeo": 0.1510703363914373
+      "trackeado": 4120,
+      "sin_trackeo": 785,
+      "pct_trackeado": 0.8399592252803262,
+      "pct_sin_trackeo": 0.1600407747196738
     },
     "ventas": {
-      "total": 29,
-      "encontradas_na_planilha": 14,
-      "nao_encontradas": 15,
-      "pct_encontradas": 0.4827586206896552
+      "total": 42,
+      "encontradas_na_planilha": 30,
+      "nao_encontradas": 12,
+      "pct_encontradas": 0.7142857142857143
     }
   },
   "gasto_por_fase": [
@@ -161,189 +161,230 @@
   },
   "publicos_com_venda": [
     {
+      "publico": "00-COLD-LAL-Todos os Alunos",
+      "inversion": 4566.05,
+      "ventas": 6,
+      "facturacion": 15600,
+      "roas": 3.4165
+    },
+    {
+      "publico": "00-COLD-LAL-Seguidores",
+      "inversion": 2833.93,
+      "ventas": 3,
+      "facturacion": 7800,
+      "roas": 2.7524
+    },
+    {
+      "publico": "00-ENG30D-IG-FB",
+      "inversion": 7081.75,
+      "ventas": 3,
+      "facturacion": 7800,
+      "roas": 1.1014
+    },
+    {
+      "publico": "10-COLD-LAL-Todos os Alunos",
+      "inversion": 1227.0,
+      "ventas": 3,
+      "facturacion": 7800,
+      "roas": 6.357
+    },
+    {
       "publico": "00-Pais-de-jovens",
       "inversion": 2892.66,
+      "ventas": 3,
+      "facturacion": 7800,
+      "roas": 2.6965
+    },
+    {
+      "publico": "00-MIX-HOT",
+      "inversion": 1648.34,
+      "ventas": 2,
+      "facturacion": 5200,
+      "roas": 3.1547
+    },
+    {
+      "publico": "05-COLD-LAL-Todos os Alunos",
+      "inversion": 1045.24,
       "ventas": 1,
       "facturacion": 2600,
-      "roas": 0.8988
+      "roas": 2.4875
+    },
+    {
+      "publico": "04-COLD-LAL-Todos os Alunos",
+      "inversion": 368.07,
+      "ventas": 1,
+      "facturacion": 2600,
+      "roas": 7.0639
     }
   ],
   "publicos_organico": [
     {
       "origem": "whatsapp",
-      "ventas": 13
+      "ventas": 6
+    },
+    {
+      "origem": "email",
+      "ventas": 2
     }
   ],
   "criativos_com_venda": [
     {
-      "ad": "ADXX-MISTO",
+      "ad": "PLF_07",
+      "ventas": 6,
+      "gasto": 4909.22,
+      "cpa": 818.2,
+      "facturacion": 15600,
+      "roas": 3.1777
+    },
+    {
+      "ad": "AD03-BLOQUE-06",
+      "ventas": 4,
+      "gasto": 3983.98,
+      "cpa": 996.0,
+      "facturacion": 10400,
+      "roas": 2.6105
+    },
+    {
+      "ad": "PLF_04",
+      "ventas": 3,
+      "gasto": 4336.06,
+      "cpa": 1445.35,
+      "facturacion": 7800,
+      "roas": 1.7989
+    },
+    {
+      "ad": "PLF_10",
+      "ventas": 3,
+      "gasto": 1760.45,
+      "cpa": 586.82,
+      "facturacion": 7800,
+      "roas": 4.4307
+    },
+    {
+      "ad": "PLF_01",
+      "ventas": 3,
+      "gasto": 2856.27,
+      "cpa": 952.09,
+      "facturacion": 7800,
+      "roas": 2.7308
+    },
+    {
+      "ad": "PLF_03",
+      "ventas": 2,
+      "gasto": 778.88,
+      "cpa": 389.44,
+      "facturacion": 5200,
+      "roas": 6.6763
+    },
+    {
+      "ad": "AD05-BLOQUE-08",
       "ventas": 1,
-      "gasto": 4406.46,
-      "cpa": 4406.46,
+      "gasto": 235.42,
+      "cpa": 235.42,
       "facturacion": 2600,
-      "roas": 0.59
+      "roas": 11.0441
     }
   ],
   "compradores": [
     {
-      "nombre": "Sara Orriols Roberts",
-      "email": "sorriolsroberts@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "María CRISTINA CEREZO MORALES",
-      "email": "cbdelamancha@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Patricia Fernandez Rodriguez",
-      "email": "patriaramil@gmail.com",
+      "nombre": "Severiano Escribano Lucas",
+      "email": "seve.escribano@gmail.com",
       "encontrado": true,
       "match_por": "email exato",
       "temperatura": "Organico",
       "canal": "sem_rastreio",
       "rastreado": false,
       "campanha": "sin_utm",
-      "conjunto": "whatsapp",
+      "conjunto": "email",
       "criativo": "sin_utm"
     },
     {
-      "nombre": "Rocio Barriopedro",
-      "email": "robarriopedro@yahoo.es",
+      "nombre": "Nuria Martín Portero",
+      "email": "martinportero@yahoo.es",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Caliente",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-HOT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_04"
     },
     {
-      "nombre": "Yolanda González Gero",
-      "email": "cuquin.guelin@gmail.com",
+      "nombre": "Gema Benhamu",
+      "email": "gemabenh@gmail.com",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_07"
     },
     {
-      "nombre": "Yolanda Martínez Martínez",
-      "email": "yolymtz8@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Laura Rodriguez Amarillo",
-      "email": "lamarillo2004@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Mario Ramón Heras Carmona",
-      "email": "amilet1@yahoo.es",
-      "encontrado": false
-    },
-    {
-      "nombre": "MARIA L PULGAR MALO DE MOLINA",
-      "email": "marialpmm@yahoo.es",
-      "encontrado": false
-    },
-    {
-      "nombre": "Ana Isabel Panadero Garcia",
-      "email": "70anapana@gmail.com",
+      "nombre": "CARMEN CARRERAS CORTELL",
+      "email": "carmencarrerass@yahoo.es",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_07"
     },
     {
-      "nombre": "José Antonio López Martín",
-      "email": "foto@traspies.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Anna Mari Pérez Mata",
-      "email": "buixa2004@gmail.com",
+      "nombre": "Marta Gil rebate",
+      "email": "martagil@lamardebolas.com",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Seguidores",
+      "criativo": "PLF_07"
     },
     {
-      "nombre": "María Alejandra Cisneros Zerpa",
-      "email": "constelamensajescielo@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "MARIA LUISA GANDARA PLAZA",
-      "email": "marisagnp@gmail.com",
+      "nombre": "Izaskun Ezquerro",
+      "email": "izas_bel@hotmail.com",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "AD03-BLOQUE-06"
     },
     {
-      "nombre": "Andrés Jaramillo Merchán",
-      "email": "esebarbi@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Esther Andreu",
-      "email": "eastgn1978@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Anuska Pinto",
-      "email": "puesto282828@gmail.com",
+      "nombre": "Belén Rodríguez García",
+      "email": "mrodgarcia@yahoo.es",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "10-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_04"
     },
     {
-      "nombre": "Maria Rosario Garcia Plazas",
-      "email": "mariarosariogarciaplazas@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Valentina María Hidalgo Piris",
-      "email": "valentinamariahidalgo@gmail.com",
-      "encontrado": false
-    },
-    {
-      "nombre": "Paola Rojas Rubio",
-      "email": "paorojasr@hotmail.com",
+      "nombre": "Cristina Urbina González",
+      "email": "crisurgon@gmail.com",
       "encontrado": true,
       "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "05-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_10"
     },
     {
-      "nombre": "Marta Porta López",
-      "email": "marta@nucl3ar.net",
+      "nombre": "Lissette Melissa Gamarra Navarro",
+      "email": "lissgamarran@gmail.com",
       "encontrado": true,
       "match_por": "email exato",
       "temperatura": "Frio",
@@ -351,83 +392,320 @@
       "rastreado": true,
       "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
       "conjunto": "00-Pais-de-jovens",
-      "criativo": "ADXX-MISTO"
+      "criativo": "AD05-BLOQUE-08"
     },
     {
-      "nombre": "Nuria Marco Pancorbo",
-      "email": "nmp.050611@gmail.com",
+      "nombre": "Myriam Cano",
+      "email": "vayapaella@yahoo.es",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Ana Conde Pérez",
+      "email": "anacondeprez@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
+      "conjunto": "00-Pais-de-jovens",
+      "criativo": "AD03-BLOQUE-06"
+    },
+    {
+      "nombre": "MARIANO AGUSTIN ASTESIANO",
+      "email": "marianoastesiano@yahoo.com.ar",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "email",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "MARIA JESÚS GALLARDO RODRÍGUEZ",
+      "email": "bodavalenymari@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Seguidores",
+      "criativo": "PLF_07"
+    },
+    {
+      "nombre": "Elena Huertas Vela",
+      "email": "ehuertasvela@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "10-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_10"
+    },
+    {
+      "nombre": "Ana Isabel Lozano Carrasco",
+      "email": "aniws33@hotmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_03"
+    },
+    {
+      "nombre": "LOLA CARRERO QUESADA",
+      "email": "lcarreroq@hotmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "10-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_10"
+    },
+    {
+      "nombre": "María Aránzazu Iglesias Riveiro",
+      "email": "aran.iglesias15415@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Caliente",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-HOT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_04"
+    },
+    {
+      "nombre": "elena almeda",
+      "email": "elenaalmeda@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07",
+      "conjunto": "00-Pais-de-jovens",
+      "criativo": "AD03-BLOQUE-06"
+    },
+    {
+      "nombre": "Maria Lourdes Consiña Martinez",
+      "email": "lourdes1971@icloud.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_07"
+    },
+    {
+      "nombre": "Ana Cristina zapater Marin",
+      "email": "conmuchomimoo@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_01"
+    },
+    {
+      "nombre": "ALOÑA Iraola",
+      "email": "mikelalo7377@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Seguidores",
+      "criativo": "PLF_07"
+    },
+    {
+      "nombre": "Beatriz Montaño García",
+      "email": "beamongar@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Marian Benito",
+      "email": "princesaguido@yahoo.es",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "AD03-BLOQUE-06"
+    },
+    {
+      "nombre": "Vanessa Márquez Gómez",
+      "email": "vmg1080@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Vicky Bates",
+      "email": "vbatesf@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_01"
+    },
+    {
+      "nombre": "Lorena Pastor Llorens",
+      "email": "lorena.seiza@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Elena Rodríguez",
+      "email": "lenirs1979@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-MVPs-ADS-TESTE-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-23",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_01"
+    },
+    {
+      "nombre": "Noemi Vicho",
+      "email": "noemivicho9@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "M. Fuensanta Jover López",
+      "email": "fuensantajover@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-INVITACION-COLD-LAL-CLUSTER-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-30",
+      "conjunto": "04-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_03"
+    },
+    {
+      "nombre": "María Dolores Martín Martín",
+      "email": "lolimmartin@gmail.com",
+      "encontrado": true,
+      "match_por": "email exato",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "nombre": "Elvira Martinez",
+      "email": "elviramartinezarcadia@gmail.com",
       "encontrado": false
     },
     {
-      "nombre": "Raúl Hermoso Blanco",
-      "email": "raul@minipixel.es",
+      "nombre": "Tomas palazón Madrid",
+      "email": "tomaspama@gmail.com",
       "encontrado": false
     },
     {
-      "nombre": "Paola Andrea González Brand",
-      "email": "andrea06brand@hotmail.com",
-      "encontrado": true,
-      "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Ana Sanz Rivas",
-      "email": "4unrayodesol@gmail.com",
-      "encontrado": true,
-      "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Carmen Ghinea",
-      "email": "carmenfloryy@yahoo.es",
-      "encontrado": true,
-      "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "Itziar Goikoetxea Otazua",
-      "email": "goitziur@gmail.com",
-      "encontrado": true,
-      "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
-    },
-    {
-      "nombre": "juan jose CORTES VELEZ",
-      "email": "jjjjcortes@gmail.com",
+      "nombre": "Cristina Maestre Jimenez",
+      "email": "maestrejimenez@hotmail.es",
       "encontrado": false
     },
     {
-      "nombre": "Ana Pop",
-      "email": "anapop8305@gmail.com",
-      "encontrado": true,
-      "match_por": "email exato",
-      "temperatura": "Organico",
-      "canal": "sem_rastreio",
-      "rastreado": false,
-      "campanha": "sin_utm",
-      "conjunto": "whatsapp",
-      "criativo": "sin_utm"
+      "nombre": "María Azpilicueta Zabalza",
+      "email": "danire1144@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "david garcia montes",
+      "email": "dgmlarrainzar@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "Maite Albandea Roger",
+      "email": "supercuatrofamily@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "Fausto Alfredo Rios Raeder",
+      "email": "alyf.rios@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "SONIA PEREZ BONO",
+      "email": "soniapbono@yahoo.es",
+      "encontrado": false
+    },
+    {
+      "nombre": "María Morales",
+      "email": "merymorav@proton.me",
+      "encontrado": false
+    },
+    {
+      "nombre": "Margarita Planells Serra",
+      "email": "litaibz@gmail.com",
+      "encontrado": false
+    },
+    {
+      "nombre": "Mila Beaumont Guembe",
+      "email": "mila.b@telefonica.net",
+      "encontrado": false
+    },
+    {
+      "nombre": "Mª Ángeles Galán González",
+      "email": "familiafabregagalan@gmail.com",
+      "encontrado": false
     }
   ],
-  "obs": "Faturamento calculado com ticket fixo de €2.600/venda. Cruzamento comprador→lead feito por e-mail exato, e-mail canônico (pontos/+tag), nome completo e busca aproximada de nome/e-mail (tolerante a typos); quando um comprador aparece em várias linhas da planilha, a de tráfego prevalece sobre a orgânica. Verificado em 3 passadas (direta, inversa e por sobrenome): apenas 1 das 29 vendas tem origem em tráfego pago; 13 são orgânicas (WhatsApp/grupos) e 15 não têm lead correspondente na planilha AGO26."
+  "obs": "Faturamento calculado com ticket fixo de €2.600/venda sobre 42 vendas. Cruzamento comprador→lead por e-mail exato, e-mail canônico (pontos/+tag), nome completo e busca aproximada (tolerante a typos); quando um comprador aparece em várias linhas da planilha, a de tráfego prevalece sobre a orgânica. 30 das 42 vendas foram localizadas na planilha de leads (todas por e-mail exato): 22 vieram de tráfego pago, 8 de orgânico (WhatsApp/e-mail). As 12 restantes não têm lead correspondente no AGO26 — origem não rastreada. O investimento por público/criativo é o do conjunto ou anúncio inteiro, não apenas o gasto atribuível às vendas, então o ROAS por linha é indicativo de eficiência relativa."
 }
