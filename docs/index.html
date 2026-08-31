@@ -667,6 +667,12 @@ function pct(v){return v==null?'—':(v*100).toFixed(2)+'%';}
 function eurOrDash(v){return (v===null||v===undefined)?'—':eur(v);}
 function roasOrDash(v){return (v===null||v===undefined)?'—':v.toFixed(2)+'x';}
 
+function fatSub(){
+  var fd=DB&&DB.faturamento_detalhe;
+  if(!fd) return 'ticket €'+num((DB&&DB.ticket_price)||0);
+  return num(fd.ventas_principal)+' x '+eur(fd.ticket_principal)+' + '+num(fd.ventas_upsell)+' upsell x '+eur(fd.ticket_upsell);
+}
+
 function dbRender(){
   var el=document.getElementById('db-main');
   if(!DB){
@@ -680,9 +686,18 @@ function dbRender(){
     '<div class="kpi k2"><div class="kpi-label">CPL</div><div class="kpi-value">'+eur(mg.cpl||0)+'</div><div class="kpi-sub">'+num(mg.leads||0)+' leads</div></div>'+
     '<div class="kpi k3"><div class="kpi-label">Total de Vendas</div><div class="kpi-value">'+num(mg.total_ventas||0)+'</div><div class="kpi-sub">reembolso: '+num(mg.reembolso||0)+'</div></div>'+
     '<div class="kpi k2"><div class="kpi-label">CAC</div><div class="kpi-value">'+eurOrDash(mg.cac)+'</div><div class="kpi-sub">'+pct(mg.tasa_conversion)+' conversão</div></div>'+
-    '<div class="kpi k1"><div class="kpi-label">Faturamento</div><div class="kpi-value">'+eur(mg.facturacion||0)+'</div><div class="kpi-sub">ticket €'+num(DB.ticket_price||0)+'</div></div>'+
+    '<div class="kpi k1"><div class="kpi-label">Faturamento</div><div class="kpi-value">'+eur(mg.facturacion||0)+'</div><div class="kpi-sub">'+fatSub()+'</div></div>'+
     '<div class="kpi k3"><div class="kpi-label">ROAS</div><div class="kpi-value">'+roasOrDash(mg.roas)+'</div><div class="kpi-sub">faturamento / investimento</div></div>'+
   '</div>';
+
+  var fd=DB.faturamento_detalhe;
+  if(fd){
+    html+='<div class="db-stat-row" style="grid-template-columns:repeat(3,1fr)">'+
+      '<div class="db-stat"><div class="db-stat-label">Faturamento produto principal</div><div class="db-stat-val">'+eur(fd.faturamento_principal)+'</div><div class="db-stat-sub">'+num(fd.ventas_principal)+' vendas x '+eur(fd.ticket_principal)+'</div></div>'+
+      '<div class="db-stat"><div class="db-stat-label">Faturamento upsell</div><div class="db-stat-val">'+eur(fd.faturamento_upsell)+'</div><div class="db-stat-sub">'+num(fd.ventas_upsell)+' vendas x '+eur(fd.ticket_upsell)+'</div></div>'+
+      '<div class="db-stat"><div class="db-stat-label">Faturamento total</div><div class="db-stat-val" style="color:var(--ideal)">'+eur(fd.faturamento_total)+'</div><div class="db-stat-sub">'+num(fd.ventas_principal+fd.ventas_upsell)+' vendas no total</div></div>'+
+    '</div>';
+  }
 
   var tk=DB.trackeamento||{leads:{},ventas:{}};
   html+='<div class="db-stat-row">'+

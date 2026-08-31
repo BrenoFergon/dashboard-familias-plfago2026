@@ -3,18 +3,18 @@
   "label": "PLF - Ago 2026",
   "status": "vendas encerradas",
   "atualizado_em": "27/08/2026",
-  "ticket_price": 2600,
+  "ticket_price": 2597,
   "metricas_gerais": {
     "inversion_total": 26552.55,
     "leads": 4905,
     "cpl": 5.31,
-    "total_ventas": 42,
+    "total_ventas": 44,
     "reembolso": 0,
     "ventas_trackeadas": 30,
-    "cac": 632.2,
-    "tasa_conversion": 0.00856269113149847,
-    "facturacion": 109200,
-    "roas": 4.1126
+    "cac": 603.47,
+    "tasa_conversion": 0.008970438328236493,
+    "facturacion": 111268,
+    "roas": 4.1905
   },
   "plataforma": {
     "meta_ads": {
@@ -24,8 +24,8 @@
       "ventas": 22,
       "cac": 1184.21,
       "tasa_conversion": 0.004485219164118246,
-      "facturacion": 57200,
-      "roas": 2.1956
+      "facturacion": 57134,
+      "roas": 2.193
     },
     "google_ads": {
       "inversion": 0,
@@ -44,8 +44,8 @@
       "ventas": 22,
       "cac": 1184.21,
       "tasa_conversion": 0.004485219164118246,
-      "facturacion": 57200,
-      "roas": 2.1956
+      "facturacion": 57134,
+      "roas": 2.193
     }
   },
   "temperatura": [
@@ -57,8 +57,8 @@
       "ventas": 5,
       "cac": 1746.02,
       "tasa_conversion": 0.0039494470774091624,
-      "facturacion": 13000,
-      "roas": 1.4891
+      "facturacion": 12985,
+      "roas": 1.4874
     },
     {
       "nome": "Frio",
@@ -68,8 +68,8 @@
       "ventas": 17,
       "cac": 1018.97,
       "tasa_conversion": 0.005956552207428171,
-      "facturacion": 44200,
-      "roas": 2.5516
+      "facturacion": 44149,
+      "roas": 2.5487
     },
     {
       "nome": "Orgánico",
@@ -79,7 +79,7 @@
       "ventas": 8,
       "cac": 0,
       "tasa_conversion": 0.011126564673157162,
-      "facturacion": 20800,
+      "facturacion": 20776,
       "roas": null
     },
     {
@@ -102,13 +102,13 @@
     "ventas": 30,
     "cac": 868.42,
     "tasa_conversion": 0.0061162079510703364,
-    "facturacion": 78000,
-    "roas": 2.9939
+    "facturacion": 77910,
+    "roas": 2.9905
   },
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
-    "ventas": 12,
-    "facturacion": 31200,
+    "ventas": 14,
+    "facturacion": 36358,
     "nota": "Vendas confirmadas mas sem lead correspondente na planilha AGO26 — origem não identificada (indicação, contato direto, base antiga etc.)"
   },
   "trackeamento": {
@@ -120,10 +120,10 @@
       "pct_sin_trackeo": 0.1600407747196738
     },
     "ventas": {
-      "total": 42,
+      "total": 44,
       "encontradas_na_planilha": 30,
-      "nao_encontradas": 12,
-      "pct_encontradas": 0.7142857142857143
+      "nao_encontradas": 14,
+      "pct_encontradas": 0.6818181818181818
     }
   },
   "gasto_por_fase": [
@@ -164,57 +164,57 @@
       "publico": "00-COLD-LAL-Todos os Alunos",
       "inversion": 4566.05,
       "ventas": 6,
-      "facturacion": 15600,
-      "roas": 3.4165
+      "facturacion": 15582,
+      "roas": 3.4126
     },
     {
       "publico": "00-COLD-LAL-Seguidores",
       "inversion": 2833.93,
       "ventas": 3,
-      "facturacion": 7800,
-      "roas": 2.7524
+      "facturacion": 7791,
+      "roas": 2.7492
     },
     {
       "publico": "00-ENG30D-IG-FB",
       "inversion": 7081.75,
       "ventas": 3,
-      "facturacion": 7800,
-      "roas": 1.1014
+      "facturacion": 7791,
+      "roas": 1.1002
     },
     {
       "publico": "10-COLD-LAL-Todos os Alunos",
       "inversion": 1227.0,
       "ventas": 3,
-      "facturacion": 7800,
-      "roas": 6.357
+      "facturacion": 7791,
+      "roas": 6.3496
     },
     {
       "publico": "00-Pais-de-jovens",
       "inversion": 2892.66,
       "ventas": 3,
-      "facturacion": 7800,
-      "roas": 2.6965
+      "facturacion": 7791,
+      "roas": 2.6934
     },
     {
       "publico": "00-MIX-HOT",
       "inversion": 1648.34,
       "ventas": 2,
-      "facturacion": 5200,
-      "roas": 3.1547
+      "facturacion": 5194,
+      "roas": 3.151
     },
     {
       "publico": "05-COLD-LAL-Todos os Alunos",
       "inversion": 1045.24,
       "ventas": 1,
-      "facturacion": 2600,
-      "roas": 2.4875
+      "facturacion": 2597,
+      "roas": 2.4846
     },
     {
       "publico": "04-COLD-LAL-Todos os Alunos",
       "inversion": 368.07,
       "ventas": 1,
-      "facturacion": 2600,
-      "roas": 7.0639
+      "facturacion": 2597,
+      "roas": 7.0557
     }
   ],
   "publicos_organico": [
@@ -233,56 +233,56 @@
       "ventas": 6,
       "gasto": 4909.22,
       "cpa": 818.2,
-      "facturacion": 15600,
-      "roas": 3.1777
+      "facturacion": 15582,
+      "roas": 3.174
     },
     {
       "ad": "AD03-BLOQUE-06",
       "ventas": 4,
       "gasto": 3983.98,
       "cpa": 996.0,
-      "facturacion": 10400,
-      "roas": 2.6105
+      "facturacion": 10388,
+      "roas": 2.6074
     },
     {
       "ad": "PLF_04",
       "ventas": 3,
       "gasto": 4336.06,
       "cpa": 1445.35,
-      "facturacion": 7800,
-      "roas": 1.7989
+      "facturacion": 7791,
+      "roas": 1.7968
     },
     {
       "ad": "PLF_10",
       "ventas": 3,
       "gasto": 1760.45,
       "cpa": 586.82,
-      "facturacion": 7800,
-      "roas": 4.4307
+      "facturacion": 7791,
+      "roas": 4.4256
     },
     {
       "ad": "PLF_01",
       "ventas": 3,
       "gasto": 2856.27,
       "cpa": 952.09,
-      "facturacion": 7800,
-      "roas": 2.7308
+      "facturacion": 7791,
+      "roas": 2.7277
     },
     {
       "ad": "PLF_03",
       "ventas": 2,
       "gasto": 778.88,
       "cpa": 389.44,
-      "facturacion": 5200,
-      "roas": 6.6763
+      "facturacion": 5194,
+      "roas": 6.6685
     },
     {
       "ad": "AD05-BLOQUE-08",
       "ventas": 1,
       "gasto": 235.42,
       "cpa": 235.42,
-      "facturacion": 2600,
-      "roas": 11.0441
+      "facturacion": 2597,
+      "roas": 11.0313
     }
   ],
   "compradores": [
@@ -707,5 +707,15 @@
       "encontrado": false
     }
   ],
-  "obs": "Faturamento calculado com ticket fixo de €2.600/venda sobre 42 vendas. Cruzamento comprador→lead por e-mail exato, e-mail canônico (pontos/+tag), nome completo e busca aproximada (tolerante a typos); quando um comprador aparece em várias linhas da planilha, a de tráfego prevalece sobre a orgânica. 30 das 42 vendas foram localizadas na planilha de leads (todas por e-mail exato): 22 vieram de tráfego pago, 8 de orgânico (WhatsApp/e-mail). As 12 restantes não têm lead correspondente no AGO26 — origem não rastreada. O investimento por público/criativo é o do conjunto ou anúncio inteiro, não apenas o gasto atribuível às vendas, então o ROAS por linha é indicativo de eficiência relativa."
+  "obs": "Números de vendas e faturamento informados pelo cliente: 44 vendas no total — 41 do produto principal a €2.597 (€106.477) e 3 upsells a €1.597 (€4.791), somando €111.268. As tabelas por temperatura, público e criativo usam o ticket principal (€2.597) por venda atribuída; o faturamento de upsell (€4.791) não é atribuível a campanha específica e por isso aparece só no total geral. O cruzamento comprador→lead partiu de uma lista de 42 nomes: 30 foram localizados na planilha AGO26 (todos por e-mail exato), sendo 22 de tráfego pago e 8 de orgânico (WhatsApp/e-mail); as demais não têm lead correspondente. O investimento por público/criativo é o do conjunto ou anúncio inteiro, não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "ticket_upsell": 1597,
+  "faturamento_detalhe": {
+    "ventas_principal": 41,
+    "ticket_principal": 2597,
+    "faturamento_principal": 106477,
+    "ventas_upsell": 3,
+    "ticket_upsell": 1597,
+    "faturamento_upsell": 4791,
+    "faturamento_total": 111268
+  }
 }
