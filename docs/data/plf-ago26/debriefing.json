@@ -108,8 +108,8 @@
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
     "ventas": 14,
-    "facturacion": 36358,
-    "nota": "Vendas confirmadas mas sem lead correspondente na planilha AGO26 — origem não identificada (indicação, contato direto, base antiga etc.)"
+    "facturacion": 33358,
+    "nota": "Vendas confirmadas mas sem lead correspondente na planilha AGO26 — origem não identificada (indicação, contato direto, base antiga etc.). O faturamento desta linha é residual: total oficial menos o atribuído às demais temperaturas, então absorve os 3 upsells a €1.597 e fecha a soma em €111.268."
   },
   "trackeamento": {
     "leads": {
