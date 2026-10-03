@@ -2,90 +2,90 @@
   "meta": {
     "cliente": "Familias Estelares",
     "evento": "PLF La cara oculta de la adolescencia",
-    "atualizado_em": "02/10/2026 08:16",
-    "datas_evento": "23/09 – 02/10",
+    "atualizado_em": "03/10/2026 08:18",
+    "datas_evento": "23/09 – 03/10",
     "periodo": "acumulado",
-    "dias_ativos": 3
+    "dias_ativos": 4
   },
   "kpis": {
-    "leads_total": 258,
-    "investimento_total": 1270.9,
-    "cpl_total": 4.93,
-    "ctr": 0.023491797145157086,
-    "connect_rate": 0.502895752895753
+    "leads_total": 558,
+    "investimento_total": 2685.06,
+    "cpl_total": 4.81,
+    "ctr": 0.023936156728336537,
+    "connect_rate": 0.5151450963778861
   },
   "audiencias": {
     "hot": {
-      "leads": 129,
-      "spend": 629.67,
-      "cpl": 4.88,
-      "impressions": 47302,
-      "clicks": 1098,
-      "landing_page_view": 535
+      "leads": 269,
+      "spend": 1175.17,
+      "cpl": 4.37,
+      "impressions": 94899,
+      "clicks": 2267,
+      "landing_page_view": 1154
     },
     "cold": {
-      "leads": 122,
-      "spend": 641.23,
-      "cpl": 5.26,
-      "impressions": 40899,
-      "clicks": 974,
-      "landing_page_view": 507
+      "leads": 279,
+      "spend": 1509.89,
+      "cpl": 5.41,
+      "impressions": 102334,
+      "clicks": 2454,
+      "landing_page_view": 1278
     }
   },
   "funil": {
-    "impressoes": 88201,
-    "cliques": 2072,
-    "page_views": 1042,
-    "leads": 208,
-    "ctr": 2.35,
-    "connect_rate": 50.29,
-    "taxa_conversao": 19.96
+    "impressoes": 197233,
+    "cliques": 4721,
+    "page_views": 2432,
+    "leads": 471,
+    "ctr": 2.39,
+    "connect_rate": 51.51,
+    "taxa_conversao": 19.37
   },
   "segmentacao": {
     "genero": [
       {
         "grupo": "Feminino",
-        "spend": 1179.57,
-        "leads": 194,
-        "cpl": 6.08
+        "spend": 2490.37,
+        "leads": 434,
+        "cpl": 5.74
       },
       {
         "grupo": "Masculino",
-        "spend": 77.97,
-        "leads": 10,
-        "cpl": 7.8
+        "spend": 167.03,
+        "leads": 30,
+        "cpl": 5.57
       },
       {
         "grupo": "Unknown",
-        "spend": 13.36,
-        "leads": 4,
-        "cpl": 3.34
+        "spend": 27.66,
+        "leads": 6,
+        "cpl": 4.61
       }
     ],
     "faixa_etaria": [
       {
         "grupo": "25-34",
-        "spend": 1.69,
-        "leads": 1,
-        "cpl": 1.69
+        "spend": 4.6,
+        "leads": 3,
+        "cpl": 1.53
       },
       {
         "grupo": "35-44",
-        "spend": 300.38,
-        "leads": 61,
-        "cpl": 4.92
+        "spend": 652.3,
+        "leads": 128,
+        "cpl": 5.1
       },
       {
         "grupo": "45-54",
-        "spend": 913.97,
-        "leads": 131,
-        "cpl": 6.98
+        "spend": 1913.63,
+        "leads": 321,
+        "cpl": 5.96
       },
       {
         "grupo": "55-64",
-        "spend": 54.85,
-        "leads": 15,
-        "cpl": 3.66
+        "spend": 114.52,
+        "leads": 18,
+        "cpl": 6.36
       }
     ]
   },
@@ -100,7 +100,11 @@
     },
     {
       "data": "02/10",
-      "leads": 197
+      "leads": 298
+    },
+    {
+      "data": "03/10",
+      "leads": 199
     }
   ],
   "cpl_por_dia": [
@@ -114,94 +118,108 @@
     },
     {
       "data": "02/10",
-      "cpl": 4.72
+      "cpl": 5.12
+    },
+    {
+      "data": "03/10",
+      "cpl": 4.12
     }
   ],
   "canais": [
     {
       "canal": "ig",
-      "leads": 177,
-      "pct": 68.6
+      "leads": 362,
+      "pct": 64.87
     },
     {
       "canal": "fb",
-      "leads": 74,
-      "pct": 28.68
+      "leads": 182,
+      "pct": 32.62
     },
     {
       "canal": "sem_rastreio",
-      "leads": 7,
-      "pct": 2.71
+      "leads": 10,
+      "pct": 1.79
+    },
+    {
+      "canal": "an",
+      "leads": 3,
+      "pct": 0.54
+    },
+    {
+      "canal": "th",
+      "leads": 1,
+      "pct": 0.18
     }
   ],
   "criativos": [
     {
-      "nome": "PLF_01",
-      "leads": 46
-    },
-    {
       "nome": "PLF_04",
-      "leads": 41
+      "leads": 103
     },
     {
       "nome": "PLF_07",
-      "leads": 31
+      "leads": 90
+    },
+    {
+      "nome": "PLF_01",
+      "leads": 88
     },
     {
       "nome": "ADXX-MISTO",
-      "leads": 27
+      "leads": 72
     },
     {
       "nome": "AD02-BLOQUE-04",
-      "leads": 21
+      "leads": 49
     },
     {
       "nome": "PLF_06",
-      "leads": 21
+      "leads": 41
     },
     {
       "nome": "PLF_03",
-      "leads": 6
+      "leads": 7
     },
     {
       "nome": "PLF_02",
-      "leads": 4
+      "leads": 6
     },
     {
       "nome": "AD03-BLOQUE-06",
-      "leads": 3
+      "leads": 5
     },
     {
       "nome": "AD07-BLOQUE-12",
-      "leads": 2
+      "leads": 3
     }
   ],
   "lead_scoring": {
     "totais": {
-      "Ideal": 6,
-      "Bom": 2,
+      "Ideal": 9,
+      "Bom": 3,
       "Descarte": 0
     },
-    "respondentes": 9,
-    "sem_pesquisa": 246,
+    "respondentes": 13,
+    "sem_pesquisa": 532,
     "grupos": [
-      {
-        "tipo": "COLD",
-        "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
-        "conjunto": "00-COLD-LAL-Todos os Alunos",
-        "criativo": "PLF_01",
-        "canal": "fb",
-        "ideal": 1,
-        "bom": 0,
-        "descarte": 0,
-        "total": 1
-      },
       {
         "tipo": "COLD",
         "campanha": "FT-PLF-oct26-INVITACION-COLD-INT-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
         "conjunto": "00-Pais-de-jovens",
         "criativo": "ADXX-MISTO",
         "canal": "ig",
+        "ideal": 2,
+        "bom": 0,
+        "descarte": 0,
+        "total": 2
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+        "conjunto": "00-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_01",
+        "canal": "fb",
         "ideal": 1,
         "bom": 0,
         "descarte": 0,
@@ -253,6 +271,28 @@
       },
       {
         "tipo": "HOT",
+        "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+        "conjunto": "00-MIX-HOT",
+        "criativo": "PLF_01",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "COLD",
+        "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+        "conjunto": "00-MVP-LALs-Alumnos-Seguidores",
+        "criativo": "ADXX-MISTO",
+        "canal": "fb",
+        "ideal": 1,
+        "bom": 0,
+        "descarte": 0,
+        "total": 1
+      },
+      {
+        "tipo": "HOT",
         "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
         "conjunto": "00-ENG30D-IG-FB",
         "criativo": "PLF_06",
@@ -272,11 +312,22 @@
         "bom": 1,
         "descarte": 0,
         "total": 1
+      },
+      {
+        "tipo": "HOT",
+        "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+        "conjunto": "00-MIX-HOT",
+        "criativo": "PLF_01",
+        "canal": "ig",
+        "ideal": 0,
+        "bom": 1,
+        "descarte": 0,
+        "total": 1
       }
     ]
   },
   "leitura": {
-    "pt": "O CPL acumulado está em <strong>€ 4,93</strong> e o de ontem foi € 5,68. Hoje ainda é parcial, com <strong>197 leads</strong> até agora. O público QUENTE saiu a € 4,88 e o FRIO a € 5,26, uma diferença pequena. O Instagram trouxe 68,6% dos leads e o criativo PLF_01 lidera com 46 leads no Meta, a página tem connect rate de 50,29% e conversão de 19,96%. Na pesquisa são 9 respostas, 8 cruzadas com a planilha: <strong>6 Ideal</strong> e 2 Bom, nenhum Descarte.",
-    "es": "El CPL acumulado está en <strong>€ 4,93</strong> y el de ayer fue € 5,68. Hoy todavía es parcial, con <strong>197 leads</strong> hasta ahora. El público CALIENTE salió a € 4,88 y el FRÍO a € 5,26, una diferencia pequeña. Instagram trajo el 68,6% de los leads y el creativo PLF_01 lidera con 46 leads en Meta, la página tiene connect rate de 50,29% y conversión de 19,96%. En la encuesta hay 9 respuestas, 8 cruzadas con la planilla: <strong>6 Ideal</strong> y 2 Bueno, ningún Descarte."
+    "pt": "O CPL acumulado está em <strong>€ 4,81</strong> e o de ontem foi € 5,12. O público QUENTE sai mais barato (€ 4,37) que o FRIO (€ 5,41). O Instagram trouxe <strong>64,87%</strong> dos leads e o criativo <strong>PLF_04</strong> lidera com 103 leads. A página converte 19,37% das visitas, com connect rate de 51,51%. Na pesquisa só consegui ler 13 respostas (leitura parcial da planilha), com 9 Ideal e 3 Bom entre os cadastrados, então o scoring ainda não é confiável, e os dados de hoje também são parciais.",
+    "es": "El CPL acumulado está en <strong>€ 4,81</strong> y el de ayer fue € 5,12. El público CALIENTE sale más barato (€ 4,37) que el FRÍO (€ 5,41). Instagram trajo el <strong>64,87%</strong> de los leads y el creativo <strong>PLF_04</strong> lidera con 103 leads. La página convierte el 19,37% de las visitas, con connect rate de 51,51%. En la encuesta solo pude leer 13 respuestas (lectura parcial de la hoja), con 9 Ideal y 3 Bueno entre los registrados, así que el scoring aún no es fiable, y los datos de hoy también son parciales."
   }
 }
