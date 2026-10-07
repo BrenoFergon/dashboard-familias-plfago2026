@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dashboard</title>
 <!--
-  DASHBOARD PADRÃO FORTRAFFIC v1 (+ logo Fortraffic no topo da barra lateral)
+  DASHBOARD PADRÃO FORTRAFFIC v1.1 (logo Fortraffic na barra lateral + página Debriefing por lançamento)
   ------------------------------------------------------------------
   Arquivo ÚNICO e FIXO. Não é editado por cliente: tudo que muda vem de JSON.
     launches.json        lista de lançamentos (seletor no topo)
@@ -221,6 +221,12 @@ td.good,td.mid,td.bad{font-weight:700}
 .ins{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;font-size:.84rem;line-height:1.75;color:var(--mut)}
 .ins strong{color:var(--tx)}
 .load{display:grid;place-items:center;height:50vh;color:var(--mut);font-size:.85rem}
+.tg{display:inline-block;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid var(--bd);background:var(--card2);color:var(--tx);white-space:nowrap}
+.tg.hot{color:#d6336c;border-color:#f3c2d4}.tg.cold{color:var(--blue);border-color:#c6dcf7}.tg.org{color:var(--good);border-color:#bfe6d4}.tg.no{color:var(--bad);border-color:#f6c4c4}
+body.dark .tg.hot{border-color:#5a2038}body.dark .tg.cold{border-color:#1a3a60}body.dark .tg.org{border-color:#0b4a37}body.dark .tg.no{border-color:#5a2020}
+tr.ne td{background:rgba(220,38,38,.07)}
+.ph{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:.78rem}.ph .nm{min-width:160px}.ph .tr{flex:1;background:var(--card2);border-radius:3px;height:8px;overflow:hidden}.ph .tr i{display:block;height:8px;background:var(--orange)}.ph b{min-width:130px;text-align:right;font-family:var(--mono)}
+@media(max-width:560px){.ph{flex-wrap:wrap}.ph .nm{min-width:0;width:100%}}
 
 @media(max-width:1000px){.grid2,.grid2e,.grid3,.sck{grid-template-columns:1fr}.sc-g{grid-template-columns:1fr 1fr}}
 @media(max-width:820px){
@@ -259,7 +265,7 @@ td.good,td.mid,td.bad{font-weight:700}
 /* ════════════════════════════════════════════════════════════════════
    NÚCLEO: estado, formatação, filtros, agregações
    ════════════════════════════════════════════════════════════════════ */
-var D=null, LAUNCHES=[], CH=[], POST=[];
+var D=null, DB=null, LAUNCHES=[], CH=[], POST=[];
 var S={launch:null,page:null,lang:'pt',theme:'light',per:'all',from:'',to:'',onlyL:true,paid:false,camps:null,labels:true,gran:'d'};
 
 var $=function(s,r){return (r||document).querySelector(s)};
@@ -823,9 +829,87 @@ function scTable(){
    (Regra: toda chave existe nos dois idiomas; scripts/validate_data.py não checa isso,
     mas o teste de "i18n faltando" no console do navegador acusa.)
    ════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════
+   PÁGINA: Debriefing (fechamento do lançamento, vem de launches.json → debriefing)
+   Arquivo agregado e PÚBLICO: nunca nome/e-mail de comprador. Se o JSON
+   antigo trouxer "compradores", só contagens são exibidas.
+   Percentuais no arquivo de debriefing são frações (0.05 = 5%).
+   ════════════════════════════════════════════════════════════════════ */
+function fr(v){return ok(v)?pct(v*100):'—'}
+function tgCls(n){n=String(n||'').toLowerCase();return /calient|quente|hot/.test(n)?'hot':/fr[ií]o|cold/.test(n)?'cold':/org/.test(n)?'org':''}
+PAGE.debriefing=function(){
+  if(!DB)return '<div class="empty">'+t('dbVazio')+'</div>';
+  var h='',mg=DB.metricas_gerais||{},fd=DB.faturamento_detalhe;
+  if(DB.status)h+='<div class="sub mut" style="margin:-4px 0 12px;font-size:.75rem">'+esc(DB.label||'')+' · '+esc(DB.status)+(DB.atualizado_em?' · '+t('atualizado')+' '+esc(DB.atualizado_em):'')+'</div>';
+  h+='<div class="kpis">'+
+    kpi(t('dbInvTotal'),money(mg.inversion_total),t('dbTodasFases'),'dark')+
+    kpi('CPL',money(mg.cpl),num(mg.leads)+' '+t('leads').toLowerCase(),'blue')+
+    kpi(t('dbTotalVendas'),num(mg.total_ventas),t('dbReembolso')+': '+num(mg.reembolso||0),'orange')+
+    kpi('CAC',money(mg.cac),fr(mg.tasa_conversion)+' '+t('dbConversao'),'blue')+
+    kpi(t('fatTotal'),money(mg.facturacion),fd?num(fd.ventas_principal)+' × '+money(fd.ticket_principal)+' + '+num(fd.ventas_upsell)+' upsell × '+money(fd.ticket_upsell):(DB.ticket_price?'ticket '+money(DB.ticket_price):''),'green')+
+    kpi('ROAS',xf(mg.roas),t('dbFatSobreInv'),'green')+
+  '</div>';
+  if(fd)h+='<div class="kpis">'+
+    kpi(t('dbFatPrincipal'),money(fd.faturamento_principal),num(fd.ventas_principal)+' × '+money(fd.ticket_principal))+
+    kpi(t('fatUp'),money(fd.faturamento_upsell),num(fd.ventas_upsell)+' × '+money(fd.ticket_upsell))+
+    kpi(t('fatTotal'),money(fd.faturamento_total),num((fd.ventas_principal||0)+(fd.ventas_upsell||0))+' '+t('vendas').toLowerCase(),'green')+
+  '</div>';
+  var tk=DB.trackeamento||{},tl=tk.leads||{},tv=tk.ventas||{};
+  if(tk.leads||tk.ventas)h+='<div class="kpis">'+
+    kpi(t('dbLeadsTrack'),num(tl.trackeado),fr(tl.pct_trackeado)+' '+t('doTotal'))+
+    kpi(t('dbLeadsSemTrack'),num(tl.sin_trackeo),fr(tl.pct_sin_trackeo)+' '+t('doTotal'))+
+    kpi(t('dbVendasEnc'),num(tv.encontradas_na_planilha),fr(tv.pct_encontradas)+' '+t('dbDasVendas'),'green')+
+    kpi(t('dbVendasNaoEnc'),num(tv.nao_encontradas),t('dbOrigemNaoId'),'bad')+
+  '</div>';
+
+  var cols=[[null,'t'],[t('invers')],[t('leads')],['CPL'],[t('vendas')],['CAC'],[t('dbTxConv')],[t('fact')],['ROAS']];
+  function linha(nome,r,cl,tag){
+    if(!r)return '';
+    return '<tr'+(cl?' class="'+cl+'"':'')+'>'+tdt(tag?'<span class="tg '+tgCls(nome)+'">'+esc(nome)+'</span>':esc(nome))+td(money(r.inversion))+td(num(r.leads))+td(money(r.cpl))+td(num(r.ventas))+td(money(r.cac))+td(fr(r.tasa_conversion))+td(money(r.facturacion),'good')+td(xf(r.roas))+'</tr>';
+  }
+  var pl=DB.plataforma||{};
+  cols[0][0]=t('dbPlataforma');
+  h+=card(t('dbPorPlataforma'),null,tbl(cols,linha('Meta Ads',pl.meta_ads)+linha('Google Ads',pl.google_ads)+linha(t('total'),pl.total,'tot')));
+  var tb=(DB.temperatura||[]).map(function(r){return linha(r.nome,r,'',1)}).join('')+linha(t('total'),DB.temperatura_total,'tot');
+  var ne=DB.nao_encontrado;
+  if(ne)tb+='<tr class="ne">'+tdt('<span class="tg no">'+esc(ne.nome)+'</span>')+td('—')+td('—')+td('—')+td(num(ne.ventas))+td('—')+td('—')+td(money(ne.facturacion))+td('—')+'</tr>';
+  cols[0][0]=t('dbTemperatura');
+  h+=card(t('dbPorTemperatura'),null,tbl(cols,tb)+(ne&&ne.nota?'<div class="note">'+esc(ne.nota)+'</div>':''));
+
+  var fases=DB.gasto_por_fase||[],mx=Math.max.apply(null,fases.map(function(f){return +f.valor||0}).concat([1]));
+  var ml=DB.metricas_lancamento||{};
+  h+='<div class="grid2">'+card(t('dbGastoFase'),null,fases.length?fases.map(function(f){return '<div class="ph"><span class="nm">'+esc(f.fase)+'</span><div class="tr"><i style="width:'+((+f.valor||0)/mx*100)+'%"></i></div><b>'+money(f.valor)+' · '+fr(f.pct)+'</b></div>'}).join(''):'<div class="empty">'+t('semDados')+'</div>')+
+    card(t('dbMetricasLanc'),null,'<div class="kpis" style="grid-template-columns:1fr 1fr;margin:0">'+kpi('CPM',money(ml.cpm))+kpi('Connect Rate',fr(ml.connect_rate))+kpi(t('dbConvLp'),fr(ml.conversao_lp))+kpi('CTR',fr(ml.ctr))+'</div>')+'</div>';
+
+  var pubs=DB.publicos_com_venda||[],porg=DB.publicos_organico||[];
+  h+='<div class="grid2">'+
+    card(t('dbPublicosVenda'),null,pubs.length?tbl([[t('dbPublico'),'t'],[t('invers')],[t('vendas')],[t('fact')],['ROAS']],pubs.map(function(p){return '<tr>'+tdt(esc(p.publico))+td(money(p.inversion))+td(num(p.ventas))+td(money(p.facturacion),'good')+td(xf(p.roas))+'</tr>'}).join('')):'<div class="empty">'+t('dbSemPublicos')+'</div>')+
+    card(t('dbOrganicas'),null,porg.length?tbl([[t('dbOrigem'),'t'],[t('vendas')]],porg.map(function(p){return '<tr>'+tdt(esc(p.origem))+td(num(p.ventas))+'</tr>'}).join('')):'<div class="empty">'+t('dbSemOrganicas')+'</div>')+
+  '</div>';
+
+  var crs=DB.criativos_com_venda||[];
+  h+=card(t('dbCriativosVenda'),null,crs.length?tbl([[t('criativo'),'t'],[t('vendas')],[t('invers')],['CPA'],[t('fact')],['ROAS']],crs.map(function(c){return '<tr>'+tdt(esc(c.ad))+td(num(c.ventas))+td(money(c.gasto))+td(money(c.cpa))+td(money(c.facturacion),'good')+td(xf(c.roas))+'</tr>'}).join('')):'<div class="empty">'+t('dbSemCriativos')+'</div>');
+
+  var cp=DB.compradores||[];
+  if(cp.length){ // só contagens: nome/e-mail nunca aparecem na tela
+    var enc=cp.filter(function(c){return c.encontrado});
+    function cnt(f){var m={};enc.forEach(function(c){var k=c[f]||'—';m[k]=(m[k]||0)+1});return Object.keys(m).map(function(k){return [k,m[k]]}).sort(function(a,b){return b[1]-a[1]})}
+    function mini(tit,l,tag){return '<div><h3 style="font-size:.78rem;margin-bottom:6px">'+tit+'</h3>'+tbl([[tit,'t'],[t('dbCompradores')]],l.map(function(x){return '<tr>'+tdt(tag?'<span class="tg '+tgCls(x[0])+'">'+esc(x[0])+'</span>':esc(x[0]))+td(num(x[1]))+'</tr>'}).join(''))+'</div>'}
+    h+=card(t('dbCruzamento'),num(cp.length)+' '+t('dbCompradores').toLowerCase()+' · '+num(enc.length)+' '+t('dbEncontrados')+' · '+num(cp.length-enc.length)+' '+t('dbNaoEncontrados'),
+      '<div class="grid3">'+mini(t('dbTemperatura'),cnt('temperatura'),1)+mini(t('canal'),cnt('canal'))+mini(t('campanha'),cnt('campanha'))+'</div>');
+  }
+  if(DB.obs)h+='<div class="ins">'+esc(DB.obs)+'</div>';
+  return h;
+};
+
 var I18N={
 pt:{
-  navCap:'Captação',navMeta:'Meta Ads',navMet:'Métricas Diárias',navPais:'Análise por País',navGen:'General',navPes:'Pesquisa',navSc:'Lead Scoring',
+  navCap:'Captação',navMeta:'Meta Ads',navMet:'Métricas Diárias',navPais:'Análise por País',navGen:'General',navPes:'Pesquisa',navSc:'Lead Scoring',navDb:'Debriefing',
+  dbVazio:'Nenhum debriefing disponível para este lançamento ainda.',dbInvTotal:'Investimento total',dbTodasFases:'todas as fases',dbTotalVendas:'Total de vendas',dbReembolso:'reembolso',dbConversao:'conversão',dbFatSobreInv:'faturamento / investimento',dbFatPrincipal:'Faturamento produto principal',
+  dbLeadsTrack:'Leads trackeados',dbLeadsSemTrack:'Leads sem trackeio',dbVendasEnc:'Vendas encontradas na planilha',dbVendasNaoEnc:'Vendas não encontradas',dbDasVendas:'das vendas',dbOrigemNaoId:'origem não identificada',
+  dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captação',dbTxConv:'Tx. conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captação',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas do lançamento',dbConvLp:'Conversão de LP',
+  dbPublicosVenda:'Públicos com venda (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sem vendas atribuídas a públicos pagos',dbOrganicas:'Vendas orgânicas por origem',dbOrigem:'Origem',dbSemOrganicas:'Sem vendas orgânicas identificadas',dbCriativosVenda:'Criativos com venda',dbSemCriativos:'Sem criativos com venda atribuída',
+  dbCruzamento:'Compradores × planilha de leads',dbCompradores:'Compradores',dbEncontrados:'encontrados',dbNaoEncontrados:'não encontrados',
   ontem:'Ontem','7d':'7d','14d':'14d','30d':'30d',todo:'Todo',limpar:'Limpar',trafPago:'Tráfego Pago',etiquetas:'Etiquetas',claro:'Claro',escuro:'Escuro',
   lancamento:'Lançamento',atualizado:'Atualizado',dadosAte:'Dados até',carregando:'Carregando dados...',semDados:'Sem dados no período selecionado',semThumb:'sem imagem',
   gDia:'Diário',gSem:'Semanal',gMes:'Mensal',
@@ -852,7 +936,12 @@ pt:{
   bom:'Bom',descarte:'Descarte',scRespondida:'leads com pesquisa respondida',scSemPesq:'sem pesquisa',scPorCriativo:'scoring por criativo',scTabelaTit:'Leads com pesquisa respondida — agrupado por UTM',todos:'Todos',buscar:'Buscar campanha, conjunto, criativo...',tipo:'Tipo',conjunto:'Conjunto',criativo:'Criativo',combinacoes:'combinações'
 },
 es:{
-  navCap:'Captación',navMeta:'Meta Ads',navMet:'Métricas Diarias',navPais:'Análisis por País',navGen:'General',navPes:'Encuesta',navSc:'Lead Scoring',
+  navCap:'Captación',navMeta:'Meta Ads',navMet:'Métricas Diarias',navPais:'Análisis por País',navGen:'General',navPes:'Encuesta',navSc:'Lead Scoring',navDb:'Debriefing',
+  dbVazio:'Aún no hay debriefing disponible para este lanzamiento.',dbInvTotal:'Inversión total',dbTodasFases:'todas las fases',dbTotalVendas:'Total de ventas',dbReembolso:'reembolso',dbConversao:'conversión',dbFatSobreInv:'facturación / inversión',dbFatPrincipal:'Facturación producto principal',
+  dbLeadsTrack:'Leads con trackeo',dbLeadsSemTrack:'Leads sin trackeo',dbVendasEnc:'Ventas encontradas en la planilla',dbVendasNaoEnc:'Ventas no encontradas',dbDasVendas:'de las ventas',dbOrigemNaoId:'origen no identificado',
+  dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captación',dbTxConv:'Tasa conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captación',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas del lanzamiento',dbConvLp:'Conversión de LP',
+  dbPublicosVenda:'Públicos con venta (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sin ventas atribuidas a públicos pagos',dbOrganicas:'Ventas orgánicas por origen',dbOrigem:'Origen',dbSemOrganicas:'Sin ventas orgánicas identificadas',dbCriativosVenda:'Creativos con venta',dbSemCriativos:'Sin creativos con venta atribuida',
+  dbCruzamento:'Compradores × planilla de leads',dbCompradores:'Compradores',dbEncontrados:'encontrados',dbNaoEncontrados:'no encontrados',
   ontem:'Ayer','7d':'7d','14d':'14d','30d':'30d',todo:'Todo',limpar:'Limpiar',trafPago:'Tráfico Pago',etiquetas:'Etiquetas',claro:'Claro',escuro:'Oscuro',
   lancamento:'Lanzamiento',atualizado:'Actualizado',dadosAte:'Datos hasta',carregando:'Cargando datos...',semDados:'Sin datos en el período seleccionado',semThumb:'sin imagen',
   gDia:'Diario',gSem:'Semanal',gMes:'Mensual',
@@ -881,14 +970,17 @@ es:{
 /* ════════════════════════════════════════════════════════════════════
    CASCA: navegação, filtros do topo, eventos, carregamento
    ════════════════════════════════════════════════════════════════════ */
-var NAV={captacao:['▦','navCap'],meta:['◉','navMeta'],metricas:['↗','navMet'],pais:['◍','navPais'],general:['▤','navGen'],pesquisa:['✎','navPes'],scoring:['✦','navSc']};
+var NAV={captacao:['▦','navCap'],meta:['◉','navMeta'],metricas:['↗','navMet'],pais:['◍','navPais'],general:['▤','navGen'],pesquisa:['✎','navPes'],scoring:['✦','navSc'],debriefing:['☰','navDb']};
 var NEEDS_FILTER={captacao:1,meta:1,metricas:1,pais:1,general:1};
 
 function pagesOn(){
+  if(D.semDados)return ['debriefing'];
   var p=D.config.paginas;
   if(!p){p=MODO()==='leads'?['captacao','meta','metricas']:['captacao','meta','metricas','pais','general'];
     if(D.pesquisa)p.push('pesquisa');if(D.lead_scoring)p.push('scoring')}
-  return p.filter(function(x){return PAGE[x]});
+  p=p.filter(function(x){return PAGE[x]&&(x!=='debriefing'||DB)});
+  if(DB&&p.indexOf('debriefing')<0)p=p.concat('debriefing');
+  return p;
 }
 function lum(hex){var m=/^#?([0-9a-f]{6})$/i.exec(hex||'');if(!m)return 0;var n=parseInt(m[1],16);return (0.299*(n>>16)+0.587*((n>>8)&255)+0.114*(n&255))/255}
 function applyBrand(){
@@ -918,7 +1010,7 @@ function chrome(){
   $('#sbLl').textContent=t('lancamento');$('#sbLaunch').textContent=m.evento||m.lancamento_cod||'—';
   $('#sbUpd').textContent=t('atualizado')+' '+(m.atualizado_em||'');
   $('#pgTitle').textContent=t(NAV[S.page][1]);
-  $('#pillUp').textContent='● '+t('dadosAte')+' '+dm(dmax());
+  $('#pillUp').textContent=D.semDados?'● '+((DB&&DB.status)||t('navDb')):'● '+t('dadosAte')+' '+dm(dmax());
   $('#nav').innerHTML=pagesOn().map(function(p){return '<button class="nav-i '+(p===S.page?'on':'')+'" data-act="nav" data-v="'+p+'"><span class="ic">'+NAV[p][0]+'</span>'+t(NAV[p][1])+'</button>'}).join('');
   $('#filters').innerHTML=filtersHtml();
   var lb=$('#launchbar');
@@ -991,15 +1083,22 @@ function loadLaunch(id,page){
   var L=LAUNCHES.filter(function(x){return x.id===id})[0]||LAUNCHES[0];
   if(!L){showErr('launches.json sem lançamentos');return}
   $('#page').innerHTML='<div class="load">'+t('carregando')+'</div>';
-  fetch('./'+L.file+'?t='+Date.now()).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
-  .then(function(j){
+  var pD=L.file?fetch('./'+L.file+'?t='+Date.now()).then(function(r){if(!r.ok)throw new Error(L.file+': HTTP '+r.status);return r.json()}):Promise.resolve(null);
+  var pB=L.debriefing?fetch('./'+L.debriefing+'?t='+Date.now()).then(function(r){return r.ok?r.json():null}).catch(function(){return null}):Promise.resolve(null);
+  Promise.all([pD,pB]).then(function(res){
+    var j=res[0],prev=(D&&D.meta)||{};DB=res[1];
+    if(!j){ // lançamento encerrado só com debriefing: marca vem do launches.json (ou do lançamento aberto antes)
+      if(!DB)throw new Error((L.debriefing||'debriefing')+' não encontrado');
+      j={semDados:true,config:{paginas:['debriefing']},meta:{cliente:L.cliente||prev.cliente||'',letra:L.letra||prev.letra,cor:L.cor||prev.cor,moeda:L.moeda||prev.moeda||'€',
+        idioma_padrao:L.idioma_padrao||prev.idioma_padrao,evento:L.evento||L.label||'',atualizado_em:DB.atualizado_em||''}};
+    }
     D=j;D.meta=D.meta||{};D.config=D.config||{};S.launch=L.id;
     S.per='all';S.from=S.to='';S.camps=null;S.paid=false;S.onlyL=true;S.gran='d';PAISSEL=null;PSQ.f='';SC.f='all';SC.q='';SC.p=1;SC.s='ideal';SC.asc=false;
     S.lang=lsGet('ft_lang')||D.meta.idioma_padrao||'pt';
     applyBrand();applyTheme();
     S.page=(page&&pagesOn().indexOf(page)>-1)?page:pagesOn()[0];
     render();
-  }).catch(function(e){showErr('Erro ao carregar '+L.file+': '+e.message);console.error(e)});
+  }).catch(function(e){showErr('Erro ao carregar '+(L.label||L.id)+': '+e.message);console.error(e)});
 }
 function boot(){
   S.theme=lsGet('ft_theme')==='dark'?'dark':'light';S.labels=lsGet('ft_labels')!=='0';S.lang=lsGet('ft_lang')||'pt';applyTheme();

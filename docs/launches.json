@@ -1,1 +1,8 @@
-{"lancamentos":[{"id":"plf-oct26","label":"PLF - Out 2026","file":"data-plf-oct26.json","live":true}]}
+{
+  "lancamentos": [
+    {"id": "plf-oct26", "label": "PLF - Out 2026", "file": "data-plf-oct26.json", "live": true},
+    {"id": "plf-ago26", "label": "PLF - Ago 2026", "debriefing": "data/plf-ago26/debriefing.json", "cliente": "Familias Estelares", "letra": "FE", "cor": "#00a878", "moeda": "€", "idioma_padrao": "es", "evento": "PLF La cara oculta de la adolescencia"},
+    {"id": "plf-0626", "label": "PLF - Jun 2026", "debriefing": "data/plf-0626/debriefing.json", "cliente": "Familias Estelares", "letra": "FE", "cor": "#00a878", "moeda": "€", "idioma_padrao": "es", "evento": "PLF La cara oculta de la adolescencia"},
+    {"id": "plf-0226", "label": "PLF - Fev 2026", "debriefing": "data/plf-0226/debriefing.json", "cliente": "Familias Estelares", "letra": "FE", "cor": "#00a878", "moeda": "€", "idioma_padrao": "es", "evento": "PLF La cara oculta de la adolescencia"}
+  ]
+}
