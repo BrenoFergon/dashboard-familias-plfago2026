@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dashboard</title>
 <!--
-  DASHBOARD PADRÃO FORTRAFFIC v1.1 (logo Fortraffic na barra lateral + página Debriefing por lançamento)
+  DASHBOARD PADRÃO FORTRAFFIC v1.2 (logo Fortraffic na barra lateral + página Debriefing em todo lançamento, com comparativo entre lançamentos)
   ------------------------------------------------------------------
   Arquivo ÚNICO e FIXO. Não é editado por cliente: tudo que muda vem de JSON.
     launches.json        lista de lançamentos (seletor no topo)
@@ -225,6 +225,7 @@ td.good,td.mid,td.bad{font-weight:700}
 .tg.hot{color:#d6336c;border-color:#f3c2d4}.tg.cold{color:var(--blue);border-color:#c6dcf7}.tg.org{color:var(--good);border-color:#bfe6d4}.tg.no{color:var(--bad);border-color:#f6c4c4}
 body.dark .tg.hot{border-color:#5a2038}body.dark .tg.cold{border-color:#1a3a60}body.dark .tg.org{border-color:#0b4a37}body.dark .tg.no{border-color:#5a2020}
 tr.ne td{background:rgba(220,38,38,.07)}
+tr.lk{cursor:pointer}tr.lk:hover td{background:var(--card2)}tr.cur td{font-weight:800}
 .ph{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:.78rem}.ph .nm{min-width:160px}.ph .tr{flex:1;background:var(--card2);border-radius:3px;height:8px;overflow:hidden}.ph .tr i{display:block;height:8px;background:var(--orange)}.ph b{min-width:130px;text-align:right;font-family:var(--mono)}
 @media(max-width:560px){.ph{flex-wrap:wrap}.ph .nm{min-width:0;width:100%}}
 
@@ -265,7 +266,7 @@ tr.ne td{background:rgba(220,38,38,.07)}
 /* ════════════════════════════════════════════════════════════════════
    NÚCLEO: estado, formatação, filtros, agregações
    ════════════════════════════════════════════════════════════════════ */
-var D=null, DB=null, LAUNCHES=[], CH=[], POST=[];
+var D=null, DB=null, DBC={}, LAUNCHES=[], CH=[], POST=[];
 var S={launch:null,page:null,lang:'pt',theme:'light',per:'all',from:'',to:'',onlyL:true,paid:false,camps:null,labels:true,gran:'d'};
 
 var $=function(s,r){return (r||document).querySelector(s)};
@@ -838,7 +839,8 @@ function scTable(){
 function fr(v){return ok(v)?pct(v*100):'—'}
 function tgCls(n){n=String(n||'').toLowerCase();return /calient|quente|hot/.test(n)?'hot':/fr[ií]o|cold/.test(n)?'cold':/org/.test(n)?'org':''}
 PAGE.debriefing=function(){
-  if(!DB)return '<div class="empty">'+t('dbVazio')+'</div>';
+  if(!DB)return card(null,null,'<div class="empty">'+t('dbVazio')+'</div>')+dbCmp();
+  DBC[S.launch]=DB;
   var h='',mg=DB.metricas_gerais||{},fd=DB.faturamento_detalhe;
   if(DB.status)h+='<div class="sub mut" style="margin:-4px 0 12px;font-size:.75rem">'+esc(DB.label||'')+' · '+esc(DB.status)+(DB.atualizado_em?' · '+t('atualizado')+' '+esc(DB.atualizado_em):'')+'</div>';
   h+='<div class="kpis">'+
@@ -899,13 +901,32 @@ PAGE.debriefing=function(){
       '<div class="grid3">'+mini(t('dbTemperatura'),cnt('temperatura'),1)+mini(t('canal'),cnt('canal'))+mini(t('campanha'),cnt('campanha'))+'</div>');
   }
   if(DB.obs)h+='<div class="ins">'+esc(DB.obs)+'</div>';
-  return h;
+  return dbCmp()+h;
 };
+/* Comparativo: todos os lançamentos com debriefing lado a lado (carrega sob demanda, guarda em DBC) */
+function dbCmp(){
+  var Ls=LAUNCHES.filter(function(L){return L.debriefing});
+  if(!Ls.length||(Ls.length===1&&Ls[0].id===S.launch))return '';
+  var falta=Ls.filter(function(L){return DBC[L.id]===undefined});
+  if(falta.length){
+    post(function(){Promise.all(falta.map(function(L){return fetch('./'+L.debriefing+'?t='+Date.now()).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){DBC[L.id]=j})}))
+      .then(function(){var el=$('#dbCmp');if(el&&S.page==='debriefing')el.outerHTML=dbCmp()})});
+    return '<div id="dbCmp">'+card(t('dbComparativo'),null,'<div class="load" style="height:80px">'+t('carregando')+'</div>')+'</div>';
+  }
+  var rows=Ls.filter(function(L){return DBC[L.id]}).map(function(L){return [L,DBC[L.id].metricas_gerais||{}]});
+  function best(f,min){var v=rows.map(function(r){return r[1][f]}).filter(ok);return v.length>1?(min?Math.min:Math.max).apply(null,v):null}
+  var b={cpl:best('cpl',1),cac:best('cac',1),tasa_conversion:best('tasa_conversion'),roas:best('roas')};
+  function c(f,v){return b[f]!=null&&v===b[f]?'good':''}
+  var body=rows.map(function(x){var L=x[0],m=x[1],cur=L.id===S.launch;
+    return '<tr class="lk'+(cur?' cur':'')+'" data-act="launch" data-v="'+esc(L.id)+'" title="'+t('dbCmpAbrir')+'">'+tdt(esc(L.label||L.id)+(cur?' <span class="tg org">'+t('dbAberto')+'</span>':''))+
+      td(money(m.inversion_total))+td(num(m.leads))+td(money(m.cpl),c('cpl',m.cpl))+td(num(m.total_ventas))+td(money(m.cac),c('cac',m.cac))+td(fr(m.tasa_conversion),c('tasa_conversion',m.tasa_conversion))+td(money(m.facturacion))+td(xf(m.roas),c('roas',m.roas))+'</tr>'}).join('');
+  return '<div id="dbCmp">'+card(t('dbComparativo'),t('dbCmpSub'),tbl([[t('lancamento'),'t'],[t('invers')],[t('leads')],['CPL'],[t('vendas')],['CAC'],[t('dbTxConv')],[t('fact')],['ROAS']],body))+'</div>';
+}
 
 var I18N={
 pt:{
   navCap:'Captação',navMeta:'Meta Ads',navMet:'Métricas Diárias',navPais:'Análise por País',navGen:'General',navPes:'Pesquisa',navSc:'Lead Scoring',navDb:'Debriefing',
-  dbVazio:'Nenhum debriefing disponível para este lançamento ainda.',dbInvTotal:'Investimento total',dbTodasFases:'todas as fases',dbTotalVendas:'Total de vendas',dbReembolso:'reembolso',dbConversao:'conversão',dbFatSobreInv:'faturamento / investimento',dbFatPrincipal:'Faturamento produto principal',
+  dbVazio:'O debriefing deste lançamento ainda não está disponível. Ele aparece aqui quando o lançamento encerrar.',dbComparativo:'Comparativo entre lançamentos',dbCmpSub:'em verde o melhor resultado de cada coluna · clique em um lançamento para abrir o debriefing completo',dbCmpAbrir:'Abrir debriefing',dbAberto:'aberto',dbInvTotal:'Investimento total',dbTodasFases:'todas as fases',dbTotalVendas:'Total de vendas',dbReembolso:'reembolso',dbConversao:'conversão',dbFatSobreInv:'faturamento / investimento',dbFatPrincipal:'Faturamento produto principal',
   dbLeadsTrack:'Leads trackeados',dbLeadsSemTrack:'Leads sem trackeio',dbVendasEnc:'Vendas encontradas na planilha',dbVendasNaoEnc:'Vendas não encontradas',dbDasVendas:'das vendas',dbOrigemNaoId:'origem não identificada',
   dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captação',dbTxConv:'Tx. conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captação',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas do lançamento',dbConvLp:'Conversão de LP',
   dbPublicosVenda:'Públicos com venda (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sem vendas atribuídas a públicos pagos',dbOrganicas:'Vendas orgânicas por origem',dbOrigem:'Origem',dbSemOrganicas:'Sem vendas orgânicas identificadas',dbCriativosVenda:'Criativos com venda',dbSemCriativos:'Sem criativos com venda atribuída',
@@ -937,7 +958,7 @@ pt:{
 },
 es:{
   navCap:'Captación',navMeta:'Meta Ads',navMet:'Métricas Diarias',navPais:'Análisis por País',navGen:'General',navPes:'Encuesta',navSc:'Lead Scoring',navDb:'Debriefing',
-  dbVazio:'Aún no hay debriefing disponible para este lanzamiento.',dbInvTotal:'Inversión total',dbTodasFases:'todas las fases',dbTotalVendas:'Total de ventas',dbReembolso:'reembolso',dbConversao:'conversión',dbFatSobreInv:'facturación / inversión',dbFatPrincipal:'Facturación producto principal',
+  dbVazio:'El debriefing de este lanzamiento aún no está disponible. Aparece aquí cuando el lanzamiento termine.',dbComparativo:'Comparativo entre lanzamientos',dbCmpSub:'en verde el mejor resultado de cada columna · haz clic en un lanzamiento para abrir el debriefing completo',dbCmpAbrir:'Abrir debriefing',dbAberto:'abierto',dbInvTotal:'Inversión total',dbTodasFases:'todas las fases',dbTotalVendas:'Total de ventas',dbReembolso:'reembolso',dbConversao:'conversión',dbFatSobreInv:'facturación / inversión',dbFatPrincipal:'Facturación producto principal',
   dbLeadsTrack:'Leads con trackeo',dbLeadsSemTrack:'Leads sin trackeo',dbVendasEnc:'Ventas encontradas en la planilla',dbVendasNaoEnc:'Ventas no encontradas',dbDasVendas:'de las ventas',dbOrigemNaoId:'origen no identificado',
   dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captación',dbTxConv:'Tasa conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captación',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas del lanzamiento',dbConvLp:'Conversión de LP',
   dbPublicosVenda:'Públicos con venta (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sin ventas atribuidas a públicos pagos',dbOrganicas:'Ventas orgánicas por origen',dbOrigem:'Origen',dbSemOrganicas:'Sin ventas orgánicas identificadas',dbCriativosVenda:'Creativos con venta',dbSemCriativos:'Sin creativos con venta atribuida',
@@ -978,8 +999,8 @@ function pagesOn(){
   var p=D.config.paginas;
   if(!p){p=MODO()==='leads'?['captacao','meta','metricas']:['captacao','meta','metricas','pais','general'];
     if(D.pesquisa)p.push('pesquisa');if(D.lead_scoring)p.push('scoring')}
-  p=p.filter(function(x){return PAGE[x]&&(x!=='debriefing'||DB)});
-  if(DB&&p.indexOf('debriefing')<0)p=p.concat('debriefing');
+  p=p.filter(function(x){return PAGE[x]});
+  if(p.indexOf('debriefing')<0)p=p.concat('debriefing'); // sempre no menu: sem arquivo mostra aviso + comparativo
   return p;
 }
 function lum(hex){var m=/^#?([0-9a-f]{6})$/i.exec(hex||'');if(!m)return 0;var n=parseInt(m[1],16);return (0.299*(n>>16)+0.587*((n>>8)&255)+0.114*(n&255))/255}
