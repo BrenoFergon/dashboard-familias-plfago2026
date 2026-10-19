@@ -88,8 +88,11 @@ for r in list(ws.iter_rows(values_only=True))[1:]:
     L.append(row)
     emails.append(email)
 ldf = pd.DataFrame(L)
-# rt = 1 quando o utm_term é uma campanha do Meta deste lançamento; só esses leads entram no CPL
-ldf['rt'] = ldf['campaign'].isin(set(g['campaign'])).astype(int)
+# rt = 1 quando o lead é de tráfego pago e entra no CPL: utm_term igual a uma campanha do Meta deste lançamento,
+# macro não preenchida ({{campaign.name}}, erro de UTM do anúncio) ou nome de campanha FT-* (campanha antiga).
+# Ficam de fora sin_utm, WhatsApp, e-mail, bio do Instagram e demais origens sem UTM de campanha.
+_camps = set(g['campaign'])
+ldf['rt'] = ldf['campaign'].map(lambda c: int(c in _camps or '{{' in c or c.upper().startswith('FT-'))).astype(int)
 
 # ---------- segmentos (Meta, por campanha e dia) ----------
 def seg(rows, chave_fn):
