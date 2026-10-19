@@ -69,6 +69,19 @@ def campanha_meta(term):
     cands = _por_base.get(_base(term), set())
     return next(iter(cands)) if len(cands) == 1 else term
 
+# Lead de tráfego pago (entra no CPL), olhando todas as UTMs da linha [3]source [4]medium [5]term [6]content [7]campaign:
+#  - fora: origem orgânica/outra (grupos de WhatsApp, newsletter, orgânico, sin_utm) ou sem nenhuma UTM de campanha;
+#  - dentro: utm_term igual a campanha do Meta, nome de campanha FT-*, macro não preenchida ({{...}}) em qualquer UTM
+#    (erro de preenchimento do anúncio) ou utm_campaign do lançamento (plf*) vindo de origem paga.
+NAO_PAGO = re.compile(r'grupo|newsletter|organic|sin_utm|whatsapp|email|e-mail|bio', re.I)
+def pago_por_utm(r, term):
+    src, med, cont, camp = (str(r[i] or '').strip() for i in (3, 4, 6, 7))
+    if NAO_PAGO.search(src):
+        return False
+    if term in set(g['campaign']) or term.upper().startswith('FT-') or any('{{' in v for v in (src, med, term, cont, camp)):
+        return True
+    return camp.lower().startswith('plf') and src.lower() in PAGOS
+
 # ---------- leads (planilha) ----------
 import openpyxl
 ws = openpyxl.load_workbook(f'{BASE}/leads.xlsx', read_only=True, data_only=True)['OCT26']
@@ -84,15 +97,12 @@ for r in list(ws.iter_rows(values_only=True))[1:]:
     term = campanha_meta(str(r[5] or '').strip())
     tipo = 'HOT' if 'HOT' in term.upper() else 'COLD' if 'COLD' in term.upper() else 'OUTRO'
     row = dict(date=r[0], campaign=term, adset=str(r[4] or '').strip(), ad=str(r[6] or '').strip(),
-               canal=src if src in PAGOS else 'sem_rastreio', tipo=tipo)
+               canal=src if src in PAGOS else 'sem_rastreio', tipo=tipo, pago_utm=pago_por_utm(r, term))
     L.append(row)
     emails.append(email)
 ldf = pd.DataFrame(L)
-# rt = 1 quando o lead é de tráfego pago e entra no CPL: utm_term igual a uma campanha do Meta deste lançamento,
-# macro não preenchida ({{campaign.name}}, erro de UTM do anúncio) ou nome de campanha FT-* (campanha antiga).
-# Ficam de fora sin_utm, WhatsApp, e-mail, bio do Instagram e demais origens sem UTM de campanha.
-_camps = set(g['campaign'])
-ldf['rt'] = ldf['campaign'].map(lambda c: int(c in _camps or '{{' in c or c.upper().startswith('FT-'))).astype(int)
+# rt = 1 quando o lead é de tráfego pago e entra no CPL (ver pago_por_utm)
+ldf['rt'] = ldf.pop('pago_utm').astype(int)
 
 # ---------- segmentos (Meta, por campanha e dia) ----------
 def seg(rows, chave_fn):
