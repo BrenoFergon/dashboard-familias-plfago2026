@@ -327,6 +327,17 @@ function campOk(r){return (!S.onlyL||isL(r.c))&&(!S.camps||S.camps.has(r.c))}
 function adsR(){return (D.anuncios||[]).filter(function(r){return inR(r.d)&&campOk(r)})}
 function segR(k){return ((D.segmentos||{})[k]||[]).filter(function(r){return inR(r.d)&&campOk(r)})}
 function leadsR(){return (D.leads||[]).filter(function(r){return inR(r.d)})}
+/* leads que entram no CPL: com config.cpl_so_com_termo, só os cujo utm_term casa com uma campanha do Meta (r.rt) */
+function leadsCpl(){var L=leadsR();return D.config.cpl_so_com_termo?L.filter(function(r){return r.rt}):L}
+/* melhores criativos (modo leads): ranking combinado por maior CTR e menor CPL */
+function melhoresCriativos(){
+  var ads=agg(adsR(),function(r){return r.an}),L=leadsCpl();
+  ads.forEach(function(a){a.n=sum(L.filter(function(x){return mk_(x.an,a.k)}),'n');a.ctr=pc(a.lc,a.imp);a.cpl=a.n?a.sp/a.n:null});
+  var el=ads.filter(function(a){return a.sp>=20&&a.imp>=1000&&a.n>=5&&a.ctr!=null&&a.cpl!=null});
+  var rc=el.slice().sort(function(a,b){return b.ctr-a.ctr}),rl=el.slice().sort(function(a,b){return a.cpl-b.cpl});
+  el.forEach(function(a){a.sc=rc.indexOf(a)+rl.indexOf(a)});
+  return el.sort(function(a,b){return a.sc-b.sc||a.cpl-b.cpl});
+}
 function isUp(p){var x=(D.produtos||[]).filter(function(q){return q.nome===p})[0];return !!(x&&x.upsell)}
 function vendasP(){return (D.vendas||[]).filter(function(r){return inR(r.d)&&(!S.paid||r.org==='Pago')})}
 function vendasMain(){return vendasP().filter(function(r){return !isUp(r.p)})}
@@ -347,14 +358,14 @@ function derive(o){
   return {
     ctr:pc(o.lc,o.imp),cr:pc(o.pv,o.lc),tx_ic:pc(o.ic,o.pv),tx_checkout:pc(compras,o.ic),
     tx_conv:md?pc(leads,o.pv):pc(compras,o.pv),
-    cpm:o.imp>0?o.sp/o.imp*1000:null,cpc:div(o.sp,o.lc),cpl:div(o.sp,leads),cpa:div(o.sp,vendas),
+    cpm:o.imp>0?o.sp/o.imp*1000:null,cpc:div(o.sp,o.lc),cpl:div(o.sp,o.leadsC!=null?o.leadsC:leads),cpa:div(o.sp,vendas),
     roas:div(o.fat||0,o.sp),compras:compras
   };
 }
 function K(){
   var A=adsR(),L=leadsR(),VM=vendasMain(),VU=vendasUp();
   var o={sp:sum(A,'sp'),imp:sum(A,'imp'),lc:sum(A,'lc'),pv:sum(A,'pv'),ic:sum(A,'ic'),pur:sum(A,'pur'),
-    leads:sum(L,'n'),vendas:VM.length,vp:VM.filter(function(r){return r.org==='Pago'}).length,
+    leads:sum(L,'n'),leadsC:sum(leadsCpl(),'n'),vendas:VM.length,vp:VM.filter(function(r){return r.org==='Pago'}).length,
     fatM:sum(VM,'v'),fatU:sum(VU,'v')};
   o.fat=o.fatM+o.fatU;o.res=MODO()==='leads'?o.leads:o.vendas;
   var d=derive(o);for(var k in d)o[k]=d[k];
@@ -363,9 +374,10 @@ function K(){
 }
 /* série por balde (dia/semana/mês) */
 function series(){
-  var m={};function g(b){return m[b]||(m[b]={sp:0,imp:0,lc:0,pv:0,ic:0,pur:0,leads:0,vendas:0,vp:0,fat:0})}
+  var m={};function g(b){return m[b]||(m[b]={sp:0,imp:0,lc:0,pv:0,ic:0,pur:0,leads:0,leadsC:0,vendas:0,vp:0,fat:0})}
   adsR().forEach(function(r){var o=g(bucket(r.d));o.sp+=r.sp||0;o.imp+=r.imp||0;o.lc+=r.lc||0;o.pv+=r.pv||0;o.ic+=r.ic||0;o.pur+=r.pur||0});
   leadsR().forEach(function(r){g(bucket(r.d)).leads+=r.n||0});
+  leadsCpl().forEach(function(r){g(bucket(r.d)).leadsC+=r.n||0});
   vendasMain().forEach(function(r){var o=g(bucket(r.d));o.vendas++;o.fat+=r.v||0;if(r.org==='Pago')o.vp++});
   vendasUp().forEach(function(r){g(bucket(r.d)).fat+=r.v||0});
   var keys=Object.keys(m).sort();
@@ -508,12 +520,13 @@ PAGE.captacao=function(){
   }
   // HOT x COLD (modo leads): cards; (modo vendas): pizza
   if(md){
-    var T={HOT:{l:0,sp:0},COLD:{l:0,sp:0}};
+    var T={HOT:{l:0,lc:0,sp:0},COLD:{l:0,lc:0,sp:0}};
     leadsR().forEach(function(r){var x=T[r.t];if(x)x.l+=r.n||0});
+    leadsCpl().forEach(function(r){var x=T[r.t];if(x)x.lc+=r.n||0});
     adsR().forEach(function(r){var x=T[tipoDe(r.a,r.c)];if(x)x.sp+=r.sp||0});
     h+='<div class="grid2e">'+['HOT','COLD'].map(function(q){var o=T[q];
       return card(t(q==='HOT'?'quente':'frio'),null,'<div class="tw"><table><tbody>'+
-        '<tr>'+tdt(t('leads'))+td(num(o.l))+'</tr><tr>'+tdt(t('orcamento'))+td(money(o.sp))+'</tr><tr>'+tdt('CPL')+td(money(div(o.sp,o.l)),cls('cpl',div(o.sp,o.l)))+'</tr></tbody></table></div>')}).join('')+'</div>';
+        '<tr>'+tdt(t('leads'))+td(num(o.l))+'</tr><tr>'+tdt(t('orcamento'))+td(money(o.sp))+'</tr><tr>'+tdt('CPL')+td(money(div(o.sp,o.lc)),cls('cpl',div(o.sp,o.lc)))+'</tr></tbody></table></div>')}).join('')+'</div>';
   }
   h+=card(D.config.funil_titulo||t('funilTit'),null,funnelHtml(k));
   var dc=dailyCard();
@@ -547,9 +560,8 @@ PAGE.captacao=function(){
     var gc={};leadsR().forEach(function(r){var c=(r.ch||'').toUpperCase()||'SEM RASTREIO';gc[c]=(gc[c]||0)+(r.n||0)});
     var tl=Object.keys(gc).reduce(function(a,c){return a+gc[c]},0);
     var cl=Object.keys(gc).map(function(c){return [c,gc[c]]}).sort(function(a,b){return b[1]-a[1]});
-    var ga={};adsR().forEach(function(r){ga[r.an]=(ga[r.an]||0)+(r.sp||0)});
-    var ca=Object.keys(ga).map(function(c){return [c,ga[c]]}).sort(function(a,b){return b[1]-a[1]}).slice(0,10),mx=ca.length?ca[0][1]:1;
-    h+='<div class="grid2e">'+card(t('topCriativos'),null,ca.map(function(c){return '<div class="ub"><div class="nm" title="'+esc(c[0])+'">'+esc(c[0])+'</div><div class="row"><div class="tr"><i style="width:'+(mx?c[1]/mx*100:0)+'%;background:#10a37f"></i></div><div class="cn">'+money(c[1])+'</div></div></div>'}).join('')||'<div class="empty">'+t('semDados')+'</div>')+
+    var mc=melhoresCriativos().slice(0,10);
+    h+='<div class="grid2e">'+card(t('topCriativos'),t('topCriativosSub'),mc.length?tbl([[t('criativo'),'t'],['CTR'],['CPL'],[t('leads')]],mc.map(function(a){return '<tr>'+tdt('<span title="'+esc(a.k)+'">'+esc(a.k)+'</span>')+td(pct(a.ctr),cls('ctr',a.ctr))+td(money(a.cpl),cls('cpl',a.cpl))+td(num(a.n))+'</tr>'}).join('')):'<div class="empty">'+t('semDados')+'</div>')+
       card(t('leadsCanal'),null,tbl([[t('canal'),'t'],[t('leads')],['%']],cl.map(function(c){return '<tr>'+tdt(esc(c[0]))+td(num(c[1]))+td(pct(pc(c[1],tl),1))+'</tr>'}).join('')))+'</div>';
   }
   var lt=D.leitura&&(D.leitura[S.lang]||D.leitura.pt);
@@ -654,8 +666,10 @@ function segCard(key,title,id){
 function criativosHtml(){
   var md=MODO()==='leads',ads=agg(adsR(),function(r){return r.an});
   if(!ads.length)return '<div class="empty">'+t('semDados')+'</div>';
-  ads.forEach(function(a){var r=md?{n:sum(leadsR().filter(function(x){return mk_(x.an,a.k)}),'n'),f:0}:resFor('uco',a.k,{});a.n=r.n;a.f=r.f});
-  ads.sort(function(a,b){return b.n-a.n||b.sp-a.sp});
+  ads.forEach(function(a){var r=md?{n:sum(leadsCpl().filter(function(x){return mk_(x.an,a.k)}),'n'),f:0}:resFor('uco',a.k,{});a.n=r.n;a.f=r.f});
+  if(md){var best=melhoresCriativos();ads.forEach(function(a){a.ord=best.indexOf(best.filter(function(b){return b.k===a.k})[0])});
+    ads.sort(function(a,b){return (a.ord<0?1e9:a.ord)-(b.ord<0?1e9:b.ord)||b.sp-a.sp})}
+  else ads.sort(function(a,b){return b.n-a.n||b.sp-a.sp});
   var th=(D.criativos&&D.criativos.thumbs)||{},lk=(D.criativos&&D.criativos.links)||{};
   return '<div class="cr">'+ads.slice(0,40).map(function(a){
     var u=th[a.k],link=lk[a.k],cpa=a.n?a.sp/a.n:null,ctr=pc(a.lc,a.imp);
@@ -706,9 +720,9 @@ PAGE.pais=function(){
   var C=PAISSEL,sp=inv[C]||0;
   var h='<div class="pills">'+list.map(function(c){return '<button class="pl '+(c===C?'on':'')+'" data-act="pais" data-v="'+esc(c)+'">'+esc(CTRY[c]||c)+'</button>'}).join('')+'</div>';
   var V=md?[]:vendasP().filter(function(r){return r.ps===C}),Ld=md?leadsR().filter(function(r){return r.ps===C}):[];
-  var n=md?sum(Ld,'n'):V.length,f=sum(V,'v');
+  var n=md?sum(Ld,'n'):V.length,f=sum(V,'v'),nC=md?sum(Ld.filter(function(r){return !D.config.cpl_so_com_termo||r.rt}),'n'):n;
   h+='<div class="kpis">'+kpi(t('invest'),money(sp),CTRY[C]||C,'dark')+
-    (md?kpi(t('leads'),num(n),null,'blue')+kpi('CPL',money(div(sp,n)),null,cls('cpl',div(sp,n))||'green')
+    (md?kpi(t('leads'),num(n),null,'blue')+kpi('CPL',money(div(sp,nC)),null,cls('cpl',div(sp,nC))||'green')
        :kpi(t('fatTotal'),money(f),num(n)+' '+t('vendas').toLowerCase()+' · '+t('viaUtm'),'green')+kpi('ROAS',xf(div(f,sp)),t('fact')+' / '+t('invers'),cls('roas',div(f,sp))||'bad'))+'</div>';
   var camps=agg(seg.filter(function(r){return r.ps===C}),function(r){return r.c}).sort(function(a,b){return b.sp-a.sp});
   var T={sp:0,n:0,f:0};
@@ -946,10 +960,10 @@ pt:{
   vendasSck:'Vendas por SCK',porUtm:'por parâmetro UTM',codOferta:'Código de oferta',valor:'Valor',leadPago:'lead pago',vazio:'(vazio / fora do relatório)',vendasPais:'Vendas por país',subPais:'vendas Hotmart × investimento Meta por país',
   pais:'País',paisNaoEnc:'País não encontrado',factPago:'Fat. (V. pagas)',factOrg:'Fat. (V. orgânicas)',factTotal:'Fat. total',notaPais:'Invest. = Meta por país (breakdown de região). Pago/Orgânico pelo código de oferta. "País não encontrado" = vendas ainda sem país preenchido.',
   vendasDestino:'Vendas por destino (só tráfego pago)',subDestino:'só vendas de tráfego pago (código de oferta)',destino:'Destino',destNaoId:'Destino não identificado',notaDestino:'Destino pelo nome da campanha (investimento) e pelas UTMs (vendas). "Destino não identificado" = venda paga sem UTM legível.',
-  topCriativos:'Top criativos (por gasto)',leadsCanal:'Leads por canal',canal:'Canal',leitura:'Leitura dos dados',
+  topCriativos:'Melhores criativos',topCriativosSub:'ranking combinado: maior CTR + menor CPL (mín. 20 €, 1.000 impressões e 5 leads; CPL só com leads com utm_term)',leadsCanal:'Leads por canal',canal:'Canal',leitura:'Leitura dos dados',
   campanhas:'Campanhas',todas:'Todas',campanha:'Campanha',impr:'Impr.',clics:'Cliques',subCamp:'Clique em uma campanha para ver os conjuntos',notaCamp:'Resultados atribuídos pelas UTMs (utm_term = campanha, utm_medium = conjunto, utm_content = anúncio).',
   segmentacao:'Segmentação',subSeg:'Resultados por segmento, investimento e custo por resultado · respeita filtro de campanha e período',genero:'Gênero',idade:'Faixa etária',posicao:'Posicionamento',feminino:'Feminino',masculino:'Masculino',desconhecido:'Desconhecido',notaSegEst:'* Resultados por segmento estimados proporcionalmente ao investimento.',
-  rankCriativos:'Ranking de criativos',
+  rankCriativos:'Ranking de criativos (melhor CTR + melhor CPL)',
   periodo:'Período',mediaPeriodo:'Média do período',
   campConjuntos:'Campanhas e conjuntos',subCampPais:'investimento filtrado ao nível de campanha · vendas atribuídas pela UTM (inclui truncadas)',campanhaConjunto:'Campanha / Conjunto',viaUtm:'via UTM',notaPaisPg:'Investimento pela nomenclatura das campanhas · vendas pelo país do comprador · linhas de campanha/conjunto pela UTM (vendas sem UTM aparecem só nos totais do país).',
   todosProdutos:'todos os produtos',final:'final',factDiaria:'Faturamento diário',factProduto:'Faturamento por produto',subFactProd:'consolidado do lançamento · o ROAS final considera TUDO',pctFact:'% do fat.',notaGeneral:'ROAS final = faturamento de TODOS os produtos ÷ investimento Meta do lançamento · respeita o período selecionado.',
@@ -978,10 +992,10 @@ es:{
   vendasSck:'Ventas por SCK',porUtm:'por parámetro UTM',codOferta:'Código de oferta',valor:'Valor',leadPago:'lead pago',vazio:'(vacío / fuera del informe)',vendasPais:'Ventas por país',subPais:'ventas Hotmart × inversión Meta por país',
   pais:'País',paisNaoEnc:'País no encontrado',factPago:'Fact. (V. pagas)',factOrg:'Fact. (V. orgánicas)',factTotal:'Fact. total',notaPais:'Invers. = Meta por país (breakdown de región). Pago/Orgánico por el código de oferta. "País no encontrado" = ventas aún sin país completado.',
   vendasDestino:'Ventas por destino (solo tráfico pago)',subDestino:'solo ventas de tráfico pago (código de oferta)',destino:'Destino',destNaoId:'Destino no identificado',notaDestino:'Destino por nombre de campaña (inversión) y por UTMs (ventas). "Destino no identificado" = venta paga sin UTM legible.',
-  topCriativos:'Top creativos (por gasto)',leadsCanal:'Leads por canal',canal:'Canal',leitura:'Lectura de los datos',
+  topCriativos:'Mejores creativos',topCriativosSub:'ranking combinado: mayor CTR + menor CPL (mín. 20 €, 1.000 impresiones y 5 leads; CPL solo con leads con utm_term)',leadsCanal:'Leads por canal',canal:'Canal',leitura:'Lectura de los datos',
   campanhas:'Campañas',todas:'Todas',campanha:'Campaña',impr:'Impr.',clics:'Clics',subCamp:'Haz clic en una campaña para ver los conjuntos',notaCamp:'Resultados atribuidos por las UTMs (utm_term = campaña, utm_medium = conjunto, utm_content = anuncio).',
   segmentacao:'Segmentación',subSeg:'Resultados por segmento, inversión y costo por resultado · respeta filtro de campaña y período',genero:'Género',idade:'Rango de edad',posicao:'Ubicación',feminino:'Femenino',masculino:'Masculino',desconhecido:'Desconocido',notaSegEst:'* Resultados por segmento estimados proporcionalmente a la inversión.',
-  rankCriativos:'Ranking de creativos',
+  rankCriativos:'Ranking de creativos (mejor CTR + mejor CPL)',
   periodo:'Período',mediaPeriodo:'Media del período',
   campConjuntos:'Campañas y conjuntos',subCampPais:'inversión filtrada a nivel de campaña · ventas atribuidas por la UTM (incluye truncadas)',campanhaConjunto:'Campaña / Conjunto',viaUtm:'vía UTM',notaPaisPg:'Inversión por la nomenclatura de las campañas · ventas por el país del comprador · líneas de campaña/conjunto por la UTM (ventas sin UTM aparecen solo en los totales del país).',
   todosProdutos:'todos los productos',final:'final',factDiaria:'Facturación diaria',factProduto:'Facturación por producto',subFactProd:'consolidado del lanzamiento · el ROAS final considera TODO',pctFact:'% de fact.',notaGeneral:'ROAS final = facturación de TODOS los productos ÷ inversión Meta del lanzamiento · respeta el período seleccionado.',

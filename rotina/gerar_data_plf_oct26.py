@@ -88,6 +88,8 @@ for r in list(ws.iter_rows(values_only=True))[1:]:
     L.append(row)
     emails.append(email)
 ldf = pd.DataFrame(L)
+# rt = 1 quando o utm_term é uma campanha do Meta deste lançamento; só esses leads entram no CPL
+ldf['rt'] = ldf['campaign'].isin(set(g['campaign'])).astype(int)
 
 # ---------- segmentos (Meta, por campanha e dia) ----------
 def seg(rows, chave_fn):
@@ -188,7 +190,7 @@ except FileNotFoundError:
 meta = dict(cliente='Familias Estelares', letra='FE', cor='#00a878', evento='PLF La cara oculta de la adolescencia',
             lancamento_cod='PLF-oct26', atualizado_em=AGORA.strftime('%d/%m/%Y %H:%M'),
             data_ate=(AGORA.date() - timedelta(days=1)).isoformat(), moeda='€', idioma_padrao='es', fonte_label='Planilha')
-config = dict(modo='leads', paginas=['captacao', 'meta', 'metricas', 'scoring'], segmentos_estimado=False,
+config = dict(modo='leads', paginas=['captacao', 'meta', 'metricas', 'scoring'], segmentos_estimado=False, cpl_so_com_termo=True,
               metas={'ctr': [1.2, 0.9], 'connect_rate': [70, 60], 'tx_conv': [15, 10], 'cpm': [14, 20], 'cpl': [6, 7]})
 
 d = B.montar(meta=meta, config=config, gerenciador=g, leads_df=ldf, segmentos=segs, lead_scoring=lead_scoring, leitura=leitura)

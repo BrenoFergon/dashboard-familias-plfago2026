@@ -98,7 +98,11 @@ def leads(df):
         df["t"] = _txt(df["tipo"]).str.upper().where(lambda s: s.isin(["HOT", "COLD"]), "OUTRO")
     else:
         df["t"] = [tipo_de(a, c) for a, c in zip(df["adset"], df["campaign"])]
-    g = df.groupby(["d", "t", "campaign", "adset", "ad", "canal", "pais"], as_index=False).size()
+    chaves = ["d", "t", "campaign", "adset", "ad", "canal", "pais"]
+    if "rt" in df.columns:  # 1 = utm_term casa com campanha do Meta (usado no CPL)
+        df["rt"] = df["rt"].astype(int)
+        chaves.append("rt")
+    g = df.groupby(chaves, as_index=False).size()
     g = g.rename(columns={"campaign": "c", "adset": "a", "ad": "an", "canal": "ch", "pais": "ps", "size": "n"})
     return g.sort_values(["d", "t", "c"]).to_dict("records")
 
