@@ -69,6 +69,19 @@ def campanha_meta(term):
     cands = _por_base.get(_base(term), set())
     return next(iter(cands)) if len(cands) == 1 else term
 
+# Lead de tráfego pago (entra no CPL), olhando todas as UTMs da linha [3]source [4]medium [5]term [6]content [7]campaign:
+#  - fora: origem orgânica/outra (grupos de WhatsApp, newsletter, orgânico, sin_utm) ou sem nenhuma UTM de campanha;
+#  - dentro: utm_term igual a campanha do Meta, nome de campanha FT-*, macro não preenchida ({{...}}) em qualquer UTM
+#    (erro de preenchimento do anúncio) ou utm_campaign do lançamento (plf*) vindo de origem paga.
+NAO_PAGO = re.compile(r'grupo|newsletter|organic|sin_utm|whatsapp|email|e-mail|bio', re.I)
+def pago_por_utm(r, term):
+    src, med, cont, camp = (str(r[i] or '').strip() for i in (3, 4, 6, 7))
+    if NAO_PAGO.search(src):
+        return False
+    if term in set(g['campaign']) or term.upper().startswith('FT-') or any('{{' in v for v in (src, med, term, cont, camp)):
+        return True
+    return camp.lower().startswith('plf') and src.lower() in PAGOS
+
 # ---------- leads (planilha) ----------
 import openpyxl
 ws = openpyxl.load_workbook(f'{BASE}/leads.xlsx', read_only=True, data_only=True)['OCT26']
@@ -84,10 +97,12 @@ for r in list(ws.iter_rows(values_only=True))[1:]:
     term = campanha_meta(str(r[5] or '').strip())
     tipo = 'HOT' if 'HOT' in term.upper() else 'COLD' if 'COLD' in term.upper() else 'OUTRO'
     row = dict(date=r[0], campaign=term, adset=str(r[4] or '').strip(), ad=str(r[6] or '').strip(),
-               canal=src if src in PAGOS else 'sem_rastreio', tipo=tipo)
+               canal=src if src in PAGOS else 'sem_rastreio', tipo=tipo, pago_utm=pago_por_utm(r, term))
     L.append(row)
     emails.append(email)
 ldf = pd.DataFrame(L)
+# rt = 1 quando o lead é de tráfego pago e entra no CPL (ver pago_por_utm)
+ldf['rt'] = ldf.pop('pago_utm').astype(int)
 
 # ---------- segmentos (Meta, por campanha e dia) ----------
 def seg(rows, chave_fn):
@@ -188,7 +203,7 @@ except FileNotFoundError:
 meta = dict(cliente='Familias Estelares', letra='FE', cor='#00a878', evento='PLF La cara oculta de la adolescencia',
             lancamento_cod='PLF-oct26', atualizado_em=AGORA.strftime('%d/%m/%Y %H:%M'),
             data_ate=(AGORA.date() - timedelta(days=1)).isoformat(), moeda='€', idioma_padrao='es', fonte_label='Planilha')
-config = dict(modo='leads', paginas=['captacao', 'meta', 'metricas', 'scoring'], segmentos_estimado=False,
+config = dict(modo='leads', paginas=['captacao', 'meta', 'metricas', 'scoring'], segmentos_estimado=False, cpl_so_com_termo=True,
               metas={'ctr': [1.2, 0.9], 'connect_rate': [70, 60], 'tx_conv': [15, 10], 'cpm': [14, 20], 'cpl': [6, 7]})
 
 d = B.montar(meta=meta, config=config, gerenciador=g, leads_df=ldf, segmentos=segs, lead_scoring=lead_scoring, leitura=leitura)
