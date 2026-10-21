@@ -5,7 +5,7 @@ Uso:   python3 validate_data.py data-leads.json [outro.json ...]
 Saída: lista de ERROS (impedem o dashboard de renderizar certo) e AVISOS (renderiza, mas algo está estranho).
 Código de saída 1 se houver qualquer ERRO. Também importável: validar(dict) -> (erros, avisos).
 """
-import json, re, sys
+import json, os, re, sys
 
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 PAGINAS = {"captacao", "meta", "metricas", "pais", "general", "pesquisa", "scoring"}
@@ -128,12 +128,29 @@ def validar(d):
     return erros, avisos
 
 
+def _queda_de_gasto(novo, publicado):
+    """Trava de segurança: o investimento acumulado nunca diminui. Se cair mais de 20% frente ao arquivo já publicado,
+    a consulta ao Meta veio incompleta/errada (já aconteceu: gasto 250x menor em 21/10/2026) e não deve ser publicada."""
+    if not os.path.exists(publicado):
+        return []
+    try:
+        antes = sum(r["sp"] for r in json.load(open(publicado, encoding="utf-8")).get("anuncios", []))
+    except (ValueError, KeyError):
+        return []
+    agora = sum(r["sp"] for r in novo.get("anuncios", []))
+    if antes > 0 and agora < antes * 0.8:
+        return [f"investimento total caiu de {antes:.2f} (publicado) para {agora:.2f}: dados do Meta incompletos, NÃO publique"]
+    return []
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     falhou = False
     for f in sys.argv[1:]:
-        e, a = validar(json.load(open(f, encoding="utf-8")))
+        novo = json.load(open(f, encoding="utf-8"))
+        e, a = validar(novo)
+        e += _queda_de_gasto(novo, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "docs", os.path.basename(f)))
         print(f"== {f}: {len(e)} erro(s), {len(a)} aviso(s)")
         for x in e:
             print("  ERRO ", x)
