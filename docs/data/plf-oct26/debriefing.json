@@ -1,31 +1,31 @@
 {
   "launch": "plf-oct26",
   "label": "PLF - Out 2026",
-  "status": "vendas encerradas (gasto pós-captação pendente)",
+  "status": "vendas encerradas",
   "atualizado_em": "11/11/2026",
   "ticket_price": 2597,
   "metricas_gerais": {
-    "inversion_total": 30858.45,
+    "inversion_total": 31522.09,
     "leads": 5014,
-    "cpl": 6.15,
+    "cpl": 6.19,
     "total_ventas": 41,
     "reembolso": 0,
     "ventas_trackeadas": 31,
-    "cac": 752.65,
+    "cac": 768.83,
     "tasa_conversion": 0.008177104108496211,
     "facturacion": 106477,
-    "roas": 3.4505
+    "roas": 3.3779
   },
   "plataforma": {
     "meta_ads": {
-      "inversion": 30858.45,
+      "inversion": 31022.32,
       "leads": 5014,
-      "cpl": 6.15,
+      "cpl": 6.19,
       "ventas": 22,
-      "cac": 1402.66,
+      "cac": 1410.11,
       "tasa_conversion": 0.0043877143996808934,
       "facturacion": 57134,
-      "roas": 1.8515
+      "roas": 1.8417
     },
     "google_ads": {
       "inversion": 0,
@@ -38,38 +38,38 @@
       "roas": null
     },
     "total": {
-      "inversion": 30858.45,
+      "inversion": 31022.32,
       "leads": 5014,
-      "cpl": 6.15,
+      "cpl": 6.19,
       "ventas": 22,
-      "cac": 1402.66,
+      "cac": 1410.11,
       "tasa_conversion": 0.0043877143996808934,
       "facturacion": 57134,
-      "roas": 1.8515
+      "roas": 1.8417
     }
   },
   "temperatura": [
     {
       "nome": "Caliente",
-      "inversion": 11767.34,
+      "inversion": 11767.9,
       "leads": 1752,
       "cpl": 6.72,
       "ventas": 10,
-      "cac": 1176.73,
+      "cac": 1176.79,
       "tasa_conversion": 0.005707762557077625,
       "facturacion": 25970,
-      "roas": 2.207
+      "roas": 2.2069
     },
     {
       "nome": "Frio",
-      "inversion": 19091.11,
+      "inversion": 19254.42,
       "leads": 2388,
-      "cpl": 7.99,
+      "cpl": 8.06,
       "ventas": 12,
-      "cac": 1590.93,
+      "cac": 1604.54,
       "tasa_conversion": 0.005025125628140704,
       "facturacion": 31164,
-      "roas": 1.6324
+      "roas": 1.6185
     },
     {
       "nome": "Orgánico",
@@ -96,14 +96,14 @@
   ],
   "temperatura_total": {
     "nome": "TOTAL",
-    "inversion": 30858.45,
+    "inversion": 31022.32,
     "leads": 5014,
-    "cpl": 6.15,
+    "cpl": 6.19,
     "ventas": 31,
-    "cac": 995.43,
+    "cac": 1000.72,
     "tasa_conversion": 0.006182688472277623,
     "facturacion": 80507,
-    "roas": 2.6089
+    "roas": 2.5951
   },
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
@@ -129,8 +129,8 @@
   "gasto_por_fase": [
     {
       "fase": "Captación",
-      "valor": 30858.45,
-      "pct": 1.0
+      "valor": 31022.32,
+      "pct": 0.984145404064261
     },
     {
       "fase": "Recordatório",
@@ -144,8 +144,8 @@
     },
     {
       "fase": "Replay",
-      "valor": 0.0,
-      "pct": 0.0
+      "valor": 499.77,
+      "pct": 0.01585459593573903
     },
     {
       "fase": "Inscripciones Abiertas",
@@ -155,8 +155,8 @@
   ],
   "metricas_lancamento": {
     "cpm": 12.73,
-    "connect_rate": 0.7491,
-    "conversao_lp": 0.14,
+    "connect_rate": 0.749,
+    "conversao_lp": 0.1339,
     "ctr": 0.0163
   },
   "publicos_com_venda": [
@@ -253,18 +253,18 @@
     {
       "ad": "AD-NUEVOS-2",
       "ventas": 2,
-      "gasto": 2292.33,
-      "cpa": 1146.16,
+      "gasto": 2432.56,
+      "cpa": 1216.28,
       "facturacion": 5194,
-      "roas": 2.2658
+      "roas": 2.1352
     },
     {
       "ad": "AD-NUEVOS-6-VD",
       "ventas": 1,
-      "gasto": 516.56,
-      "cpa": 516.56,
+      "gasto": 520.09,
+      "cpa": 520.09,
       "facturacion": 2597,
-      "roas": 5.0275
+      "roas": 4.9934
     },
     {
       "ad": "AD03-BLOQUE-06",
@@ -620,7 +620,7 @@
       "encontrado": false
     }
   ],
-  "obs": "Números de vendas e faturamento informados pelo cliente: 41 vendas a €2.597, somando €106.477, sem upsell. A atribuição usa as UTMs da lista de compradores enviada pelo cliente, que tem 42 nomes (1 a mais que o total oficial): 22 de tráfego pago (10 de público quente, 12 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 11 que compraram com e-mail diferente do cadastro, sem origem identificável. Para fechar no total oficial, a linha de não encontrados aparece como resíduo (10 vendas). O investimento considera apenas a captação (campanhas PLF-oct26 até 25/10/2026, €30.858,45): o gasto das fases posteriores (Replay, Inscripciones Abiertas) ainda não foi conferido no Meta Ads, então investimento total, CAC e ROAS geral podem mudar. Leads conforme a planilha em 25/10/2026. A conversão da página usa leads rastreados de tráfego pago sobre visualizações da página. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "obs": "Números de vendas e faturamento informados pelo cliente: 41 vendas a €2.597, somando €106.477, sem upsell. A atribuição usa as UTMs da lista de compradores enviada pelo cliente, que tem 42 nomes (1 a mais que o total oficial): 22 de tráfego pago (10 de público quente, 12 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 11 que compraram com e-mail diferente do cadastro, sem origem identificável. Para fechar no total oficial, a linha de não encontrados aparece como resíduo (10 vendas). Investimento conferido no Meta Ads em 11/11/2026: €31.022,32 nas campanhas de captação PLF-oct26 e €499,77 na campanha de Replay; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. Leads conforme a planilha em 25/10/2026. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
   "faturamento_detalhe": {
     "ventas_principal": 41,
     "ticket_principal": 2597,

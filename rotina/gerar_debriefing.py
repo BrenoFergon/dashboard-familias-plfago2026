@@ -11,6 +11,9 @@ Entradas:
   --compradores  planilha do cliente: Venta, Nombre, Email, utm_source, utm_medium (conjunto),
                  utm_term (campanha), utm_content (criativo), utm_campaign. Não é versionada (dados pessoais).
   --ventas / --facturacion  totais oficiais informados pelo cliente.
+  --anuncios     opcional: JSON com os totais por anúncio vindos do Meta Ads no fechamento
+                 (lista de {c, a, an, sp, imp, lc, pv, ld}); substitui o gasto do --data, que para no último
+                 dia em que a rotina rodou. Com 'ld' (leads do Meta), a conversão da página usa leads do Meta.
   --fase         gasto fora da captação (Recordatório, Assistência, Replay, Inscripciones Abiertas), vindo do Meta Ads.
 
 Regras (iguais às do debriefing AGO26):
@@ -41,6 +44,7 @@ def main():
     for a in ('--id', '--label', '--data', '--compradores'): ap.add_argument(a, required=True)
     ap.add_argument('--ventas', type=int, required=True)
     ap.add_argument('--facturacion', type=float, required=True)
+    ap.add_argument('--anuncios')
     ap.add_argument('--fase', action='append', default=[])
     ap.add_argument('--status', default='vendas encerradas')
     ap.add_argument('--atualizado', required=True)
@@ -49,6 +53,7 @@ def main():
 
     d = json.load(open(a.data, encoding='utf-8'))
     A, L = d['anuncios'], d['leads']
+    if a.anuncios: A = json.load(open(a.anuncios, encoding='utf-8'))
     ticket = round(a.facturacion / a.ventas)
     fact_total = int(a.facturacion) if a.facturacion == int(a.facturacion) else a.facturacion
 
@@ -101,6 +106,7 @@ def main():
     tot = linha('TOTAL', sp_capt, leads_total, achadas, ticket)
     plat = linha('', sp_capt, leads_total, pagas, ticket); plat.pop('nome')
     zero = {'inversion': 0, 'leads': 0, 'cpl': None, 'ventas': 0, 'cac': None, 'tasa_conversion': 0, 'facturacion': 0, 'roas': None}
+    ld_meta = sum(x.get('ld', 0) for x in A)
     imp = sum(x['imp'] for x in A); lc = sum(x['lc'] for x in A); pv = sum(x['pv'] for x in A)
 
     out = {
@@ -119,7 +125,7 @@ def main():
                          'ventas': {'total': a.ventas, 'encontradas_na_planilha': achadas, 'nao_encontradas': nao,
                                     'pct_encontradas': achadas / a.ventas}},
         'gasto_por_fase': [{'fase': f, 'valor': round(v, 2), 'pct': v / inv_total} for f, v in fases.items()],
-        'metricas_lancamento': {'cpm': div(sp_capt * 1000, imp, 2), 'connect_rate': div(pv, lc), 'conversao_lp': div(track, pv), 'ctr': div(lc, imp)},
+        'metricas_lancamento': {'cpm': div(sp_capt * 1000, imp, 2), 'connect_rate': div(pv, lc), 'conversao_lp': div(ld_meta or track, pv), 'ctr': div(lc, imp)},
         'publicos_com_venda': [{'publico': k, 'inversion': round(sp_conj[k], 2), 'ventas': v, 'facturacion': v * ticket,
                                 'roas': div(v * ticket, sp_conj[k])} for k, v in vconj.most_common()],
         'publicos_organico': [{'origem': k, 'ventas': v} for k, v in vorg.most_common()],
