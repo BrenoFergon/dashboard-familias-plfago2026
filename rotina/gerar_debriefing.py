@@ -17,6 +17,8 @@ Entradas:
   --correspondencias  opcional: JSON com origens achadas no nosso cruzamento com a planilha de leads para
                  compradores que o cliente marcou como não encontrados (nome completo, e-mail parecido etc.):
                  lista de {email, utm_source, utm_medium, utm_term, utm_content, match_por}. Não é versionado.
+  --reembolsados  opcional: JSON com a lista de e-mails de compradores reembolsados (conferidos na Hotmart);
+                 saem da atribuição e entram na contagem de reembolsos. Não é versionado.
   --fase         gasto fora da captação (Recordatório, Assistência, Replay, Inscripciones Abiertas), vindo do Meta Ads.
 
 Regras (iguais às do debriefing AGO26):
@@ -49,6 +51,7 @@ def main():
     ap.add_argument('--facturacion', type=float, required=True)
     ap.add_argument('--anuncios')
     ap.add_argument('--correspondencias')
+    ap.add_argument('--reembolsados')
     ap.add_argument('--fase', action='append', default=[])
     ap.add_argument('--status', default='vendas encerradas')
     ap.add_argument('--atualizado', required=True)
@@ -85,6 +88,10 @@ def main():
     # ---- compradores
     ws = openpyxl.load_workbook(a.compradores, data_only=True).active
     rows = [r for r in ws.iter_rows(min_row=2, values_only=True) if r[0]]
+    reemb = set(e.lower() for e in json.load(open(a.reembolsados, encoding='utf-8'))) if a.reembolsados else set()
+    n_antes = len(rows)
+    rows = [r for r in rows if (r[2] or '').strip().lower() not in reemb]
+    assert n_antes - len(rows) == len(reemb), 'reembolsado fora da lista de compradores'
     comp = []; vt = C.Counter(); vconj = C.Counter(); vad = C.Counter(); vorg = C.Counter()
     corr = {c['email'].lower(): c for c in json.load(open(a.correspondencias, encoding='utf-8'))} if a.correspondencias else {}
     usadas = 0
@@ -124,7 +131,7 @@ def main():
     out = {
         'launch': a.id, 'label': a.label, 'status': a.status, 'atualizado_em': a.atualizado, 'ticket_price': ticket,
         'metricas_gerais': {'inversion_total': round(inv_total, 2), 'leads': leads_total, 'cpl': div(sp_capt, leads_total, 2),
-                            'total_ventas': a.ventas, 'reembolso': 0, 'ventas_trackeadas': achadas,
+                            'total_ventas': a.ventas, 'reembolso': len(reemb), 'ventas_trackeadas': achadas,
                             'cac': div(inv_total, a.ventas, 2), 'tasa_conversion': a.ventas / leads_total,
                             'facturacion': fact_total, 'roas': div(a.facturacion, inv_total)},
         'plataforma': {'meta_ads': plat, 'google_ads': zero, 'total': dict(plat)},
