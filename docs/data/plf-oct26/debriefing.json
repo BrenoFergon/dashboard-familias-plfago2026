@@ -1,0 +1,633 @@
+{
+  "launch": "plf-oct26",
+  "label": "PLF - Out 2026",
+  "status": "vendas encerradas (gasto pós-captação pendente)",
+  "atualizado_em": "11/11/2026",
+  "ticket_price": 2597,
+  "metricas_gerais": {
+    "inversion_total": 30858.45,
+    "leads": 5014,
+    "cpl": 6.15,
+    "total_ventas": 41,
+    "reembolso": 0,
+    "ventas_trackeadas": 31,
+    "cac": 752.65,
+    "tasa_conversion": 0.008177104108496211,
+    "facturacion": 106477,
+    "roas": 3.4505
+  },
+  "plataforma": {
+    "meta_ads": {
+      "inversion": 30858.45,
+      "leads": 5014,
+      "cpl": 6.15,
+      "ventas": 22,
+      "cac": 1402.66,
+      "tasa_conversion": 0.0043877143996808934,
+      "facturacion": 57134,
+      "roas": 1.8515
+    },
+    "google_ads": {
+      "inversion": 0,
+      "leads": 0,
+      "cpl": null,
+      "ventas": 0,
+      "cac": null,
+      "tasa_conversion": 0,
+      "facturacion": 0,
+      "roas": null
+    },
+    "total": {
+      "inversion": 30858.45,
+      "leads": 5014,
+      "cpl": 6.15,
+      "ventas": 22,
+      "cac": 1402.66,
+      "tasa_conversion": 0.0043877143996808934,
+      "facturacion": 57134,
+      "roas": 1.8515
+    }
+  },
+  "temperatura": [
+    {
+      "nome": "Caliente",
+      "inversion": 11767.34,
+      "leads": 1752,
+      "cpl": 6.72,
+      "ventas": 10,
+      "cac": 1176.73,
+      "tasa_conversion": 0.005707762557077625,
+      "facturacion": 25970,
+      "roas": 2.207
+    },
+    {
+      "nome": "Frio",
+      "inversion": 19091.11,
+      "leads": 2388,
+      "cpl": 7.99,
+      "ventas": 12,
+      "cac": 1590.93,
+      "tasa_conversion": 0.005025125628140704,
+      "facturacion": 31164,
+      "roas": 1.6324
+    },
+    {
+      "nome": "Orgánico",
+      "inversion": 0,
+      "leads": 769,
+      "cpl": null,
+      "ventas": 9,
+      "cac": 0,
+      "tasa_conversion": 0.011703511053315995,
+      "facturacion": 23373,
+      "roas": null
+    },
+    {
+      "nome": "Sin Trackeo",
+      "inversion": 0,
+      "leads": 105,
+      "cpl": null,
+      "ventas": 0,
+      "cac": null,
+      "tasa_conversion": 0.0,
+      "facturacion": 0,
+      "roas": null
+    }
+  ],
+  "temperatura_total": {
+    "nome": "TOTAL",
+    "inversion": 30858.45,
+    "leads": 5014,
+    "cpl": 6.15,
+    "ventas": 31,
+    "cac": 995.43,
+    "tasa_conversion": 0.006182688472277623,
+    "facturacion": 80507,
+    "roas": 2.6089
+  },
+  "nao_encontrado": {
+    "nome": "Não encontrado na planilha de leads",
+    "ventas": 10,
+    "facturacion": 25970,
+    "nota": "Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada. Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas."
+  },
+  "trackeamento": {
+    "leads": {
+      "total": 5014,
+      "trackeado": 4140,
+      "sin_trackeo": 874,
+      "pct_trackeado": 0.8256880733944955,
+      "pct_sin_trackeo": 0.17431192660550454
+    },
+    "ventas": {
+      "total": 41,
+      "encontradas_na_planilha": 31,
+      "nao_encontradas": 10,
+      "pct_encontradas": 0.7560975609756098
+    }
+  },
+  "gasto_por_fase": [
+    {
+      "fase": "Captación",
+      "valor": 30858.45,
+      "pct": 1.0
+    },
+    {
+      "fase": "Recordatório",
+      "valor": 0.0,
+      "pct": 0.0
+    },
+    {
+      "fase": "Assistência",
+      "valor": 0.0,
+      "pct": 0.0
+    },
+    {
+      "fase": "Replay",
+      "valor": 0.0,
+      "pct": 0.0
+    },
+    {
+      "fase": "Inscripciones Abiertas",
+      "valor": 0.0,
+      "pct": 0.0
+    }
+  ],
+  "metricas_lancamento": {
+    "cpm": 12.73,
+    "connect_rate": 0.7491,
+    "conversao_lp": 0.14,
+    "ctr": 0.0163
+  },
+  "publicos_com_venda": [
+    {
+      "publico": "00-MIX-HOT",
+      "inversion": 9126.96,
+      "ventas": 6,
+      "facturacion": 15582,
+      "roas": 1.7072
+    },
+    {
+      "publico": "00-COLD-LAL-Todos os Alunos",
+      "inversion": 4046.72,
+      "ventas": 6,
+      "facturacion": 15582,
+      "roas": 3.8505
+    },
+    {
+      "publico": "00-ENG30D-IG-FB",
+      "inversion": 2640.38,
+      "ventas": 4,
+      "facturacion": 10388,
+      "roas": 3.9343
+    },
+    {
+      "publico": "00-MVP-INT-Padres-Jovenes",
+      "inversion": 2641.3,
+      "ventas": 3,
+      "facturacion": 7791,
+      "roas": 2.9497
+    },
+    {
+      "publico": "00-MVP-LALs-Alumnos-Seguidores",
+      "inversion": 4482.91,
+      "ventas": 2,
+      "facturacion": 5194,
+      "roas": 1.1586
+    },
+    {
+      "publico": "00-COLD-LAL-Seguidores",
+      "inversion": 2217.09,
+      "ventas": 1,
+      "facturacion": 2597,
+      "roas": 1.1714
+    }
+  ],
+  "publicos_organico": [
+    {
+      "origem": "whatsapp",
+      "ventas": 6
+    },
+    {
+      "origem": "email",
+      "ventas": 2
+    },
+    {
+      "origem": "instagram",
+      "ventas": 1
+    }
+  ],
+  "criativos_com_venda": [
+    {
+      "ad": "PLF_07",
+      "ventas": 8,
+      "gasto": 6937.53,
+      "cpa": 867.19,
+      "facturacion": 20776,
+      "roas": 2.9947
+    },
+    {
+      "ad": "PLF_04",
+      "ventas": 5,
+      "gasto": 4041.76,
+      "cpa": 808.35,
+      "facturacion": 12985,
+      "roas": 3.2127
+    },
+    {
+      "ad": "PLF_01",
+      "ventas": 3,
+      "gasto": 4466.55,
+      "cpa": 1488.85,
+      "facturacion": 7791,
+      "roas": 1.7443
+    },
+    {
+      "ad": "ADXX-MISTO",
+      "ventas": 2,
+      "gasto": 6813.74,
+      "cpa": 3406.87,
+      "facturacion": 5194,
+      "roas": 0.7623
+    },
+    {
+      "ad": "AD-NUEVOS-2",
+      "ventas": 2,
+      "gasto": 2292.33,
+      "cpa": 1146.16,
+      "facturacion": 5194,
+      "roas": 2.2658
+    },
+    {
+      "ad": "AD-NUEVOS-6-VD",
+      "ventas": 1,
+      "gasto": 516.56,
+      "cpa": 516.56,
+      "facturacion": 2597,
+      "roas": 5.0275
+    },
+    {
+      "ad": "AD03-BLOQUE-06",
+      "ventas": 1,
+      "gasto": 1430.66,
+      "cpa": 1430.66,
+      "facturacion": 2597,
+      "roas": 1.8152
+    }
+  ],
+  "compradores": [
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "email",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_01"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+      "conjunto": "00-MVP-LALs-Alumnos-Seguidores",
+      "criativo": "ADXX-MISTO"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-MVPadsBLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_04"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_01"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+      "conjunto": "00-MVP-INT-Padres-Jovenes",
+      "criativo": "ADXX-MISTO"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24 — Cópia",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "email",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LALmvp-VD-MUJER-IG-FB-FEED-STORIES-adsNuevos-P1-2026-10-08",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "AD-NUEVOS-6-VD"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+      "conjunto": "00-MVP-INT-Padres-Jovenes",
+      "criativo": "AD03-BLOQUE-06"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "instagram",
+      "criativo": "link_in_bio"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_04"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_04"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LALmvp-VD-MUJER-IG-FB-FEED-STORIES-adsNuevos-P1-2026-10-08",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "AD-NUEVOS-2"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LALmvp-VD-MUJER-IG-FB-FEED-STORIES-adsNuevos-P1-2026-10-08",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "AD-NUEVOS-2"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24 — Cópia",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_04"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-COLD-LAL-Seguidores",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Organico",
+      "canal": "sem_rastreio",
+      "rastreado": false,
+      "campanha": "sin_utm",
+      "conjunto": "whatsapp",
+      "criativo": "sin_utm"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+      "conjunto": "00-MVP-LALs-Alumnos-Seguidores",
+      "criativo": "PLF_04"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
+      "conjunto": "00-MVP-INT-Padres-Jovenes",
+      "criativo": "PLF_01"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "th",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24 — Cópia",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MIX-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-MIX-HOT",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "UTM informada pelo cliente",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24 — Cópia",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    },
+    {
+      "encontrado": false
+    }
+  ],
+  "obs": "Números de vendas e faturamento informados pelo cliente: 41 vendas a €2.597, somando €106.477, sem upsell. A atribuição usa as UTMs da lista de compradores enviada pelo cliente, que tem 42 nomes (1 a mais que o total oficial): 22 de tráfego pago (10 de público quente, 12 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 11 que compraram com e-mail diferente do cadastro, sem origem identificável. Para fechar no total oficial, a linha de não encontrados aparece como resíduo (10 vendas). O investimento considera apenas a captação (campanhas PLF-oct26 até 25/10/2026, €30.858,45): o gasto das fases posteriores (Replay, Inscripciones Abiertas) ainda não foi conferido no Meta Ads, então investimento total, CAC e ROAS geral podem mudar. Leads conforme a planilha em 25/10/2026. A conversão da página usa leads rastreados de tráfego pago sobre visualizações da página. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "faturamento_detalhe": {
+    "ventas_principal": 41,
+    "ticket_principal": 2597,
+    "faturamento_principal": 106477,
+    "ventas_upsell": 0,
+    "ticket_upsell": 0,
+    "faturamento_upsell": 0,
+    "faturamento_total": 106477
+  }
+}
