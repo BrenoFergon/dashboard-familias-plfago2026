@@ -851,12 +851,13 @@ function scTable(){
    Percentuais no arquivo de debriefing são frações (0.05 = 5%).
    ════════════════════════════════════════════════════════════════════ */
 function fr(v){return ok(v)?pct(v*100):'—'}
+function tj(o,k){var v=o&&o[k+'_'+S.lang];return v!=null&&v!==''?v:(o?o[k]:'')} // texto do JSON no idioma da tela (campo_es), senão o padrão
 function tgCls(n){n=String(n||'').toLowerCase();return /calient|quente|hot/.test(n)?'hot':/fr[ií]o|cold/.test(n)?'cold':/org/.test(n)?'org':''}
 PAGE.debriefing=function(){
   if(!DB)return card(null,null,'<div class="empty">'+t('dbVazio')+'</div>')+dbCmp();
   DBC[S.launch]=DB;
   var h='',mg=DB.metricas_gerais||{},fd=DB.faturamento_detalhe;
-  if(DB.status)h+='<div class="sub mut" style="margin:-4px 0 12px;font-size:.75rem">'+esc(DB.label||'')+' · '+esc(DB.status)+(DB.atualizado_em?' · '+t('atualizado')+' '+esc(DB.atualizado_em):'')+'</div>';
+  if(DB.status)h+='<div class="sub mut" style="margin:-4px 0 12px;font-size:.75rem">'+esc(DB.label||'')+' · '+esc(tj(DB,'status'))+(DB.atualizado_em?' · '+t('atualizado')+' '+esc(DB.atualizado_em):'')+'</div>';
   h+='<div class="kpis">'+
     kpi(t('dbInvTotal'),money(mg.inversion_total),t('dbTodasFases'),'dark')+
     kpi('CPL',money(mg.cpl),num(mg.leads)+' '+t('leads').toLowerCase(),'blue')+
@@ -888,9 +889,9 @@ PAGE.debriefing=function(){
   h+=card(t('dbPorPlataforma'),null,tbl(cols,linha('Meta Ads',pl.meta_ads)+linha('Google Ads',pl.google_ads)+linha(t('total'),pl.total,'tot')));
   var tb=(DB.temperatura||[]).map(function(r){return linha(r.nome,r,'',1)}).join('')+linha(t('total'),DB.temperatura_total,'tot');
   var ne=DB.nao_encontrado;
-  if(ne)tb+='<tr class="ne">'+tdt('<span class="tg no">'+esc(ne.nome)+'</span>')+td('—')+td('—')+td('—')+td(num(ne.ventas))+td('—')+td('—')+td(money(ne.facturacion))+td('—')+'</tr>';
+  if(ne)tb+='<tr class="ne">'+tdt('<span class="tg no">'+esc(tj(ne,'nome'))+'</span>')+td('—')+td('—')+td('—')+td(num(ne.ventas))+td('—')+td('—')+td(money(ne.facturacion))+td('—')+'</tr>';
   cols[0][0]=t('dbTemperatura');
-  h+=card(t('dbPorTemperatura'),null,tbl(cols,tb)+(ne&&ne.nota?'<div class="note">'+esc(ne.nota)+'</div>':''));
+  h+=card(t('dbPorTemperatura'),null,tbl(cols,tb)+(ne&&ne.nota?'<div class="note">'+esc(tj(ne,'nota'))+'</div>':''));
 
   var fases=DB.gasto_por_fase||[],mx=Math.max.apply(null,fases.map(function(f){return +f.valor||0}).concat([1]));
   var ml=DB.metricas_lancamento||{};
@@ -924,10 +925,10 @@ PAGE.debriefing=function(){
         kpi(t('dbAssinCobrados'),num(ob.assinantes_cobrados),t('dbNoPeriodo'))+
         kpi(t('dbAssinLeads'),num(ob.tambem_leads),fr(ob.pct)+' '+t('dbDaBase'),'blue')+
       '</div>'+
-      (ov.length?tbl([[t('dbOrigemLead'),'t'],[t('dbPublico'),'t'],[t('criativo'),'t'],[t('dbCadastro')],[t('dbCompra')]],ov.map(function(v){return '<tr>'+tdt(esc(v.origem))+tdt(esc(v.publico))+tdt(esc(v.criativo))+td(esc(v.cadastro))+td(esc(v.compra))+'</tr>'}).join('')):'')+
-      (op.nota?'<div class="note">'+esc(op.nota)+'</div>':''));
+      (ov.length?tbl([[t('dbOrigemLead'),'t'],[t('dbPublico'),'t'],[t('criativo'),'t'],[t('dbCadastro')],[t('dbCompra')]],ov.map(function(v){return '<tr>'+tdt(esc(tj(v,'origem')))+tdt(esc(v.publico))+tdt(esc(v.criativo))+td(esc(v.cadastro))+td(esc(v.compra))+'</tr>'}).join('')):'')+
+      (op.nota?'<div class="note">'+esc(tj(op,'nota'))+'</div>':''));
   }
-  if(DB.obs)h+='<div class="ins">'+esc(DB.obs)+'</div>';
+  if(DB.obs)h+='<div class="ins">'+esc(tj(DB,'obs'))+'</div>';
   return dbCmp()+h;
 };
 /* Comparativo: todos os lançamentos com debriefing lado a lado (carrega sob demanda, guarda em DBC) */
@@ -1060,7 +1061,7 @@ function chrome(){
   $('#sbLl').textContent=t('lancamento');$('#sbLaunch').textContent=m.evento||m.lancamento_cod||'—';
   $('#sbUpd').textContent=t('atualizado')+' '+(m.atualizado_em||'');
   $('#pgTitle').textContent=t(NAV[S.page][1]);
-  $('#pillUp').textContent=D.semDados?'● '+((DB&&DB.status)||t('navDb')):'● '+t('dadosAte')+' '+dm(dmax());
+  $('#pillUp').textContent=D.semDados?'● '+((DB&&tj(DB,'status'))||t('navDb')):'● '+t('dadosAte')+' '+dm(dmax());
   $('#nav').innerHTML=pagesOn().map(function(p){return '<button class="nav-i '+(p===S.page?'on':'')+'" data-act="nav" data-v="'+p+'"><span class="ic">'+NAV[p][0]+'</span>'+t(NAV[p][1])+'</button>'}).join('');
   $('#filters').innerHTML=filtersHtml();
   var lb=$('#launchbar');

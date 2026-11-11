@@ -59,6 +59,8 @@ def main():
     ap.add_argument('--status', default='vendas encerradas')
     ap.add_argument('--atualizado', required=True)
     ap.add_argument('--obs', default='')
+    ap.add_argument('--obs-es', default='')   # textos em espanhol: a tela usa campo_es quando o idioma é ES
+    ap.add_argument('--status-es', default='ventas cerradas')
     a = ap.parse_args()
 
     d = json.load(open(a.data, encoding='utf-8'))
@@ -139,7 +141,8 @@ def main():
                             'facturacion': fact_total, 'roas': div(a.facturacion, inv_total)},
         'plataforma': {'meta_ads': plat, 'google_ads': zero, 'total': dict(plat)},
         'temperatura': temp, 'temperatura_total': tot,
-        'nao_encontrado': {'nome': 'Não encontrado na planilha de leads', 'ventas': nao,
+        'nao_encontrado': {'nome': 'Não encontrado na planilha de leads', 'nome_es': 'No encontrado en la planilla de leads', 'ventas': nao,
+                           'nota_es': 'Ventas confirmadas de quienes compraron con un email distinto al del registro: sin lead correspondiente, origen no identificado.' + ('' if nao == len(rows) - achadas else ' Las ventas y la facturación de esta línea son el residuo entre el total oficial y lo atribuido a las demás temperaturas.'),
                            'facturacion': fact_total - achadas * ticket,
                            'nota': 'Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada.' + ('' if nao == len(rows) - achadas else ' Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas.')},
         'trackeamento': {'leads': {'total': leads_total, 'trackeado': track, 'sin_trackeo': leads_total - track,
@@ -153,7 +156,7 @@ def main():
         'publicos_organico': [{'origem': k, 'ventas': v} for k, v in vorg.most_common()],
         'criativos_com_venda': [{'ad': k, 'ventas': v, 'gasto': round(sp_ad[k], 2), 'cpa': div(sp_ad[k], v, 2),
                                  'facturacion': v * ticket, 'roas': div(v * ticket, sp_ad[k])} for k, v in vad.most_common()],
-        'compradores': comp, 'obs': a.obs,
+        'compradores': comp, 'obs': a.obs, 'obs_es': a.obs_es, 'status_es': a.status_es,
         'faturamento_detalhe': {'ventas_principal': a.ventas, 'ticket_principal': ticket, 'faturamento_principal': fact_total,
                                 'ventas_upsell': 0, 'ticket_upsell': 0, 'faturamento_upsell': 0, 'faturamento_total': fact_total},
     }

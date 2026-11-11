@@ -107,7 +107,9 @@
   },
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
+    "nome_es": "No encontrado en la planilla de leads",
     "ventas": 8,
+    "nota_es": "Ventas confirmadas de quienes compraron con un email distinto al del registro: sin lead correspondiente, origen no identificado.",
     "facturacion": 20776,
     "nota": "Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada."
   },
@@ -632,6 +634,8 @@
     }
   ],
   "obs": "Vendas conferidas na Hotmart em 11/11/2026 (produto Atmósfera 2.0): 41 vendas aprovadas a €2.597, somando €106.477, mais 1 venda reembolsada que não entra na conta. Duas das 41 pagaram reserva de €250 e o restante de €2.347. Outras 4 vendas aprovadas de uma oferta diferente (€1.100,06) não fazem parte da lista do cliente e ficaram fora deste debriefing. A Hotmart não registra UTM nessas vendas, então a origem vem do cruzamento com a planilha de leads OCT26: o cliente informou a origem de 30 das 41 e nós localizamos mais 3 por nome completo e e-mail parecido, todas de tráfego pago. Resultado: 24 vendas de tráfego pago (11 de público quente, 13 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 8 de quem comprou com e-mail diferente do cadastro, sem origem identificável. Investimento conferido no Meta Ads em 11/11/2026: €31.022,32 nas campanhas de captação PLF-oct26 e €499,77 na campanha de Replay; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. Leads conforme a planilha em 25/10/2026. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "obs_es": "Ventas verificadas en Hotmart el 11/11/2026 (producto Atmósfera 2.0): 41 ventas aprobadas a 2.597 €, que suman 106.477 €, más 1 venta reembolsada que no entra en la cuenta. Dos de las 41 pagaron una reserva de 250 € y el resto de 2.347 €. Otras 4 ventas aprobadas de una oferta distinta (1.100,06 €) no forman parte de la lista del cliente y quedaron fuera de este debriefing. Hotmart no registra UTM en estas ventas, así que el origen viene del cruce con la planilla de leads OCT26: el cliente informó el origen de 30 de las 41 y nosotros localizamos 3 más por nombre completo y email parecido, todas de tráfico de pago. Resultado: 24 ventas de tráfico de pago (11 de público caliente, 13 de frío), 9 de orgánico (WhatsApp, email e Instagram) y 8 de quienes compraron con un email distinto al del registro, sin origen identificable. Inversión verificada en Meta Ads el 11/11/2026: 31.022,32 € en las campañas de captación PLF-oct26 y 499,77 € en la campaña de Replay; las campañas de distribución de contenido de la cuenta (FT-DISTRIBUICAO) no entran en el lanzamiento. Leads según la planilla al 25/10/2026. La inversión por público/creativo es la del conjunto o anuncio completo (sumada entre campañas), no solo la atribuible a las ventas, por lo que el ROAS por línea indica eficiencia relativa, no retorno absoluto.",
+  "status_es": "ventas cerradas",
   "faturamento_detalhe": {
     "ventas_principal": 41,
     "ticket_principal": 2597,
@@ -652,14 +656,16 @@
         "publico": "00-COLD-LAL-Todos os Alunos",
         "criativo": "PLF_01",
         "cadastro": "01/10",
-        "compra": "05/10"
+        "compra": "05/10",
+        "origem_es": "Tráfico de pago · Frío"
       },
       {
-        "origem": "Orgánico · WhatsApp",
+        "origem": "Orgânico · WhatsApp",
         "publico": "grupos_antiguos",
         "criativo": "—",
         "cadastro": "08/10",
-        "compra": "08/10"
+        "compra": "08/10",
+        "origem_es": "Orgánico · WhatsApp"
       }
     ],
     "base": {
@@ -667,6 +673,7 @@
       "tambem_leads": 39,
       "pct": 0.4239
     },
-    "nota": "Conferido na Hotmart em 11/11/2026. Além do Atmósfera 2.0, o único produto com vendas no período foi o Club YOCONATI (€67/mês): 7 assinaturas novas, das quais 2 são de pessoas que se cadastraram no lançamento antes de assinar. Essas 2 assinaturas não entram no faturamento nem no ROAS do lançamento. Dos 92 assinantes do clube com cobrança no período, 39 (42%) também se cadastraram neste lançamento: quase metade da base de assinantes voltou a participar do evento."
+    "nota": "Conferido na Hotmart em 11/11/2026. Além do Atmósfera 2.0, o único produto com vendas no período foi o Club YOCONATI (€67/mês): 7 assinaturas novas, das quais 2 são de pessoas que se cadastraram no lançamento antes de assinar. Essas 2 assinaturas não entram no faturamento nem no ROAS do lançamento. Dos 92 assinantes do clube com cobrança no período, 39 (42%) também se cadastraram neste lançamento: quase metade da base de assinantes voltou a participar do evento.",
+    "nota_es": "Verificado en Hotmart el 11/11/2026. Además de Atmósfera 2.0, el único producto con ventas en el período fue el Club YOCONATI (67 €/mes): 7 suscripciones nuevas, de las cuales 2 son de personas que se registraron en el lanzamiento antes de suscribirse. Esas 2 suscripciones no entran en la facturación ni en el ROAS del lanzamiento. De los 92 suscriptores del club con cobro en el período, 39 (42%) también se registraron en este lanzamiento: casi la mitad de la base de suscriptores volvió a participar en el evento."
   }
 }

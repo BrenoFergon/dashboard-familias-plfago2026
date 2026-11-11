@@ -4,9 +4,28 @@
   "periodo": "20/09 a 11/11/2026",
   "novas_assinaturas_periodo": 7,
   "vendas": [
-    {"origem": "Tráfego pago · Frio", "publico": "00-COLD-LAL-Todos os Alunos", "criativo": "PLF_01", "cadastro": "01/10", "compra": "05/10"},
-    {"origem": "Orgánico · WhatsApp", "publico": "grupos_antiguos", "criativo": "—", "cadastro": "08/10", "compra": "08/10"}
+    {
+      "origem": "Tráfego pago · Frio",
+      "publico": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_01",
+      "cadastro": "01/10",
+      "compra": "05/10",
+      "origem_es": "Tráfico de pago · Frío"
+    },
+    {
+      "origem": "Orgânico · WhatsApp",
+      "publico": "grupos_antiguos",
+      "criativo": "—",
+      "cadastro": "08/10",
+      "compra": "08/10",
+      "origem_es": "Orgánico · WhatsApp"
+    }
   ],
-  "base": {"assinantes_cobrados": 92, "tambem_leads": 39, "pct": 0.4239},
-  "nota": "Conferido na Hotmart em 11/11/2026. Além do Atmósfera 2.0, o único produto com vendas no período foi o Club YOCONATI (€67/mês): 7 assinaturas novas, das quais 2 são de pessoas que se cadastraram no lançamento antes de assinar. Essas 2 assinaturas não entram no faturamento nem no ROAS do lançamento. Dos 92 assinantes do clube com cobrança no período, 39 (42%) também se cadastraram neste lançamento: quase metade da base de assinantes voltou a participar do evento."
+  "base": {
+    "assinantes_cobrados": 92,
+    "tambem_leads": 39,
+    "pct": 0.4239
+  },
+  "nota": "Conferido na Hotmart em 11/11/2026. Além do Atmósfera 2.0, o único produto com vendas no período foi o Club YOCONATI (€67/mês): 7 assinaturas novas, das quais 2 são de pessoas que se cadastraram no lançamento antes de assinar. Essas 2 assinaturas não entram no faturamento nem no ROAS do lançamento. Dos 92 assinantes do clube com cobrança no período, 39 (42%) também se cadastraram neste lançamento: quase metade da base de assinantes voltou a participar do evento.",
+  "nota_es": "Verificado en Hotmart el 11/11/2026. Además de Atmósfera 2.0, el único producto con ventas en el período fue el Club YOCONATI (67 €/mes): 7 suscripciones nuevas, de las cuales 2 son de personas que se registraron en el lanzamiento antes de suscribirse. Esas 2 suscripciones no entran en la facturación ni en el ROAS del lanzamiento. De los 92 suscriptores del club con cobro en el período, 39 (42%) también se registraron en este lanzamiento: casi la mitad de la base de suscriptores volvió a participar en el evento."
 }
