@@ -10,7 +10,7 @@
     "cpl": 6.19,
     "total_ventas": 41,
     "reembolso": 0,
-    "ventas_trackeadas": 31,
+    "ventas_trackeadas": 34,
     "cac": 768.83,
     "tasa_conversion": 0.008177104108496211,
     "facturacion": 106477,
@@ -21,11 +21,11 @@
       "inversion": 31022.32,
       "leads": 5014,
       "cpl": 6.19,
-      "ventas": 22,
-      "cac": 1410.11,
-      "tasa_conversion": 0.0043877143996808934,
-      "facturacion": 57134,
-      "roas": 1.8417
+      "ventas": 25,
+      "cac": 1240.89,
+      "tasa_conversion": 0.00498603909054647,
+      "facturacion": 64925,
+      "roas": 2.0928
     },
     "google_ads": {
       "inversion": 0,
@@ -41,11 +41,11 @@
       "inversion": 31022.32,
       "leads": 5014,
       "cpl": 6.19,
-      "ventas": 22,
-      "cac": 1410.11,
-      "tasa_conversion": 0.0043877143996808934,
-      "facturacion": 57134,
-      "roas": 1.8417
+      "ventas": 25,
+      "cac": 1240.89,
+      "tasa_conversion": 0.00498603909054647,
+      "facturacion": 64925,
+      "roas": 2.0928
     }
   },
   "temperatura": [
@@ -54,22 +54,22 @@
       "inversion": 11767.9,
       "leads": 1752,
       "cpl": 6.72,
-      "ventas": 10,
-      "cac": 1176.79,
-      "tasa_conversion": 0.005707762557077625,
-      "facturacion": 25970,
-      "roas": 2.2069
+      "ventas": 11,
+      "cac": 1069.81,
+      "tasa_conversion": 0.006278538812785388,
+      "facturacion": 28567,
+      "roas": 2.4275
     },
     {
       "nome": "Frio",
       "inversion": 19254.42,
       "leads": 2388,
       "cpl": 8.06,
-      "ventas": 12,
-      "cac": 1604.54,
-      "tasa_conversion": 0.005025125628140704,
-      "facturacion": 31164,
-      "roas": 1.6185
+      "ventas": 14,
+      "cac": 1375.32,
+      "tasa_conversion": 0.005862646566164154,
+      "facturacion": 36358,
+      "roas": 1.8883
     },
     {
       "nome": "Orgánico",
@@ -99,16 +99,16 @@
     "inversion": 31022.32,
     "leads": 5014,
     "cpl": 6.19,
-    "ventas": 31,
-    "cac": 1000.72,
-    "tasa_conversion": 0.006182688472277623,
-    "facturacion": 80507,
-    "roas": 2.5951
+    "ventas": 34,
+    "cac": 912.42,
+    "tasa_conversion": 0.006781013163143199,
+    "facturacion": 88298,
+    "roas": 2.8463
   },
   "nao_encontrado": {
     "nome": "Não encontrado na planilha de leads",
-    "ventas": 10,
-    "facturacion": 25970,
+    "ventas": 7,
+    "facturacion": 18179,
     "nota": "Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada. Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas."
   },
   "trackeamento": {
@@ -121,9 +121,9 @@
     },
     "ventas": {
       "total": 41,
-      "encontradas_na_planilha": 31,
-      "nao_encontradas": 10,
-      "pct_encontradas": 0.7560975609756098
+      "encontradas_na_planilha": 34,
+      "nao_encontradas": 7,
+      "pct_encontradas": 0.8292682926829268
     }
   },
   "gasto_por_fase": [
@@ -161,6 +161,13 @@
   },
   "publicos_com_venda": [
     {
+      "publico": "00-COLD-LAL-Todos os Alunos",
+      "inversion": 4046.72,
+      "ventas": 8,
+      "facturacion": 20776,
+      "roas": 5.134
+    },
+    {
       "publico": "00-MIX-HOT",
       "inversion": 9126.96,
       "ventas": 6,
@@ -168,18 +175,11 @@
       "roas": 1.7072
     },
     {
-      "publico": "00-COLD-LAL-Todos os Alunos",
-      "inversion": 4046.72,
-      "ventas": 6,
-      "facturacion": 15582,
-      "roas": 3.8505
-    },
-    {
       "publico": "00-ENG30D-IG-FB",
       "inversion": 2640.38,
-      "ventas": 4,
-      "facturacion": 10388,
-      "roas": 3.9343
+      "ventas": 5,
+      "facturacion": 12985,
+      "roas": 4.9179
     },
     {
       "publico": "00-MVP-INT-Padres-Jovenes",
@@ -220,19 +220,19 @@
   "criativos_com_venda": [
     {
       "ad": "PLF_07",
-      "ventas": 8,
+      "ventas": 9,
       "gasto": 6937.53,
-      "cpa": 867.19,
-      "facturacion": 20776,
-      "roas": 2.9947
+      "cpa": 770.84,
+      "facturacion": 23373,
+      "roas": 3.3691
     },
     {
       "ad": "PLF_04",
-      "ventas": 5,
+      "ventas": 6,
       "gasto": 4041.76,
-      "cpa": 808.35,
-      "facturacion": 12985,
-      "roas": 3.2127
+      "cpa": 673.63,
+      "facturacion": 15582,
+      "roas": 3.8553
     },
     {
       "ad": "PLF_01",
@@ -243,20 +243,20 @@
       "roas": 1.7443
     },
     {
+      "ad": "AD-NUEVOS-2",
+      "ventas": 3,
+      "gasto": 2432.56,
+      "cpa": 810.85,
+      "facturacion": 7791,
+      "roas": 3.2028
+    },
+    {
       "ad": "ADXX-MISTO",
       "ventas": 2,
       "gasto": 6813.74,
       "cpa": 3406.87,
       "facturacion": 5194,
       "roas": 0.7623
-    },
-    {
-      "ad": "AD-NUEVOS-2",
-      "ventas": 2,
-      "gasto": 2432.56,
-      "cpa": 1216.28,
-      "facturacion": 5194,
-      "roas": 2.1352
     },
     {
       "ad": "AD-NUEVOS-6-VD",
@@ -308,6 +308,16 @@
     },
     {
       "encontrado": true,
+      "match_por": "nome + sobrenome no e-mail do lead (cruzamento Fortraffic)",
+      "temperatura": "Frio",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LALmvp-VD-MUJER-IG-FB-FEED-STORIES-adsNuevos-P1-2026-10-08",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "AD-NUEVOS-2"
+    },
+    {
+      "encontrado": true,
       "match_por": "UTM informada pelo cliente",
       "temperatura": "Frio",
       "canal": "ig",
@@ -355,6 +365,26 @@
       "campanha": "FT-PLF-oct26-INVITACION-COLD-HIERARQUIA-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-02",
       "conjunto": "00-MVP-INT-Padres-Jovenes",
       "criativo": "ADXX-MISTO"
+    },
+    {
+      "encontrado": true,
+      "match_por": "e-mail parecido, mesmo prefixo e domínio (cruzamento Fortraffic)",
+      "temperatura": "Caliente",
+      "canal": "ig",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-HOT-MVP-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-07-24 — Cópia",
+      "conjunto": "00-ENG30D-IG-FB",
+      "criativo": "PLF_07"
+    },
+    {
+      "encontrado": true,
+      "match_por": "nome + e-mail parecido (cruzamento Fortraffic)",
+      "temperatura": "Frio",
+      "canal": "fb",
+      "rastreado": true,
+      "campanha": "FT-PLF-oct26-INVITACION-COLD-LAL-MVPs-ADS-VD-MUJER-IG-FB-FEED-STORIES-BLOCO01-P1-2026-10-01",
+      "conjunto": "00-COLD-LAL-Todos os Alunos",
+      "criativo": "PLF_04"
     },
     {
       "encontrado": true,
@@ -609,18 +639,9 @@
     },
     {
       "encontrado": false
-    },
-    {
-      "encontrado": false
-    },
-    {
-      "encontrado": false
-    },
-    {
-      "encontrado": false
     }
   ],
-  "obs": "Números de vendas e faturamento informados pelo cliente: 41 vendas a €2.597, somando €106.477, sem upsell. A atribuição usa as UTMs da lista de compradores enviada pelo cliente, que tem 42 nomes (1 a mais que o total oficial): 22 de tráfego pago (10 de público quente, 12 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 11 que compraram com e-mail diferente do cadastro, sem origem identificável. Para fechar no total oficial, a linha de não encontrados aparece como resíduo (10 vendas). Investimento conferido no Meta Ads em 11/11/2026: €31.022,32 nas campanhas de captação PLF-oct26 e €499,77 na campanha de Replay; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. Leads conforme a planilha em 25/10/2026. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "obs": "Números de vendas e faturamento informados pelo cliente: 41 vendas a €2.597, somando €106.477, sem upsell. A lista de compradores enviada pelo cliente tem 42 nomes (1 a mais que o total oficial) e já trazia a origem de 31 deles. Refizemos o cruzamento com a planilha de leads OCT26 (nome completo, e-mail parecido, sobrenome no e-mail) e localizamos mais 3 compradores que o cliente havia marcado como não encontrados, todos de tráfego pago. Resultado: 25 vendas de tráfego pago (11 de público quente, 14 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 8 sem lead correspondente. Para fechar no total oficial, a linha de não encontrados aparece como resíduo (7 vendas). Investimento conferido no Meta Ads em 11/11/2026: €31.022,32 nas campanhas de captação PLF-oct26 e €499,77 na campanha de Replay; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. Leads conforme a planilha em 25/10/2026. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
   "faturamento_detalhe": {
     "ventas_principal": 41,
     "ticket_principal": 2597,

@@ -14,6 +14,9 @@ Entradas:
   --anuncios     opcional: JSON com os totais por anúncio vindos do Meta Ads no fechamento
                  (lista de {c, a, an, sp, imp, lc, pv, ld}); substitui o gasto do --data, que para no último
                  dia em que a rotina rodou. Com 'ld' (leads do Meta), a conversão da página usa leads do Meta.
+  --correspondencias  opcional: JSON com origens achadas no nosso cruzamento com a planilha de leads para
+                 compradores que o cliente marcou como não encontrados (nome completo, e-mail parecido etc.):
+                 lista de {email, utm_source, utm_medium, utm_term, utm_content, match_por}. Não é versionado.
   --fase         gasto fora da captação (Recordatório, Assistência, Replay, Inscripciones Abiertas), vindo do Meta Ads.
 
 Regras (iguais às do debriefing AGO26):
@@ -45,6 +48,7 @@ def main():
     ap.add_argument('--ventas', type=int, required=True)
     ap.add_argument('--facturacion', type=float, required=True)
     ap.add_argument('--anuncios')
+    ap.add_argument('--correspondencias')
     ap.add_argument('--fase', action='append', default=[])
     ap.add_argument('--status', default='vendas encerradas')
     ap.add_argument('--atualizado', required=True)
@@ -82,19 +86,27 @@ def main():
     ws = openpyxl.load_workbook(a.compradores, data_only=True).active
     rows = [r for r in ws.iter_rows(min_row=2, values_only=True) if r[0]]
     comp = []; vt = C.Counter(); vconj = C.Counter(); vad = C.Counter(); vorg = C.Counter()
+    corr = {c['email'].lower(): c for c in json.load(open(a.correspondencias, encoding='utf-8'))} if a.correspondencias else {}
+    usadas = 0
     for r in rows:
         src, med, term, cont = [(x or '').strip() for x in r[3:7]]
+        por = 'UTM informada pelo cliente'
+        c = corr.get((r[2] or '').strip().lower())
+        if c and src not in PAGOS and not med:
+            src, med, term, cont, por = c['utm_source'], c['utm_medium'], c['utm_term'], c['utm_content'], c['match_por']
+            usadas += 1
         if src in PAGOS:
             t = 'Caliente' if 'HOT' in term.upper() else 'Frio'
             vt[t] += 1; vconj[med] += 1; vad[cont] += 1
-            comp.append({'encontrado': True, 'match_por': 'UTM informada pelo cliente', 'temperatura': t, 'canal': src,
+            comp.append({'encontrado': True, 'match_por': por, 'temperatura': t, 'canal': src,
                          'rastreado': True, 'campanha': term, 'conjunto': med, 'criativo': cont})
         elif med:
             vt['Orgánico'] += 1; vorg[med] += 1
-            comp.append({'encontrado': True, 'match_por': 'UTM informada pelo cliente', 'temperatura': 'Organico',
+            comp.append({'encontrado': True, 'match_por': por, 'temperatura': 'Organico',
                          'canal': 'sem_rastreio', 'rastreado': False, 'campanha': term, 'conjunto': med, 'criativo': cont})
         else:
             comp.append({'encontrado': False})
+    assert usadas == len(corr), 'correspondência sem comprador na lista (ou comprador já atribuído)'
     comp.sort(key=lambda c: not c['encontrado'])
     pagas = vt['Caliente'] + vt['Frio']; achadas = pagas + vt['Orgánico']
     nao = a.ventas - achadas
