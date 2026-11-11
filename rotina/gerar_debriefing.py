@@ -19,6 +19,8 @@ Entradas:
                  lista de {email, utm_source, utm_medium, utm_term, utm_content, match_por}. Não é versionado.
   --reembolsados  opcional: JSON com a lista de e-mails de compradores reembolsados (conferidos na Hotmart);
                  saem da atribuição e entram na contagem de reembolsos. Não é versionado.
+  --outros-produtos  opcional: JSON (sem dados pessoais) com vendas de outros produtos para leads do
+                 lançamento e a sobreposição da base de assinantes; vai para o bloco outros_produtos.
   --fase         gasto fora da captação (Recordatório, Assistência, Replay, Inscripciones Abiertas), vindo do Meta Ads.
 
 Regras (iguais às do debriefing AGO26):
@@ -52,6 +54,7 @@ def main():
     ap.add_argument('--anuncios')
     ap.add_argument('--correspondencias')
     ap.add_argument('--reembolsados')
+    ap.add_argument('--outros-produtos')
     ap.add_argument('--fase', action='append', default=[])
     ap.add_argument('--status', default='vendas encerradas')
     ap.add_argument('--atualizado', required=True)
@@ -138,7 +141,7 @@ def main():
         'temperatura': temp, 'temperatura_total': tot,
         'nao_encontrado': {'nome': 'Não encontrado na planilha de leads', 'ventas': nao,
                            'facturacion': fact_total - achadas * ticket,
-                           'nota': 'Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada. Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas.'},
+                           'nota': 'Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada.' + ('' if nao == len(rows) - achadas else ' Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas.')},
         'trackeamento': {'leads': {'total': leads_total, 'trackeado': track, 'sin_trackeo': leads_total - track,
                                    'pct_trackeado': track / leads_total, 'pct_sin_trackeo': 1 - track / leads_total},
                          'ventas': {'total': a.ventas, 'encontradas_na_planilha': achadas, 'nao_encontradas': nao,
@@ -154,6 +157,7 @@ def main():
         'faturamento_detalhe': {'ventas_principal': a.ventas, 'ticket_principal': ticket, 'faturamento_principal': fact_total,
                                 'ventas_upsell': 0, 'ticket_upsell': 0, 'faturamento_upsell': 0, 'faturamento_total': fact_total},
     }
+    if a.outros_produtos: out['outros_produtos'] = json.load(open(a.outros_produtos, encoding='utf-8'))
     dest = os.path.join('docs', 'data', a.id, 'debriefing.json')
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     json.dump(out, open(dest, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)

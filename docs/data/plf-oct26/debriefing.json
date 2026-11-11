@@ -640,5 +640,33 @@
     "ticket_upsell": 0,
     "faturamento_upsell": 0,
     "faturamento_total": 106477
+  },
+  "outros_produtos": {
+    "produto": "Club YOCONATI",
+    "preco": 67,
+    "periodo": "20/09 a 11/11/2026",
+    "novas_assinaturas_periodo": 7,
+    "vendas": [
+      {
+        "origem": "Tráfego pago · Frio",
+        "publico": "00-COLD-LAL-Todos os Alunos",
+        "criativo": "PLF_01",
+        "cadastro": "01/10",
+        "compra": "05/10"
+      },
+      {
+        "origem": "Orgánico · WhatsApp",
+        "publico": "grupos_antiguos",
+        "criativo": "—",
+        "cadastro": "08/10",
+        "compra": "08/10"
+      }
+    ],
+    "base": {
+      "assinantes_cobrados": 92,
+      "tambem_leads": 39,
+      "pct": 0.4239
+    },
+    "nota": "Conferido na Hotmart em 11/11/2026. Além do Atmósfera 2.0, o único produto com vendas no período foi o Club YOCONATI (€67/mês): 7 assinaturas novas, das quais 2 são de pessoas que se cadastraram no lançamento antes de assinar. Essas 2 assinaturas não entram no faturamento nem no ROAS do lançamento. Dos 92 assinantes do clube com cobrança no período, 39 (42%) também se cadastraram neste lançamento: quase metade da base de assinantes voltou a participar do evento."
   }
 }

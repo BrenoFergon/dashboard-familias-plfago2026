@@ -914,6 +914,19 @@ PAGE.debriefing=function(){
     h+=card(t('dbCruzamento'),num(cp.length)+' '+t('dbCompradores').toLowerCase()+' · '+num(enc.length)+' '+t('dbEncontrados')+' · '+num(cp.length-enc.length)+' '+t('dbNaoEncontrados'),
       '<div class="grid3">'+mini(t('dbTemperatura'),cnt('temperatura'),1)+mini(t('canal'),cnt('canal'))+mini(t('campanha'),cnt('campanha'))+'</div>');
   }
+  var op=DB.outros_produtos;
+  if(op){ // vendas de outros produtos para leads do lançamento (agregado, sem nome/e-mail)
+    var ov=op.vendas||[],ob=op.base||{};
+    h+=card(t('dbOutrosProd')+' · '+esc(op.produto||''),esc(op.periodo||''),
+      '<div class="kpis">'+
+        kpi(t('dbNovasAssin'),num(op.novas_assinaturas_periodo),money(op.preco)+' / '+t('dbMes'))+
+        kpi(t('dbNovasDoLanc'),num(ov.length),t('dbCadastroAntes'),'green')+
+        kpi(t('dbAssinCobrados'),num(ob.assinantes_cobrados),t('dbNoPeriodo'))+
+        kpi(t('dbAssinLeads'),num(ob.tambem_leads),fr(ob.pct)+' '+t('dbDaBase'),'blue')+
+      '</div>'+
+      (ov.length?tbl([[t('dbOrigemLead'),'t'],[t('dbPublico'),'t'],[t('criativo'),'t'],[t('dbCadastro')],[t('dbCompra')]],ov.map(function(v){return '<tr>'+tdt(esc(v.origem))+tdt(esc(v.publico))+tdt(esc(v.criativo))+td(esc(v.cadastro))+td(esc(v.compra))+'</tr>'}).join('')):'')+
+      (op.nota?'<div class="note">'+esc(op.nota)+'</div>':''));
+  }
   if(DB.obs)h+='<div class="ins">'+esc(DB.obs)+'</div>';
   return dbCmp()+h;
 };
@@ -944,6 +957,7 @@ pt:{
   dbLeadsTrack:'Leads trackeados',dbLeadsSemTrack:'Leads sem trackeio',dbVendasEnc:'Vendas encontradas na planilha',dbVendasNaoEnc:'Vendas não encontradas',dbDasVendas:'das vendas',dbOrigemNaoId:'origem não identificada',
   dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captação',dbTxConv:'Tx. conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captação',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas do lançamento',dbConvLp:'Conversão de LP',
   dbPublicosVenda:'Públicos com venda (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sem vendas atribuídas a públicos pagos',dbOrganicas:'Vendas orgânicas por origem',dbOrigem:'Origem',dbSemOrganicas:'Sem vendas orgânicas identificadas',dbCriativosVenda:'Criativos com venda',dbSemCriativos:'Sem criativos com venda atribuída',
+  dbOutrosProd:'Outros produtos',dbNovasAssin:'Assinaturas novas',dbMes:'mês',dbNovasDoLanc:'Vindas do lançamento',dbCadastroAntes:'cadastro antes da compra',dbAssinCobrados:'Assinantes cobrados',dbNoPeriodo:'no período',dbAssinLeads:'Também leads do lançamento',dbDaBase:'da base',dbOrigemLead:'Origem do lead',dbCadastro:'Cadastro',dbCompra:'Compra',
   dbCruzamento:'Compradores × planilha de leads',dbCompradores:'Compradores',dbEncontrados:'encontrados',dbNaoEncontrados:'não encontrados',
   ontem:'Ontem','7d':'7d','14d':'14d','30d':'30d',todo:'Todo',limpar:'Limpar',trafPago:'Tráfego Pago',etiquetas:'Etiquetas',claro:'Claro',escuro:'Escuro',
   lancamento:'Lançamento',atualizado:'Atualizado',dadosAte:'Dados até',carregando:'Carregando dados...',semDados:'Sem dados no período selecionado',semThumb:'sem imagem',
@@ -976,6 +990,7 @@ es:{
   dbLeadsTrack:'Leads con trackeo',dbLeadsSemTrack:'Leads sin trackeo',dbVendasEnc:'Ventas encontradas en la planilla',dbVendasNaoEnc:'Ventas no encontradas',dbDasVendas:'de las ventas',dbOrigemNaoId:'origen no identificado',
   dbPlataforma:'Plataforma',dbPorPlataforma:'Métricas por plataforma de captación',dbTxConv:'Tasa conv.',dbTemperatura:'Temperatura',dbPorTemperatura:'Métricas por temperatura de captación',dbGastoFase:'Gasto por fase',dbMetricasLanc:'Métricas del lanzamiento',dbConvLp:'Conversión de LP',
   dbPublicosVenda:'Públicos con venta (Meta Ads)',dbPublico:'Público',dbSemPublicos:'Sin ventas atribuidas a públicos pagos',dbOrganicas:'Ventas orgánicas por origen',dbOrigem:'Origen',dbSemOrganicas:'Sin ventas orgánicas identificadas',dbCriativosVenda:'Creativos con venta',dbSemCriativos:'Sin creativos con venta atribuida',
+  dbOutrosProd:'Otros productos',dbNovasAssin:'Suscripciones nuevas',dbMes:'mes',dbNovasDoLanc:'Provenientes del lanzamiento',dbCadastroAntes:'registro antes de la compra',dbAssinCobrados:'Suscriptores cobrados',dbNoPeriodo:'en el período',dbAssinLeads:'También leads del lanzamiento',dbDaBase:'de la base',dbOrigemLead:'Origen del lead',dbCadastro:'Registro',dbCompra:'Compra',
   dbCruzamento:'Compradores × planilla de leads',dbCompradores:'Compradores',dbEncontrados:'encontrados',dbNaoEncontrados:'no encontrados',
   ontem:'Ayer','7d':'7d','14d':'14d','30d':'30d',todo:'Todo',limpar:'Limpiar',trafPago:'Tráfico Pago',etiquetas:'Etiquetas',claro:'Claro',escuro:'Oscuro',
   lancamento:'Lanzamiento',atualizado:'Actualizado',dadosAte:'Datos hasta',carregando:'Cargando datos...',semDados:'Sin datos en el período seleccionado',semThumb:'sin imagen',
