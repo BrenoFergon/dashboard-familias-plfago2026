@@ -40,7 +40,7 @@
     {"fase": "Replay", "valor": 1521.38, "pct": 0.07995156807},
     {"fase": "Inscripciones Abiertas", "valor": 2038.95, "pct": 0.1071509089}
   ],
-  "metricas_lancamento": {"cpm": 12.06, "connect_rate": 0.7185, "conversao_lp": 0.1697, "ctr": 0.0153},
+  "metricas_lancamento": {"cpm": 12.06, "connect_rate": 0.7185, "conversao_lp": 0.1814, "ctr": 0.0153},
   "publicos_com_venda": [
     {"publico": "00-LAL-Todos os Alunos", "inversion": 1740.2, "ventas": 2, "facturacion": 5200, "roas": 2.9882},
     {"publico": "00-LAL-Seguidores", "inversion": 2513.05, "ventas": 1, "facturacion": 2600, "roas": 1.0346},

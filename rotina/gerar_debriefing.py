@@ -29,6 +29,8 @@ Regras (iguais às do debriefing AGO26):
   - Não encontrado: comprou com e-mail diferente do cadastro. Ventas/faturamento desta linha são o
     resíduo entre o total oficial e o atribuído.
   - Gasto por público/criativo é o do conjunto/anúncio inteiro (somado entre campanhas).
+  - Conversão de LP (mesma regra em todos os lançamentos): leads de anúncio da planilha (quente + frio, sem os de UTM
+    quebrada) ÷ visualizações da página de destino do Meta Ads, só campanhas de captação. Não usar a contagem do pixel.
 """
 import argparse, json, os, collections as C
 import openpyxl
