@@ -29,8 +29,8 @@ Regras (iguais às do debriefing AGO26):
   - Não encontrado: comprou com e-mail diferente do cadastro. Ventas/faturamento desta linha são o
     resíduo entre o total oficial e o atribuído.
   - Gasto por público/criativo é o do conjunto/anúncio inteiro (somado entre campanhas).
-  - Conversão de LP (mesma regra em todos os lançamentos): leads de anúncio da planilha (quente + frio, sem os de UTM
-    quebrada) ÷ visualizações da página de destino do Meta Ads, só campanhas de captação. Não usar a contagem do pixel.
+  - Conversão de LP (mesma regra em todos os lançamentos): leads de anúncio da planilha (quente + frio + os de UTM
+    quebrada, que também vieram de anúncio) ÷ visualizações da página de destino do Meta Ads, só campanhas de captação. Não usar a contagem do pixel.
 """
 import argparse, json, os, collections as C
 import openpyxl
@@ -40,6 +40,9 @@ FASES = ['Captación', 'Recordatório', 'Assistência', 'Replay', 'Inscripciones
 
 def div(a, b, nd=4):
     return round(a / b, nd) if b else None
+
+def br(v):  # 31021.44 -> 31.021,44
+    return f'{v:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
 def linha(nome, inv, leads, ventas, ticket, fact=None):
     fact = ventas * ticket if fact is None else fact
@@ -88,10 +91,12 @@ def main():
     for l in L:
         if l['t'] == 'HOT': ld['Caliente'] += l['n']
         elif l['t'] == 'COLD': ld['Frio'] += l['n']
+        elif '{{' in (l['c'] + l['a'] + l['an']): ld['SemCampanha'] += l['n']  # anúncio com UTM quebrada
         elif l['a'] in ('whatsapp', 'email', 'instagram') and not l['rt']: ld['Orgánico'] += l['n']
         else: ld['Sin Trackeo'] += l['n']
-    leads_total = sum(ld.values()); track = ld['Caliente'] + ld['Frio']
-    quebrada = sum(l['n'] for l in L if '{{' in (l['c'] + l['a'] + l['an']))  # macros do Meta não substituídas
+    leads_total = sum(ld.values()); track = ld['Caliente'] + ld['Frio'] + ld['SemCampanha']  # leads de anúncio (cadastros)
+    quebrada = ld['SemCampanha']
+    pessoas = sum((d.get('lead_scoring') or {}).get('totais', {}).values()) or None  # o scoring conta pessoas (e-mail único)
 
     # ---- compradores
     ws = openpyxl.load_workbook(a.compradores, data_only=True).active
@@ -126,33 +131,41 @@ def main():
     pagas = vt['Caliente'] + vt['Frio']; achadas = pagas + vt['Orgánico']
     nao = a.ventas - achadas
 
+    def sem_inv(r):  # linhas sem investimento próprio: sem CPL/CAC/ROAS
+        r.update(inversion=None, cpl=None, cac=None, roas=None); return r
     temp = [linha('Caliente', sp_temp['Caliente'], ld['Caliente'], vt['Caliente'], ticket),
             linha('Frio', sp_temp['Frio'], ld['Frio'], vt['Frio'], ticket),
+            sem_inv(dict(linha('Anúncio sem campanha', 0, quebrada, 0, ticket), nome_es='Anuncio sin campaña')),
             linha('Orgánico', 0, ld['Orgánico'], vt['Orgánico'], ticket),
-            linha('Sin Trackeo', 0, ld['Sin Trackeo'], nao, ticket, fact_total - achadas * ticket)]
-    tot = linha('TOTAL', sp_capt, leads_total, a.ventas, ticket, fact_total)
-    plat = linha('', sp_capt, track, pagas, ticket); plat.pop('nome')  # só leads de anúncio (quente + frio)
-    sem_utm = ld['Sin Trackeo'] - quebrada
-    nota_t = (f'Sin Trackeo reúne {ld["Sin Trackeo"]} leads sem origem identificável ({sem_utm} sem UTM e {quebrada} com UTM quebrada, '
-              f'que vieram dos anúncios mas sem o nome da campanha) e {nao} vendas de quem comprou com e-mail diferente do cadastro, '
-              f'sem lead correspondente. CPL e CAC só existem nas linhas com investimento.')
-    nota_t_es = (f'Sin Trackeo reúne {ld["Sin Trackeo"]} leads sin origen identificable ({sem_utm} sin UTM y {quebrada} con UTM rota, '
-                 f'que vinieron de los anuncios pero sin el nombre de la campaña) y {nao} ventas de quienes compraron con un email distinto '
-                 f'al del registro, sin lead correspondiente. CPL y CAC solo existen en las líneas con inversión.')
+            dict(linha('Sin Trackeo', 0, ld['Sin Trackeo'], nao, ticket, fact_total - achadas * ticket), tasa_conversion=None),
+            dict(linha('Replay', inv_total - sp_capt, None, 0, ticket), leads=None, cpl=None, cac=None, roas=None, tasa_conversion=None)]
+    # Total: CPL só com captação; CAC e ROAS com o investimento total (inclui Replay)
+    tot = dict(linha('TOTAL', inv_total, leads_total, a.ventas, ticket, fact_total), cpl=div(sp_capt, leads_total, 2))
+    plat = dict(linha('', inv_total, track, pagas, ticket), cpl=div(sp_capt, track, 2)); plat.pop('nome')
+    nota_t = (f'Anúncio sem campanha: {quebrada} leads que vieram dos anúncios com a UTM quebrada; contam como leads de anúncio no CPL pago, '
+              f'mas não dá para saber de qual campanha vieram. Sin Trackeo: {ld["Sin Trackeo"]} leads sem UTM e {nao} vendas de quem comprou '
+              f'com e-mail diferente do cadastro (sem lead correspondente, por isso sem taxa de conversão). Replay: gasto depois da captação, '
+              f'que entra no CAC e no ROAS do total mas não no CPL. Leads são cadastros: uma pessoa pode se cadastrar mais de uma vez.')
+    nota_t_es = (f'Anuncio sin campaña: {quebrada} leads que vinieron de los anuncios con la UTM rota; cuentan como leads de anuncios en el CPL de pago, '
+                 f'pero no se puede saber de qué campaña vinieron. Sin Trackeo: {ld["Sin Trackeo"]} leads sin UTM y {nao} ventas de quienes compraron '
+                 f'con un email distinto al del registro (sin lead correspondiente, por eso sin tasa de conversión). Replay: gasto posterior a la captación, '
+                 f'que entra en el CAC y el ROAS del total pero no en el CPL. Los leads son registros: una persona puede registrarse más de una vez.')
     zero = {'inversion': 0, 'leads': 0, 'cpl': None, 'ventas': 0, 'cac': None, 'tasa_conversion': 0, 'facturacion': 0, 'roas': None}
     ld_meta = sum(x.get('ld', 0) for x in A)
     imp = sum(x['imp'] for x in A); lc = sum(x['lc'] for x in A); pv = sum(x['pv'] for x in A)
 
     out = {
         'launch': a.id, 'label': a.label, 'status': a.status, 'atualizado_em': a.atualizado, 'ticket_price': ticket,
-        'metricas_gerais': {'inversion_total': round(inv_total, 2), 'leads': leads_total, 'cpl': div(sp_capt, leads_total, 2), 'cpl_pago': div(sp_capt, track, 2), 'leads_pagos': track,
+        'metricas_gerais': {'inversion_total': round(inv_total, 2), 'leads': leads_total, 'cpl': div(sp_capt, leads_total, 2), 'cpl_pago': div(sp_capt, track, 2), 'leads_pagos': track, 'pessoas_unicas': pessoas,
                             'total_ventas': a.ventas, 'reembolso': len(reemb), 'ventas_trackeadas': achadas,
                             'cac': div(inv_total, a.ventas, 2), 'tasa_conversion': a.ventas / leads_total,
                             'facturacion': fact_total, 'roas': div(a.facturacion, inv_total)},
         'plataforma': {'meta_ads': plat, 'google_ads': zero, 'total': dict(plat)},
         'temperatura': temp, 'temperatura_total': tot,
+        'plataforma_nota': f'O CPL usa só o gasto de captação (€{br(sp_capt)}); CAC e ROAS usam o investimento total, com o Replay (€{br(inv_total)}).',
+        'plataforma_nota_es': f'El CPL usa solo el gasto de captación ({br(sp_capt)} €); CAC y ROAS usan la inversión total, con el Replay ({br(inv_total)} €).',
         'nao_encontrado': None, 'temperatura_nota': nota_t, 'temperatura_nota_es': nota_t_es, 'utm_quebrada': quebrada,
-        'trackeamento': {'leads': {'total': leads_total, 'trackeado': track, 'sin_trackeo': leads_total - track,
+        'trackeamento': {'leads': {'total': leads_total, 'trackeado': track, 'sin_trackeo': leads_total - track, 'organico': ld['Orgánico'], 'sem_utm': ld['Sin Trackeo'],
                                    'pct_trackeado': track / leads_total, 'pct_sin_trackeo': 1 - track / leads_total},
                          'ventas': {'total': a.ventas, 'encontradas_na_planilha': achadas, 'nao_encontradas': nao,
                                     'pct_encontradas': achadas / a.ventas}},

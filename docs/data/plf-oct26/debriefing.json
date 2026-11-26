@@ -8,8 +8,9 @@
     "inversion_total": 31521.21,
     "leads": 5017,
     "cpl": 6.18,
-    "cpl_pago": 7.49,
-    "leads_pagos": 4140,
+    "cpl_pago": 7.42,
+    "leads_pagos": 4179,
+    "pessoas_unicas": 4596,
     "total_ventas": 41,
     "reembolso": 1,
     "ventas_trackeadas": 33,
@@ -20,14 +21,14 @@
   },
   "plataforma": {
     "meta_ads": {
-      "inversion": 31021.44,
-      "leads": 4140,
-      "cpl": 7.49,
+      "inversion": 31521.21,
+      "leads": 4179,
+      "cpl": 7.42,
       "ventas": 24,
-      "cac": 1292.56,
-      "tasa_conversion": 0.005797101449275362,
+      "cac": 1313.38,
+      "tasa_conversion": 0.00574300071787509,
       "facturacion": 62328,
-      "roas": 2.0092
+      "roas": 1.9773
     },
     "google_ads": {
       "inversion": 0,
@@ -40,14 +41,14 @@
       "roas": null
     },
     "total": {
-      "inversion": 31021.44,
-      "leads": 4140,
-      "cpl": 7.49,
+      "inversion": 31521.21,
+      "leads": 4179,
+      "cpl": 7.42,
       "ventas": 24,
-      "cac": 1292.56,
-      "tasa_conversion": 0.005797101449275362,
+      "cac": 1313.38,
+      "tasa_conversion": 0.00574300071787509,
       "facturacion": 62328,
-      "roas": 2.0092
+      "roas": 1.9773
     }
   },
   "temperatura": [
@@ -74,6 +75,18 @@
       "roas": 1.7534
     },
     {
+      "nome": "Anúncio sem campanha",
+      "inversion": null,
+      "leads": 39,
+      "cpl": null,
+      "ventas": 0,
+      "cac": null,
+      "tasa_conversion": 0.0,
+      "facturacion": 0,
+      "roas": null,
+      "nome_es": "Anuncio sin campaña"
+    },
+    {
       "nome": "Orgánico",
       "inversion": 0,
       "leads": 772,
@@ -87,37 +100,52 @@
     {
       "nome": "Sin Trackeo",
       "inversion": 0,
-      "leads": 105,
+      "leads": 66,
       "cpl": null,
       "ventas": 8,
       "cac": null,
-      "tasa_conversion": 0.0761904761904762,
+      "tasa_conversion": null,
       "facturacion": 20776,
+      "roas": null
+    },
+    {
+      "nome": "Replay",
+      "inversion": 499.77,
+      "leads": null,
+      "cpl": null,
+      "ventas": 0,
+      "cac": null,
+      "tasa_conversion": null,
+      "facturacion": 0,
       "roas": null
     }
   ],
   "temperatura_total": {
     "nome": "TOTAL",
-    "inversion": 31021.44,
+    "inversion": 31521.21,
     "leads": 5017,
     "cpl": 6.18,
     "ventas": 41,
-    "cac": 756.62,
+    "cac": 768.81,
     "tasa_conversion": 0.008172214470799282,
     "facturacion": 106477,
-    "roas": 3.4324
+    "roas": 3.3779
   },
+  "plataforma_nota": "O CPL usa só o gasto de captação (€31.021,44); CAC e ROAS usam o investimento total, com o Replay (€31.521,21).",
+  "plataforma_nota_es": "El CPL usa solo el gasto de captación (31.021,44 €); CAC y ROAS usan la inversión total, con el Replay (31.521,21 €).",
   "nao_encontrado": null,
-  "temperatura_nota": "Sin Trackeo reúne 105 leads sem origem identificável (66 sem UTM e 39 com UTM quebrada, que vieram dos anúncios mas sem o nome da campanha) e 8 vendas de quem comprou com e-mail diferente do cadastro, sem lead correspondente. CPL e CAC só existem nas linhas com investimento.",
-  "temperatura_nota_es": "Sin Trackeo reúne 105 leads sin origen identificable (66 sin UTM y 39 con UTM rota, que vinieron de los anuncios pero sin el nombre de la campaña) y 8 ventas de quienes compraron con un email distinto al del registro, sin lead correspondiente. CPL y CAC solo existen en las líneas con inversión.",
+  "temperatura_nota": "Anúncio sem campanha: 39 leads que vieram dos anúncios com a UTM quebrada; contam como leads de anúncio no CPL pago, mas não dá para saber de qual campanha vieram. Sin Trackeo: 66 leads sem UTM e 8 vendas de quem comprou com e-mail diferente do cadastro (sem lead correspondente, por isso sem taxa de conversão). Replay: gasto depois da captação, que entra no CAC e no ROAS do total mas não no CPL. Leads são cadastros: uma pessoa pode se cadastrar mais de uma vez.",
+  "temperatura_nota_es": "Anuncio sin campaña: 39 leads que vinieron de los anuncios con la UTM rota; cuentan como leads de anuncios en el CPL de pago, pero no se puede saber de qué campaña vinieron. Sin Trackeo: 66 leads sin UTM y 8 ventas de quienes compraron con un email distinto al del registro (sin lead correspondiente, por eso sin tasa de conversión). Replay: gasto posterior a la captación, que entra en el CAC y el ROAS del total pero no en el CPL. Los leads son registros: una persona puede registrarse más de una vez.",
   "utm_quebrada": 39,
   "trackeamento": {
     "leads": {
       "total": 5017,
-      "trackeado": 4140,
-      "sin_trackeo": 877,
-      "pct_trackeado": 0.8251943392465617,
-      "pct_sin_trackeo": 0.17480566075343829
+      "trackeado": 4179,
+      "sin_trackeo": 838,
+      "organico": 772,
+      "sem_utm": 66,
+      "pct_trackeado": 0.8329679091090293,
+      "pct_sin_trackeo": 0.1670320908909707
     },
     "ventas": {
       "total": 41,
@@ -156,7 +184,7 @@
   "metricas_lancamento": {
     "cpm": 12.73,
     "connect_rate": 0.7491,
-    "conversao_lp": 0.1394,
+    "conversao_lp": 0.1407,
     "ctr": 0.0163
   },
   "publicos_com_venda": [

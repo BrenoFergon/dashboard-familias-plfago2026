@@ -333,9 +333,9 @@ function adsR(){return (D.anuncios||[]).filter(function(r){return inR(r.d)&&camp
 function segR(k){return ((D.segmentos||{})[k]||[]).filter(function(r){return inR(r.d)&&campOk(r)})}
 function leadsR(){return (D.leads||[]).filter(function(r){return inR(r.d)})}
 /* leads que entram no CPL: com config.cpl_so_com_termo, só os cujo utm_term casa com uma campanha do Meta (r.rt) */
-/* UTM quebrada: o Meta não trocou as macros ({{campaign.name}} etc.). Vieram de anúncio, mas sem campanha/conjunto/anúncio: ficam fora do CPL e da taxa de conversão */
+/* UTM quebrada: o Meta não trocou as macros ({{campaign.name}} etc.). Vieram de anúncio: contam no CPL, mas sem campanha/conjunto/anúncio (fora de quente/frio) */
 function utmQ(r){return /\{\{/.test((r.c||'')+(r.a||'')+(r.an||''))}
-function leadsCpl(){var L=leadsR().filter(function(r){return !utmQ(r)});return D.config.cpl_so_com_termo?L.filter(function(r){return r.rt}):L}
+function leadsCpl(){var L=leadsR();return D.config.cpl_so_com_termo?L.filter(function(r){return r.rt||utmQ(r)}):L}
 /* melhores criativos (modo leads): ranking combinado por maior CTR e menor CPL */
 function melhoresCriativos(){
   var ads=agg(adsR(),function(r){return r.an}),L=leadsCpl();
@@ -539,7 +539,7 @@ PAGE.captacao=function(){
     if(nq){var q0=Q[0],cd=function(x){return '<code>'+esc(x)+'</code>'};
       h+=card(t('utmQTit').replace('{n}',num(nq)),null,'<div class="utmq">'+t('utmQ1').replace('{n}',num(nq))+' '+
         cd('utm_term = '+q0.c)+', '+cd('utm_medium = '+q0.a)+' '+t('e')+' '+cd('utm_content = '+q0.an)+'. '+
-        t('utmQ2').replace('{h}',num(T.HOT.lc)).replace('{c}',num(T.COLD.lc)).replace('{t}',num(T.HOT.lc+T.COLD.lc))+'</div>');}
+        t('utmQ2').replace('{h}',num(T.HOT.lc)).replace('{c}',num(T.COLD.lc)).replace('{q}',num(nq)).replace('{t}',num(T.HOT.lc+T.COLD.lc+nq))+'</div>');}
   }
   h+=card(D.config.funil_titulo||t('funilTit'),null,funnelHtml(k));
   var dc=dailyCard();
@@ -733,7 +733,7 @@ PAGE.pais=function(){
   var C=PAISSEL,sp=inv[C]||0;
   var h='<div class="pills">'+list.map(function(c){return '<button class="pl '+(c===C?'on':'')+'" data-act="pais" data-v="'+esc(c)+'">'+esc(CTRY[c]||c)+'</button>'}).join('')+'</div>';
   var V=md?[]:vendasP().filter(function(r){return r.ps===C}),Ld=md?leadsR().filter(function(r){return r.ps===C}):[];
-  var n=md?sum(Ld,'n'):V.length,f=sum(V,'v'),nC=md?sum(Ld.filter(function(r){return (!D.config.cpl_so_com_termo||r.rt)&&!utmQ(r)}),'n'):n;
+  var n=md?sum(Ld,'n'):V.length,f=sum(V,'v'),nC=md?sum(Ld.filter(function(r){return !D.config.cpl_so_com_termo||r.rt||utmQ(r)}),'n'):n;
   h+='<div class="kpis">'+kpi(t('invest'),money(sp),CTRY[C]||C,'dark')+
     (md?kpi(t('leads'),num(n),null,'blue')+kpi('CPL',money(div(sp,nC)),null,cls('cpl',div(sp,nC))||'green')
        :kpi(t('fatTotal'),money(f),num(n)+' '+t('vendas').toLowerCase()+' · '+t('viaUtm'),'green')+kpi('ROAS',xf(div(f,sp)),t('fact')+' / '+t('invers'),cls('roas',div(f,sp))||'bad'))+'</div>';
@@ -874,7 +874,7 @@ PAGE.debriefing=function(){
   h+='<div class="kpis">'+
     kpi(t('dbInvTotal'),money(mg.inversion_total),t('dbTodasFases'),'dark')+
     (mg.cpl_pago!=null?kpi(t('dbCplPago'),money(mg.cpl_pago),num(mg.leads_pagos)+' '+t('dbLeadsAnuncio'),'blue')+
-      kpi(t('dbCplGeral')+tipI(t('dbCplTip')),money(mg.cpl),num(mg.leads)+' '+t('dbTodosLeads')):
+      kpi(t('dbCplGeral')+tipI(t('dbCplTip')),money(mg.cpl),num(mg.leads)+' '+t('dbTodosLeads')+(mg.pessoas_unicas?' · '+num(mg.pessoas_unicas)+' '+t('dbPessoas'):'')):
       kpi('CPL',money(mg.cpl),num(mg.leads)+' '+t('leads').toLowerCase(),'blue'))+
     kpi(t('dbTotalVendas'),num(mg.total_ventas),t('dbReembolso')+': '+num(mg.reembolso||0),'orange')+
     kpi('CAC',money(mg.cac),fr(mg.tasa_conversion)+' '+t('dbConversao'),'blue')+
@@ -889,7 +889,7 @@ PAGE.debriefing=function(){
   var tk=DB.trackeamento||{},tl=tk.leads||{},tv=tk.ventas||{};
   if(tk.leads||tk.ventas)h+='<div class="kpis">'+
     kpi(t('dbLeadsTrack'),num(tl.trackeado),fr(tl.pct_trackeado)+' '+t('doTotal'))+
-    kpi(t('dbLeadsSemTrack'),num(tl.sin_trackeo),fr(tl.pct_sin_trackeo)+' '+t('doTotal'))+
+    kpi(t('dbLeadsSemTrack'),num(tl.sin_trackeo),tl.organico!=null?num(tl.organico)+' '+t('dbOrganicos')+' + '+num(tl.sem_utm)+' '+t('dbSemUtm'):fr(tl.pct_sin_trackeo)+' '+t('doTotal'))+
     kpi(t('dbVendasEnc'),num(tv.encontradas_na_planilha),fr(tv.pct_encontradas)+' '+t('dbDasVendas'),'green')+
     kpi(t('dbVendasNaoEnc'),num(tv.nao_encontradas),t('dbOrigemNaoId'),'bad')+
   '</div>';
@@ -901,8 +901,8 @@ PAGE.debriefing=function(){
   }
   var pl=DB.plataforma||{};
   cols[0][0]=t('dbPlataforma');
-  h+=card(t('dbPorPlataforma'),null,tbl(cols,linha('Meta Ads',pl.meta_ads)+linha('Google Ads',pl.google_ads)+linha(t('total'),pl.total,'tot')));
-  var tb=(DB.temperatura||[]).map(function(r){return linha(r.nome,r,'',1)}).join('')+linha(t('total'),DB.temperatura_total,'tot');
+  h+=card(t('dbPorPlataforma'),null,tbl(cols,linha('Meta Ads',pl.meta_ads)+linha('Google Ads',pl.google_ads)+linha(t('total'),pl.total,'tot'))+(DB.plataforma_nota?'<div class="note">'+esc(tj(DB,'plataforma_nota'))+'</div>':''));
+  var tb=(DB.temperatura||[]).map(function(r){return linha(tj(r,'nome'),r,'',1)}).join('')+linha(t('total'),DB.temperatura_total,'tot');
   var ne=DB.nao_encontrado;
   if(ne)tb+='<tr class="ne">'+tdt('<span class="tg no">'+esc(tj(ne,'nome'))+'</span>')+td('—')+td('—')+td('—')+td(num(ne.ventas))+td('—')+td('—')+td(money(ne.facturacion))+td('—')+'</tr>';
   cols[0][0]=t('dbTemperatura');
@@ -979,7 +979,7 @@ pt:{
   lancamento:'Lançamento',atualizado:'Atualizado',dadosAte:'Dados até',carregando:'Carregando dados...',semDados:'Sem dados no período selecionado',semThumb:'sem imagem',
   gDia:'Diário',gSem:'Semanal',gMes:'Mensal',
   invest:'Investimento',invers:'Invest.',metaAds:'Meta Ads',fatTotal:'Faturamento total',fatUp:'Faturamento upsell',doTotal:'do total',vendas:'Vendas',leads:'Leads',
-  leadsAnuncio:'Leads de anúncio',e:'e',utmQTit:'{n} leads com UTM quebrada',utmQ1:'Esses {n} leads vieram dos anúncios do Meta, mas o Meta não trocou as variáveis do link pelos nomes reais. Em vez do nome da campanha, a planilha recebeu',utmQ2:'Esse formato entre chaves só existe nos links dos anúncios, então com certeza é tráfego pago, mas não dá para saber de qual campanha, conjunto ou anúncio veio. Por isso eles ficam fora do CPL, de quente/frio e da taxa de conversão: o CPL é o investimento dividido pelos {t} leads de anúncio ({h} quentes + {c} frios). Não é erro de cálculo.',dbCplPago:'CPL pago',dbCplGeral:'CPL geral',dbLeadsAnuncio:'leads de anúncio',dbTodosLeads:'leads no total',dbCplTip:'CPL pago: investimento em anúncios ÷ leads que vieram dos anúncios (quentes + frios). É o mesmo CPL da aba Captação.\nCPL geral: o mesmo investimento ÷ todos os leads do lançamento, incluindo orgânicos (WhatsApp, e-mail, Instagram) e sem UTM. Mostra o custo por lead do lançamento como um todo.',custoLead:'investimento / leads de anúncio',diasAtivos:'dias ativos',leadsSobrePv:'leads de anúncio / page views',txConvLead:'Taxa de conversão (Lead/PV)',comUpsells:'com upsells',
+  leadsAnuncio:'Leads de anúncio',e:'e',utmQTit:'{n} leads de anúncio sem campanha identificada (UTM quebrada)',utmQ1:'Esses {n} leads vieram dos anúncios do Meta, mas o Meta não trocou as variáveis do link pelos nomes reais. Em vez do nome da campanha, a planilha recebeu',utmQ2:'Esse formato entre chaves só existe nos links dos anúncios, então com certeza é tráfego pago, mas não dá para saber de qual campanha, conjunto ou anúncio veio. Por isso eles contam no CPL e na taxa de conversão, mas ficam fora de quente e frio: o CPL é o investimento dividido pelos {t} leads de anúncio ({h} quentes + {c} frios + {q} sem campanha). Não é erro de cálculo.',dbCplPago:'CPL pago',dbOrganicos:'orgânicos',dbSemUtm:'sem UTM',dbPessoas:'pessoas únicas',dbCplGeral:'CPL geral',dbLeadsAnuncio:'leads de anúncio',dbTodosLeads:'cadastros no total',dbCplTip:'CPL pago: investimento em anúncios ÷ leads que vieram dos anúncios (quentes, frios e sem campanha). É o mesmo CPL da aba Captação.\nCPL geral: o mesmo investimento ÷ todos os leads do lançamento, incluindo orgânicos (WhatsApp, e-mail, Instagram) e sem UTM. Mostra o custo por lead do lançamento como um todo.\nNos dois, leads são cadastros: uma pessoa pode se cadastrar mais de uma vez.',custoLead:'investimento / leads de anúncio',diasAtivos:'dias ativos',leadsSobrePv:'leads de anúncio / page views',txConvLead:'Taxa de conversão (Lead/PV)',comUpsells:'com upsells',
   quente:'Quente (HOT)',frio:'Frio (COLD)',outro:'Outro',orcamento:'Orçamento',
   funilTit:'Funil de captação',impressoes:'Impressões',cliques:'Link Clicks',pv:'Page Views',initCk:'Init Checkout',compras:'Compras',
   txInit:'Tx. Init Checkout',txCheckout:'Taxa Checkout',txConvPv:'Taxa de conversão (PV→Compra)',
@@ -1012,7 +1012,7 @@ es:{
   lancamento:'Lanzamiento',atualizado:'Actualizado',dadosAte:'Datos hasta',carregando:'Cargando datos...',semDados:'Sin datos en el período seleccionado',semThumb:'sin imagen',
   gDia:'Diario',gSem:'Semanal',gMes:'Mensual',
   invest:'Inversión',invers:'Invers.',metaAds:'Meta Ads',fatTotal:'Facturación total',fatUp:'Facturación upsell',doTotal:'del total',vendas:'Ventas',leads:'Leads',
-  leadsAnuncio:'Leads de anuncios',e:'y',utmQTit:'{n} leads con UTM rota',utmQ1:'Estos {n} leads vinieron de los anuncios de Meta, pero Meta no reemplazó las variables del enlace por los nombres reales. En lugar del nombre de la campaña, la planilla recibió',utmQ2:'Este formato entre llaves solo existe en los enlaces de los anuncios, así que es tráfico de pago con certeza, pero no se puede saber de qué campaña, conjunto o anuncio vino. Por eso quedan fuera del CPL, de caliente/frío y de la tasa de conversión: el CPL es la inversión dividida entre los {t} leads de anuncios ({h} calientes + {c} fríos). No es un error de cálculo.',dbCplPago:'CPL de pago',dbCplGeral:'CPL general',dbLeadsAnuncio:'leads de anuncios',dbTodosLeads:'leads en total',dbCplTip:'CPL de pago: inversión en anuncios ÷ leads que vinieron de los anuncios (calientes + fríos). Es el mismo CPL de la pestaña Captación.\nCPL general: la misma inversión ÷ todos los leads del lanzamiento, incluidos orgánicos (WhatsApp, email, Instagram) y sin UTM. Muestra el costo por lead del lanzamiento en su conjunto.',custoLead:'inversión / leads de anuncios',diasAtivos:'días activos',leadsSobrePv:'leads de anuncios / page views',txConvLead:'Tasa de conversión (Lead/PV)',comUpsells:'con upsells',
+  leadsAnuncio:'Leads de anuncios',e:'y',utmQTit:'{n} leads de anuncios sin campaña identificada (UTM rota)',utmQ1:'Estos {n} leads vinieron de los anuncios de Meta, pero Meta no reemplazó las variables del enlace por los nombres reales. En lugar del nombre de la campaña, la planilla recibió',utmQ2:'Este formato entre llaves solo existe en los enlaces de los anuncios, así que es tráfico de pago con certeza, pero no se puede saber de qué campaña, conjunto o anuncio vino. Por eso cuentan en el CPL y en la tasa de conversión, pero quedan fuera de caliente y frío: el CPL es la inversión dividida entre los {t} leads de anuncios ({h} calientes + {c} fríos + {q} sin campaña). No es un error de cálculo.',dbCplPago:'CPL de pago',dbOrganicos:'orgánicos',dbSemUtm:'sin UTM',dbPessoas:'personas únicas',dbCplGeral:'CPL general',dbLeadsAnuncio:'leads de anuncios',dbTodosLeads:'registros en total',dbCplTip:'CPL de pago: inversión en anuncios ÷ leads que vinieron de los anuncios (calientes, fríos y sin campaña). Es el mismo CPL de la pestaña Captación.\nCPL general: la misma inversión ÷ todos los leads del lanzamiento, incluidos orgánicos (WhatsApp, email, Instagram) y sin UTM. Muestra el costo por lead del lanzamiento en su conjunto.\nEn ambos, los leads son registros: una persona puede registrarse más de una vez.',custoLead:'inversión / leads de anuncios',diasAtivos:'días activos',leadsSobrePv:'leads de anuncios / page views',txConvLead:'Tasa de conversión (Lead/PV)',comUpsells:'con upsells',
   quente:'Caliente (HOT)',frio:'Frío (COLD)',outro:'Otro',orcamento:'Presupuesto',
   funilTit:'Embudo de captación',impressoes:'Impresiones',cliques:'Link Clicks',pv:'Page Views',initCk:'Init Checkout',compras:'Compras',
   txInit:'Tx. Init Checkout',txCheckout:'Tasa Checkout',txConvPv:'Tasa de conversión (PV→Compra)',
