@@ -956,14 +956,14 @@ function dbCmp(){
       .then(function(){var el=$('#dbCmp');if(el&&S.page==='debriefing')el.outerHTML=dbCmp()})});
     return '<div id="dbCmp">'+card(t('dbComparativo'),null,'<div class="load" style="height:80px">'+t('carregando')+'</div>')+'</div>';
   }
-  var rows=Ls.filter(function(L){return DBC[L.id]}).map(function(L){return [L,DBC[L.id].metricas_gerais||{}]});
+  var rows=Ls.filter(function(L){return DBC[L.id]}).map(function(L){var d=DBC[L.id],m=Object.assign({},d.metricas_gerais||{}),ml=d.metricas_lancamento||{};m.cpm=ml.cpm;m.connect_rate=ml.connect_rate;m.conversao_lp=ml.conversao_lp;m.ctr=ml.ctr;return [L,m]});
   function best(f,min){var v=rows.map(function(r){return r[1][f]}).filter(ok);return v.length>1?(min?Math.min:Math.max).apply(null,v):null}
-  var b={cpl:best('cpl',1),cac:best('cac',1),tasa_conversion:best('tasa_conversion'),roas:best('roas')};
+  var b={cpl:best('cpl',1),cac:best('cac',1),tasa_conversion:best('tasa_conversion'),roas:best('roas'),cpm:best('cpm',1),connect_rate:best('connect_rate'),conversao_lp:best('conversao_lp'),ctr:best('ctr')};
   function c(f,v){return b[f]!=null&&v===b[f]?'good':''}
   var body=rows.map(function(x){var L=x[0],m=x[1],cur=L.id===S.launch;
     return '<tr class="lk'+(cur?' cur':'')+'" data-act="launch" data-v="'+esc(L.id)+'" title="'+t('dbCmpAbrir')+'">'+tdt(esc(L.label||L.id)+(cur?' <span class="tg org">'+t('dbAberto')+'</span>':''))+
-      td(money(m.inversion_total))+td(num(m.leads))+td(money(m.cpl),c('cpl',m.cpl))+td(num(m.total_ventas))+td(money(m.cac),c('cac',m.cac))+td(fr(m.tasa_conversion),c('tasa_conversion',m.tasa_conversion))+td(money(m.facturacion))+td(xf(m.roas),c('roas',m.roas))+'</tr>'}).join('');
-  return '<div id="dbCmp">'+card(t('dbComparativo'),t('dbCmpSub'),tbl([[t('lancamento'),'t'],[t('invers')],[t('leads')],['CPL'],[t('vendas')],['CAC'],[t('dbTxConv')],[t('fact')],['ROAS']],body))+'</div>';
+      td(money(m.inversion_total))+td(num(m.leads))+td(money(m.cpl),c('cpl',m.cpl))+td(num(m.total_ventas))+td(money(m.cac),c('cac',m.cac))+td(fr(m.tasa_conversion),c('tasa_conversion',m.tasa_conversion))+td(money(m.facturacion))+td(xf(m.roas),c('roas',m.roas))+td(money(m.cpm),c('cpm',m.cpm))+td(fr(m.connect_rate),c('connect_rate',m.connect_rate))+td(fr(m.conversao_lp),c('conversao_lp',m.conversao_lp))+td(fr(m.ctr),c('ctr',m.ctr))+'</tr>'}).join('');
+  return '<div id="dbCmp">'+card(t('dbComparativo'),t('dbCmpSub'),tbl([[t('lancamento'),'t'],[t('invers')],[t('leads')],['CPL'],[t('vendas')],['CAC'],[t('dbTxConv')],[t('fact')],['ROAS'],['CPM'],['Connect Rate'],[t('dbConvLp')],['CTR']],body))+'</div>';
 }
 
 var I18N={
