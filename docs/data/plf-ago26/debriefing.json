@@ -14,16 +14,18 @@
     "cac": 603.47,
     "tasa_conversion": 0.008970438328236493,
     "facturacion": 111268,
-    "roas": 4.1905
+    "roas": 4.1905,
+    "cpl_pago": 6.32,
+    "leads_pagos": 4120
   },
   "plataforma": {
     "meta_ads": {
       "inversion": 26052.58,
-      "leads": 4905,
-      "cpl": 5.31,
+      "leads": 4120,
+      "cpl": 6.32,
       "ventas": 22,
       "cac": 1184.21,
-      "tasa_conversion": 0.004485219164118246,
+      "tasa_conversion": 0.005339805825242718,
       "facturacion": 57134,
       "roas": 2.193
     },
@@ -39,11 +41,11 @@
     },
     "total": {
       "inversion": 26052.58,
-      "leads": 4905,
-      "cpl": 5.31,
+      "leads": 4120,
+      "cpl": 6.32,
       "ventas": 22,
       "cac": 1184.21,
-      "tasa_conversion": 0.004485219164118246,
+      "tasa_conversion": 0.005339805825242718,
       "facturacion": 57134,
       "roas": 2.193
     }
@@ -77,7 +79,7 @@
       "leads": 719,
       "cpl": null,
       "ventas": 8,
-      "cac": 0,
+      "cac": null,
       "tasa_conversion": 0.011126564673157162,
       "facturacion": 20776,
       "roas": null

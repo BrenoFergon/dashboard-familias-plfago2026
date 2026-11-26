@@ -42,7 +42,7 @@ def div(a, b, nd=4):
 def linha(nome, inv, leads, ventas, ticket, fact=None):
     fact = ventas * ticket if fact is None else fact
     return {'nome': nome, 'inversion': round(inv, 2), 'leads': leads, 'cpl': div(inv, leads, 2) if inv else None,
-            'ventas': ventas, 'cac': (div(inv, ventas, 2) if ventas else None) if inv else (0 if ventas else None),
+            'ventas': ventas, 'cac': div(inv, ventas, 2) if inv and ventas else None,
             'tasa_conversion': (ventas / leads) if leads else 0, 'facturacion': fact,
             'roas': div(fact, inv) if inv else None}
 
@@ -89,6 +89,7 @@ def main():
         elif l['a'] in ('whatsapp', 'email', 'instagram') and not l['rt']: ld['Orgánico'] += l['n']
         else: ld['Sin Trackeo'] += l['n']
     leads_total = sum(ld.values()); track = ld['Caliente'] + ld['Frio']
+    quebrada = sum(l['n'] for l in L if '{{' in (l['c'] + l['a'] + l['an']))  # macros do Meta não substituídas
 
     # ---- compradores
     ws = openpyxl.load_workbook(a.compradores, data_only=True).active
@@ -126,31 +127,35 @@ def main():
     temp = [linha('Caliente', sp_temp['Caliente'], ld['Caliente'], vt['Caliente'], ticket),
             linha('Frio', sp_temp['Frio'], ld['Frio'], vt['Frio'], ticket),
             linha('Orgánico', 0, ld['Orgánico'], vt['Orgánico'], ticket),
-            linha('Sin Trackeo', 0, ld['Sin Trackeo'], 0, ticket)]
-    tot = linha('TOTAL', sp_capt, leads_total, achadas, ticket)
-    plat = linha('', sp_capt, leads_total, pagas, ticket); plat.pop('nome')
+            linha('Sin Trackeo', 0, ld['Sin Trackeo'], nao, ticket, fact_total - achadas * ticket)]
+    tot = linha('TOTAL', sp_capt, leads_total, a.ventas, ticket, fact_total)
+    plat = linha('', sp_capt, track, pagas, ticket); plat.pop('nome')  # só leads de anúncio (quente + frio)
+    sem_utm = ld['Sin Trackeo'] - quebrada
+    nota_t = (f'Sin Trackeo reúne {ld["Sin Trackeo"]} leads sem origem identificável ({sem_utm} sem UTM e {quebrada} com UTM quebrada, '
+              f'que vieram dos anúncios mas sem o nome da campanha) e {nao} vendas de quem comprou com e-mail diferente do cadastro, '
+              f'sem lead correspondente. CPL e CAC só existem nas linhas com investimento.')
+    nota_t_es = (f'Sin Trackeo reúne {ld["Sin Trackeo"]} leads sin origen identificable ({sem_utm} sin UTM y {quebrada} con UTM rota, '
+                 f'que vinieron de los anuncios pero sin el nombre de la campaña) y {nao} ventas de quienes compraron con un email distinto '
+                 f'al del registro, sin lead correspondiente. CPL y CAC solo existen en las líneas con inversión.')
     zero = {'inversion': 0, 'leads': 0, 'cpl': None, 'ventas': 0, 'cac': None, 'tasa_conversion': 0, 'facturacion': 0, 'roas': None}
     ld_meta = sum(x.get('ld', 0) for x in A)
     imp = sum(x['imp'] for x in A); lc = sum(x['lc'] for x in A); pv = sum(x['pv'] for x in A)
 
     out = {
         'launch': a.id, 'label': a.label, 'status': a.status, 'atualizado_em': a.atualizado, 'ticket_price': ticket,
-        'metricas_gerais': {'inversion_total': round(inv_total, 2), 'leads': leads_total, 'cpl': div(sp_capt, leads_total, 2),
+        'metricas_gerais': {'inversion_total': round(inv_total, 2), 'leads': leads_total, 'cpl': div(sp_capt, leads_total, 2), 'cpl_pago': div(sp_capt, track, 2), 'leads_pagos': track,
                             'total_ventas': a.ventas, 'reembolso': len(reemb), 'ventas_trackeadas': achadas,
                             'cac': div(inv_total, a.ventas, 2), 'tasa_conversion': a.ventas / leads_total,
                             'facturacion': fact_total, 'roas': div(a.facturacion, inv_total)},
         'plataforma': {'meta_ads': plat, 'google_ads': zero, 'total': dict(plat)},
         'temperatura': temp, 'temperatura_total': tot,
-        'nao_encontrado': {'nome': 'Não encontrado na planilha de leads', 'nome_es': 'No encontrado en la planilla de leads', 'ventas': nao,
-                           'nota_es': 'Ventas confirmadas de quienes compraron con un email distinto al del registro: sin lead correspondiente, origen no identificado.' + ('' if nao == len(rows) - achadas else ' Las ventas y la facturación de esta línea son el residuo entre el total oficial y lo atribuido a las demás temperaturas.'),
-                           'facturacion': fact_total - achadas * ticket,
-                           'nota': 'Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada.' + ('' if nao == len(rows) - achadas else ' Ventas e faturamento desta linha são o resíduo entre o total oficial e o atribuído às demais temperaturas.')},
+        'nao_encontrado': None, 'temperatura_nota': nota_t, 'temperatura_nota_es': nota_t_es, 'utm_quebrada': quebrada,
         'trackeamento': {'leads': {'total': leads_total, 'trackeado': track, 'sin_trackeo': leads_total - track,
                                    'pct_trackeado': track / leads_total, 'pct_sin_trackeo': 1 - track / leads_total},
                          'ventas': {'total': a.ventas, 'encontradas_na_planilha': achadas, 'nao_encontradas': nao,
                                     'pct_encontradas': achadas / a.ventas}},
         'gasto_por_fase': [{'fase': f, 'valor': round(v, 2), 'pct': v / inv_total} for f, v in fases.items()],
-        'metricas_lancamento': {'cpm': div(sp_capt * 1000, imp, 2), 'connect_rate': div(pv, lc), 'conversao_lp': div(ld_meta or track, pv), 'ctr': div(lc, imp)},
+        'metricas_lancamento': {'cpm': div(sp_capt * 1000, imp, 2), 'connect_rate': div(pv, lc), 'conversao_lp': div(track, pv), 'ctr': div(lc, imp)},
         'publicos_com_venda': [{'publico': k, 'inversion': round(sp_conj[k], 2), 'ventas': v, 'facturacion': v * ticket,
                                 'roas': div(v * ticket, sp_conj[k])} for k, v in vconj.most_common()],
         'publicos_organico': [{'origem': k, 'ventas': v} for k, v in vorg.most_common()],

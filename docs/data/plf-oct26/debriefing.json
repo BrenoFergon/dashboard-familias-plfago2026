@@ -2,30 +2,32 @@
   "launch": "plf-oct26",
   "label": "PLF - Out 2026",
   "status": "vendas encerradas",
-  "atualizado_em": "11/11/2026",
+  "atualizado_em": "26/11/2026",
   "ticket_price": 2597,
   "metricas_gerais": {
-    "inversion_total": 31522.09,
-    "leads": 5014,
-    "cpl": 6.19,
+    "inversion_total": 31521.21,
+    "leads": 5017,
+    "cpl": 6.18,
+    "cpl_pago": 7.49,
+    "leads_pagos": 4140,
     "total_ventas": 41,
     "reembolso": 1,
     "ventas_trackeadas": 33,
-    "cac": 768.83,
-    "tasa_conversion": 0.008177104108496211,
+    "cac": 768.81,
+    "tasa_conversion": 0.008172214470799282,
     "facturacion": 106477,
     "roas": 3.3779
   },
   "plataforma": {
     "meta_ads": {
-      "inversion": 31022.32,
-      "leads": 5014,
-      "cpl": 6.19,
+      "inversion": 31021.44,
+      "leads": 4140,
+      "cpl": 7.49,
       "ventas": 24,
-      "cac": 1292.6,
-      "tasa_conversion": 0.004786597526924611,
+      "cac": 1292.56,
+      "tasa_conversion": 0.005797101449275362,
       "facturacion": 62328,
-      "roas": 2.0091
+      "roas": 2.0092
     },
     "google_ads": {
       "inversion": 0,
@@ -38,35 +40,35 @@
       "roas": null
     },
     "total": {
-      "inversion": 31022.32,
-      "leads": 5014,
-      "cpl": 6.19,
+      "inversion": 31021.44,
+      "leads": 4140,
+      "cpl": 7.49,
       "ventas": 24,
-      "cac": 1292.6,
-      "tasa_conversion": 0.004786597526924611,
+      "cac": 1292.56,
+      "tasa_conversion": 0.005797101449275362,
       "facturacion": 62328,
-      "roas": 2.0091
+      "roas": 2.0092
     }
   },
   "temperatura": [
     {
       "nome": "Caliente",
-      "inversion": 11767.9,
+      "inversion": 11767.34,
       "leads": 1752,
       "cpl": 6.72,
       "ventas": 11,
-      "cac": 1069.81,
+      "cac": 1069.76,
       "tasa_conversion": 0.006278538812785388,
       "facturacion": 28567,
-      "roas": 2.4275
+      "roas": 2.4277
     },
     {
       "nome": "Frio",
-      "inversion": 19254.42,
+      "inversion": 19254.1,
       "leads": 2388,
       "cpl": 8.06,
       "ventas": 13,
-      "cac": 1481.11,
+      "cac": 1481.08,
       "tasa_conversion": 0.005443886097152429,
       "facturacion": 33761,
       "roas": 1.7534
@@ -74,11 +76,11 @@
     {
       "nome": "Orgánico",
       "inversion": 0,
-      "leads": 769,
+      "leads": 772,
       "cpl": null,
       "ventas": 9,
-      "cac": 0,
-      "tasa_conversion": 0.011703511053315995,
+      "cac": null,
+      "tasa_conversion": 0.011658031088082901,
       "facturacion": 23373,
       "roas": null
     },
@@ -87,39 +89,35 @@
       "inversion": 0,
       "leads": 105,
       "cpl": null,
-      "ventas": 0,
+      "ventas": 8,
       "cac": null,
-      "tasa_conversion": 0.0,
-      "facturacion": 0,
+      "tasa_conversion": 0.0761904761904762,
+      "facturacion": 20776,
       "roas": null
     }
   ],
   "temperatura_total": {
     "nome": "TOTAL",
-    "inversion": 31022.32,
-    "leads": 5014,
-    "cpl": 6.19,
-    "ventas": 33,
-    "cac": 940.07,
-    "tasa_conversion": 0.00658157159952134,
-    "facturacion": 85701,
-    "roas": 2.7626
+    "inversion": 31021.44,
+    "leads": 5017,
+    "cpl": 6.18,
+    "ventas": 41,
+    "cac": 756.62,
+    "tasa_conversion": 0.008172214470799282,
+    "facturacion": 106477,
+    "roas": 3.4324
   },
-  "nao_encontrado": {
-    "nome": "Não encontrado na planilha de leads",
-    "nome_es": "No encontrado en la planilla de leads",
-    "ventas": 8,
-    "nota_es": "Ventas confirmadas de quienes compraron con un email distinto al del registro: sin lead correspondiente, origen no identificado.",
-    "facturacion": 20776,
-    "nota": "Vendas confirmadas de quem comprou com e-mail diferente do cadastro: sem lead correspondente, origem não identificada."
-  },
+  "nao_encontrado": null,
+  "temperatura_nota": "Sin Trackeo reúne 105 leads sem origem identificável (66 sem UTM e 39 com UTM quebrada, que vieram dos anúncios mas sem o nome da campanha) e 8 vendas de quem comprou com e-mail diferente do cadastro, sem lead correspondente. CPL e CAC só existem nas linhas com investimento.",
+  "temperatura_nota_es": "Sin Trackeo reúne 105 leads sin origen identificable (66 sin UTM y 39 con UTM rota, que vinieron de los anuncios pero sin el nombre de la campaña) y 8 ventas de quienes compraron con un email distinto al del registro, sin lead correspondiente. CPL y CAC solo existen en las líneas con inversión.",
+  "utm_quebrada": 39,
   "trackeamento": {
     "leads": {
-      "total": 5014,
+      "total": 5017,
       "trackeado": 4140,
-      "sin_trackeo": 874,
-      "pct_trackeado": 0.8256880733944955,
-      "pct_sin_trackeo": 0.17431192660550454
+      "sin_trackeo": 877,
+      "pct_trackeado": 0.8251943392465617,
+      "pct_sin_trackeo": 0.17480566075343829
     },
     "ventas": {
       "total": 41,
@@ -131,8 +129,8 @@
   "gasto_por_fase": [
     {
       "fase": "Captación",
-      "valor": 31022.32,
-      "pct": 0.984145404064261
+      "valor": 31021.44,
+      "pct": 0.9841449614402492
     },
     {
       "fase": "Recordatório",
@@ -147,7 +145,7 @@
     {
       "fase": "Replay",
       "valor": 499.77,
-      "pct": 0.01585459593573903
+      "pct": 0.01585503855975072
     },
     {
       "fase": "Inscripciones Abiertas",
@@ -157,8 +155,8 @@
   ],
   "metricas_lancamento": {
     "cpm": 12.73,
-    "connect_rate": 0.749,
-    "conversao_lp": 0.1339,
+    "connect_rate": 0.7491,
+    "conversao_lp": 0.1394,
     "ctr": 0.0163
   },
   "publicos_com_venda": [
@@ -247,8 +245,8 @@
     {
       "ad": "AD-NUEVOS-2",
       "ventas": 3,
-      "gasto": 2432.56,
-      "cpa": 810.85,
+      "gasto": 2432.57,
+      "cpa": 810.86,
       "facturacion": 7791,
       "roas": 3.2028
     },
@@ -263,10 +261,10 @@
     {
       "ad": "AD-NUEVOS-6-VD",
       "ventas": 1,
-      "gasto": 520.09,
-      "cpa": 520.09,
+      "gasto": 520.08,
+      "cpa": 520.08,
       "facturacion": 2597,
-      "roas": 4.9934
+      "roas": 4.9935
     },
     {
       "ad": "AD03-BLOQUE-06",
@@ -633,8 +631,8 @@
       "encontrado": false
     }
   ],
-  "obs": "Vendas conferidas na Hotmart em 11/11/2026 (produto Atmósfera 2.0): 41 vendas aprovadas a €2.597, somando €106.477, mais 1 venda reembolsada que não entra na conta. Duas das 41 pagaram reserva de €250 e o restante de €2.347. Outras 4 vendas aprovadas de uma oferta diferente (€1.100,06) não fazem parte da lista do cliente e ficaram fora deste debriefing. A Hotmart não registra UTM nessas vendas, então a origem vem do cruzamento com a planilha de leads OCT26: o cliente informou a origem de 30 das 41 e nós localizamos mais 3 por nome completo e e-mail parecido, todas de tráfego pago. Resultado: 24 vendas de tráfego pago (11 de público quente, 13 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 8 de quem comprou com e-mail diferente do cadastro, sem origem identificável. Investimento conferido no Meta Ads em 11/11/2026: €31.022,32 nas campanhas de captação PLF-oct26 e €499,77 na campanha de Replay; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. Leads conforme a planilha em 25/10/2026. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
-  "obs_es": "Ventas verificadas en Hotmart el 11/11/2026 (producto Atmósfera 2.0): 41 ventas aprobadas a 2.597 €, que suman 106.477 €, más 1 venta reembolsada que no entra en la cuenta. Dos de las 41 pagaron una reserva de 250 € y el resto de 2.347 €. Otras 4 ventas aprobadas de una oferta distinta (1.100,06 €) no forman parte de la lista del cliente y quedaron fuera de este debriefing. Hotmart no registra UTM en estas ventas, así que el origen viene del cruce con la planilla de leads OCT26: el cliente informó el origen de 30 de las 41 y nosotros localizamos 3 más por nombre completo y email parecido, todas de tráfico de pago. Resultado: 24 ventas de tráfico de pago (11 de público caliente, 13 de frío), 9 de orgánico (WhatsApp, email e Instagram) y 8 de quienes compraron con un email distinto al del registro, sin origen identificable. Inversión verificada en Meta Ads el 11/11/2026: 31.022,32 € en las campañas de captación PLF-oct26 y 499,77 € en la campaña de Replay; las campañas de distribución de contenido de la cuenta (FT-DISTRIBUICAO) no entran en el lanzamiento. Leads según la planilla al 25/10/2026. La inversión por público/creativo es la del conjunto o anuncio completo (sumada entre campañas), no solo la atribuible a las ventas, por lo que el ROAS por línea indica eficiencia relativa, no retorno absoluto.",
+  "obs": "Vendas conferidas na Hotmart (produto Atmósfera 2.0): 41 vendas aprovadas a €2.597, somando €106.477, mais 1 venda reembolsada que não entra na conta. Duas das 41 pagaram reserva de €250 e o restante de €2.347. Outras 4 vendas aprovadas de uma oferta diferente (€1.100,06) não fazem parte da lista do cliente e ficaram fora deste debriefing. A origem das vendas vem do cruzamento com a planilha de leads OCT26: o cliente informou a origem de 30 das 41 e nós localizamos mais 3 por nome completo e e-mail parecido, todas de tráfego pago. Resultado: 24 vendas de tráfego pago (11 de público quente, 13 de frio), 9 de orgânico (WhatsApp, e-mail e Instagram) e 8 de quem comprou com e-mail diferente do cadastro, contadas em Sin Trackeo. Investimento conferido no Meta Ads: €31.021,44 nas campanhas de captação PLF-oct26 (os mesmos números da aba Captação) e €499,77 na campanha de Replay, que só aparece aqui; as campanhas de distribuição de conteúdo da conta (FT-DISTRIBUICAO) não entram no lançamento. O CPL pago considera só os leads que vieram dos anúncios; o CPL geral, todos os leads. O investimento por público/criativo é o do conjunto ou anúncio inteiro (somado entre campanhas), não apenas o atribuível às vendas, então o ROAS por linha indica eficiência relativa, não retorno absoluto.",
+  "obs_es": "Ventas verificadas en Hotmart (producto Atmósfera 2.0): 41 ventas aprobadas a 2.597 €, que suman 106.477 €, más 1 venta reembolsada que no entra en la cuenta. Dos de las 41 pagaron una reserva de 250 € y el resto de 2.347 €. Otras 4 ventas aprobadas de una oferta distinta (1.100,06 €) no forman parte de la lista del cliente y quedaron fuera de este debriefing. El origen de las ventas viene del cruce con la planilla de leads OCT26: el cliente informó el origen de 30 de las 41 y nosotros localizamos 3 más por nombre completo y email parecido, todas de tráfico de pago. Resultado: 24 ventas de tráfico de pago (11 de público caliente, 13 de frío), 9 de orgánico (WhatsApp, email e Instagram) y 8 de quienes compraron con un email distinto al del registro, contadas en Sin Trackeo. Inversión verificada en Meta Ads: 31.021,44 € en las campañas de captación PLF-oct26 (los mismos números de la pestaña Captación) y 499,77 € en la campaña de Replay, que solo aparece aquí; las campañas de distribución de contenido de la cuenta (FT-DISTRIBUICAO) no entran en el lanzamiento. El CPL de pago considera solo los leads que vinieron de los anuncios; el CPL general, todos los leads. La inversión por público/creativo es la del conjunto o anuncio completo (sumada entre campañas), no solo la atribuible a las ventas, por lo que el ROAS por línea indica eficiencia relativa, no retorno absoluto.",
   "status_es": "ventas cerradas",
   "faturamento_detalhe": {
     "ventas_principal": 41,
